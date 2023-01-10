@@ -1,10 +1,17 @@
+import "./Assets/css/styles.css";
+import "./Assets/css/custom.css";
 import "./App.css";
+
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Emitter from "semitter";
+
 import {
   Footer_context,
   Logged_admin,
   Logged_user,
   Nav_context,
-} from "./Context";
+} from "./Contexts";
 
 let emitter = new Emitter();
 
@@ -114,10 +121,7 @@ class Neovacity extends React.Component {
     let {
       admin_logged,
       banner_stuffs,
-      onboarding_stuffs,
-      flash_promo,
       loggeduser,
-      best_instructors_stuffs,
       subnavs,
       navs,
       master_courses,
