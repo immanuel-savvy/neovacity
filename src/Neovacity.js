@@ -5,6 +5,13 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Emitter from "semitter";
+// import About from "./Pages/About";
+// import Forgot_password from "./Pages/Forgot_password";
+import Adminstrator from "./Pages/Adminstrator";
+// import Signup from "./Pages/Signup";
+// import Login from "./Pages/Login";
+import Page_not_found from "./Pages/404";
+import Index from "./Pages/Home";
 
 import {
   Footer_context,
@@ -12,6 +19,7 @@ import {
   Logged_user,
   Nav_context,
 } from "./Contexts";
+import Contact from "./Pages/Contact";
 
 let emitter = new Emitter();
 
@@ -109,6 +117,7 @@ class Neovacity extends React.Component {
     const script = document.createElement("script");
     script.src = path;
     script.async = false;
+    script.type = "text/babel";
     document.body.appendChild(script);
   };
 
@@ -159,6 +168,7 @@ class Neovacity extends React.Component {
                         element={<Index banner_stuffs={banner_stuffs} />}
                       />
                       <Route path="adminstrator" element={<Adminstrator />} />
+                      <Route path="contact_us" element={<Contact />} />
                       <Route path="*" element={<Page_not_found />} />
                     </Routes>
                   </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from "react";
-import { emitter } from "../Giit";
+import { emitter } from "../Neovacity";
 import Contact_us_today from "../Sections/contact_us_today";
 import Dashboard_navbar from "../Sections/dashboard/dashboard_navbar";
 import Footer from "../Sections/footer";

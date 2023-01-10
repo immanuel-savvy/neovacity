@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { scroll_to_top } from "../Pages/home";
+import { scroll_to_top } from "../Pages/Home";
 
 class Explore_more_btn extends React.Component {
   constructor(props) {

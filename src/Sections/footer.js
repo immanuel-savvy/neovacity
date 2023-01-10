@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { email_regex } from "../Assets/js/utils/functions";
-import { domain, post_request } from "../Assets/js/utils/services";
+import { post_request } from "../Assets/js/utils/services";
 import Loadindicator from "../Components/loadindicator";
 import Socials from "../Components/socials";
 import { Footer_context } from "../Contexts";
-import { emitter } from "../Giit";
-import { scroll_to_top } from "../Pages/Adminstrator";
+import { emitter } from "../Neovacity";
 
 class Footer extends React.Component {
   constructor(props) {
@@ -54,12 +53,13 @@ class Footer extends React.Component {
                         <div className="col-lg-5 col-md-5">
                           <div className="footer_widget">
                             <Link to="/">
-                              <img
+                              <h2 style={{ color: "#fff" }}>Neovacity</h2>
+                              {/* <img
                                 onClick={scroll_to_top}
                                 src={`${domain}/Images/giit_africa_logo_white.png`}
                                 className="img-footer small mb-2"
                                 alt=""
-                              />
+                              /> */}
                             </Link>
                             <h4 className="extream mb-3">
                               Do you need help with
@@ -138,18 +138,16 @@ class Footer extends React.Component {
                 <div className="footer-bottom">
                   <div className="container">
                     <div className="row align-items-center">
-                      <Link to="/adminstrator">
-                        <div
-                          onClick={() =>
-                            window.scrollTo({ top: 0, behavior: "smooth" })
-                          }
-                          className="col-lg-12 col-md-12 text-center"
-                        >
-                          <p className="mb-0">
-                            © 2022 Neovacity Africa. All rights reserved.
-                          </p>
-                        </div>
-                      </Link>
+                      <div
+                        onClick={() =>
+                          window.scrollTo({ top: 0, behavior: "smooth" })
+                        }
+                        className="col-lg-12 col-md-12 text-center"
+                      >
+                        <p className="mb-0">
+                          © 2022 Neovacity Africa. All rights reserved.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

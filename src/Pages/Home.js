@@ -7,7 +7,7 @@ import Contact_us_today from "../Sections/contact_us_today";
 import Footer from "../Sections/footer";
 import Header from "../Sections/header";
 import Latest_news_and_articles from "../Sections/latest_news_and_articles";
-import Alumni_reviews from "../Sections/Alumni_reviews";
+import Alumni_reviews from "../Sections/alumni_reviews";
 import Login from "./Login";
 import Faqs from "../Sections/faqs";
 import Modal from "../Components/modal";
@@ -35,11 +35,7 @@ class Index extends React.Component {
         {({ loggeduser }) => {
           if (loggeduser) document.title = `Home | ${organisation_name}`;
 
-          return loggeduser === "fetching" ? (
-            <Loadindicator contained />
-          ) : !loggeduser ? (
-            <Login lock />
-          ) : (
+          return (
             <div id="main-wrapper">
               <Header navs={navs} />
               <Banner banner_stuffs={banner_stuffs} />

@@ -5,7 +5,7 @@ import Review from "../Components/review";
 import Loadindicator from "../Components/loadindicator";
 import { domain, get_request, post_request } from "../Assets/js/utils/services";
 import { emitter } from "../Neovacity";
-import Explore_more_btn from "./explore_more_btn";
+import Explore_more_btn from "../Components/explore_more_btn";
 
 class Alumni_reviews extends React.Component {
   constructor(props) {

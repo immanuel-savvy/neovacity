@@ -17,7 +17,7 @@ import Loadindicator from "../Components/loadindicator";
 import { client_domain, domain } from "../Constants/constants";
 import { Nav_context } from "../Contexts";
 import { emitter } from "../Neovacity";
-import { scroll_to_top } from "../Pages/home";
+import { scroll_to_top } from "../Pages/Home";
 
 class Custom_nav extends React.Component {
   constructor(props) {
@@ -65,7 +65,8 @@ class Custom_nav extends React.Component {
             <div id="navigation" className="navigation navigation-landscape">
               <Navbar dark expand="lg">
                 <NavbarBrand href="/" className="nav-brand">
-                  <img
+                  <h2 style={{ color: "#fff" }}>Neovacity</h2>
+                  {/* <img
                     src={`${domain}/Images/giit_africa_logo_white.png`}
                     className="logo"
                     id="logo_white"
@@ -77,7 +78,7 @@ class Custom_nav extends React.Component {
                     id="logo_blue"
                     style={{ display: "none" }}
                     alt=""
-                  />
+                  /> */}
                 </NavbarBrand>
                 <NavbarToggler
                   style={{ color: "#fff" }}
