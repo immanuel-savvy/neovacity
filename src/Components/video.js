@@ -25,6 +25,8 @@ class Video extends React.Component {
     } = this.props;
     let { play, video_loaded } = this.state;
 
+    if (!thumbnail) thumbnail = "thumbnail_default.png";
+
     return (thumbnail && !play) || !url ? (
       <div
         style={{ ...style }}

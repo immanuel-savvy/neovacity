@@ -4,7 +4,7 @@ const hostname = DEV ? "http://localhost" : "http://neovacity.com";
 
 const client_domain = DEV ? `${hostname}:3000` : `${hostname}`;
 
-const domain = DEV ? `${hostname}:3300` : `https://api.neovacity.com`;
+const domain = DEV ? `${hostname}:1178` : `https://api.neovacity.com`;
 
 const default_admin = "adminstrators~123neovacity~1234567890123";
 

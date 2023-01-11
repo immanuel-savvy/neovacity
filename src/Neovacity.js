@@ -5,11 +5,11 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Emitter from "semitter";
-// import About from "./Pages/About";
-// import Forgot_password from "./Pages/Forgot_password";
+import About from "./Pages/About";
+import Forgot_password from "./Pages/Forgot_password";
 import Adminstrator from "./Pages/Adminstrator";
-// import Signup from "./Pages/Signup";
-// import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import Page_not_found from "./Pages/404";
 import Index from "./Pages/Home";
 
@@ -20,6 +20,9 @@ import {
   Nav_context,
 } from "./Contexts";
 import Contact from "./Pages/Contact";
+import FAQS from "./Pages/Faqs";
+import Testimonials from "./Pages/Testimonials";
+import Blog from "./Pages/Blog";
 
 let emitter = new Emitter();
 
@@ -43,7 +46,20 @@ class Neovacity extends React.Component {
         {
           title: "schools",
           path: "/courses",
-          submenu: new Array(),
+          submenu: new Array(
+            {
+              title: "school_of_engineering",
+            },
+            {
+              title: "school_of_product",
+            },
+            {
+              title: "school_of_people",
+            },
+            {
+              title: "school_of_money",
+            }
+          ),
         },
         {
           title: "about",
@@ -53,14 +69,14 @@ class Neovacity extends React.Component {
               title: "who we are",
               path: "/about",
             },
-            {
-              title: "our instructors",
-              path: "/instructors",
-            },
-            {
-              title: "career",
-              path: "/career",
-            },
+            // {
+            //   title: "our instructors",
+            //   path: "/instructors",
+            // },
+            // {
+            //   title: "career",
+            //   path: "/career",
+            // },
             {
               title: "FAQs",
               path: "/faqs",
@@ -68,16 +84,8 @@ class Neovacity extends React.Component {
           ),
         },
         {
-          title: "services",
-          path: "/services",
-        },
-        {
           title: "testimonials",
           path: "/testimonials",
-        },
-        {
-          title: "gallery",
-          path: "/gallery",
         },
         {
           title: "blog",
@@ -169,6 +177,16 @@ class Neovacity extends React.Component {
                       />
                       <Route path="adminstrator" element={<Adminstrator />} />
                       <Route path="contact_us" element={<Contact />} />
+                      <Route path="about" element={<About />} />
+                      <Route path="login" element={<Login />} />
+                      <Route path="signup" element={<Signup />} />
+                      <Route path="faqs" element={<FAQS />} />
+                      <Route path="blog" element={<Blog />} />
+                      <Route
+                        path="forgot_password"
+                        element={<Forgot_password />}
+                      />
+                      <Route path="testimonials" element={<Testimonials />} />
                       <Route path="*" element={<Page_not_found />} />
                     </Routes>
                   </BrowserRouter>

@@ -20,12 +20,12 @@ class Banner extends React.Component {
         style={{
           backgroundColor: "gray",
           backgroundImage: `url(${domain}/Images/${
-            image || "neoafrica_banner_background_image.jpg"
+            image || "neovacity_banner_background_image.jpg"
           })`,
           backgroundRepeat: "no-repeat",
           marginTop: "50px",
         }}
-        data-overlay="1"
+        data-overlay="8"
       >
         <Container style={{ height: 400, overflow: "auto" }} id="banner_video">
           <Row className="align-items-center mb-2">
@@ -51,7 +51,7 @@ class Banner extends React.Component {
                     <a href="#" class="btn theme-bg btn-md text-white">
                       Get Started
                     </a>
-                    <a href="#" class="btn text-dark pl-sm-0 ml-3">
+                    <a href="#" class="btn text-light pl-sm-0 ml-3">
                       <span class="esli_vd">
                         <i class="fa fa-play"></i>
                       </span>

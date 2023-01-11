@@ -19,11 +19,31 @@ class Faqs extends React.Component {
 
   componentDidMount = async () => {
     let { page_size, page } = this.state;
-    let { faqs, total_faqs } = await post_request("faqs", {
-      limit: page_size,
-      skip: page_size * page,
-      total_faqs: true,
-    });
+    let { faqs, total_faqs } =
+      {
+        faqs: new Array(
+          {
+            question: "Nostrud ad sunt nulla laborum dolore ullamco.",
+            answer:
+              "Aute exercitation non exercitation fugiat proident minim. Et ut et sit eiusmod laboris ea sint tempor nostrud. Ad amet sit nisi esse commodo nulla laboris aliqua Lorem ea ea anim aliqua ipsum. Amet adipisicing occaecat amet ullamco consequat. Exercitation sit exercitation magna ut qui duis dolore occaecat enim pariatur laborum.",
+          },
+          {
+            question: "Nostrud ad sunt nulla laborum dolore ullamco.",
+            answer:
+              "Aute exercitation non exercitation fugiat proident minim. Et ut et sit eiusmod laboris ea sint tempor nostrud. Ad amet sit nisi esse commodo nulla laboris aliqua Lorem ea ea anim aliqua ipsum. Amet adipisicing occaecat amet ullamco consequat. Exercitation sit exercitation magna ut qui duis dolore occaecat enim pariatur laborum.",
+          },
+          {
+            question: "Nostrud ad sunt nulla laborum dolore ullamco.",
+            answer:
+              "Aute exercitation non exercitation fugiat proident minim. Et ut et sit eiusmod laboris ea sint tempor nostrud. Ad amet sit nisi esse commodo nulla laboris aliqua Lorem ea ea anim aliqua ipsum. Amet adipisicing occaecat amet ullamco consequat. Exercitation sit exercitation magna ut qui duis dolore occaecat enim pariatur laborum.",
+          }
+        ),
+      } ||
+      (await post_request("faqs", {
+        limit: page_size,
+        skip: page_size * page,
+        total_faqs: true,
+      }));
 
     this.setState({ faqs, total_faqs });
 

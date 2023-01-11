@@ -35,38 +35,44 @@ class Header extends React.Component {
                     gap: "20px",
                     justifyContent: "space-between",
                     fontWeight: "bold",
+                    color: "#fff",
                   }}
                 >
                   <li>
-                    <span>
+                    <span style={{ color: "#fff" }}>
                       <i className="fas fa-map"></i> Address
                     </span>
                     <br />
                     18, Afolabi Aina Street, Allen Avenue, Ikeja, Lagos{" "}
                   </li>
                   <li>
-                    <span>
+                    <span style={{ color: "#fff" }}>
                       <i className="fas fa-envelope-open"></i> Email
                     </span>
                     <br />
-                    info@neovacity.com{" "}
+                    info@neovacityafrica.com{" "}
                   </li>
                   <li>
-                    <span>
+                    <span style={{ color: "#fff" }}>
                       <i className="fas fa-phone"></i> Contact
                     </span>
                     <br />
-                    +2348060515686, 08129252489{" "}
+                    +2348033027439, 2348099441722{" "}
                   </li>
                   <li>
-                    <span className="topheader_whatsapp"> Whatsapp</span>
+                    <span
+                      className="topheader_whatsapp"
+                      style={{ color: "#fff" }}
+                    >
+                      Whatsapp
+                    </span>
                     <br />
                     <a
-                      href="https://wa.me/+2348060515686/?text=Hello,%20I%20like%20to%20enquire%20about%20GIIT%20courses%20and%20training?"
+                      href="https://wa.me/+2348033027439/?text=Hello,%20I%20like%20to%20enquire%20about%20GIIT%20courses%20and%20training?"
                       target="_blank"
                       style={{ color: "#fff" }}
                     >
-                      +2348060515686
+                      +234 803 302 7439
                     </a>
                   </li>
                   <li></li>

@@ -18,7 +18,41 @@ class Alumni_reviews extends React.Component {
     let alumni_overview = await get_request("alumni_overview");
     this.setState({ alumni_overview });
 
-    let reviews = await post_request("reviews", { verified: true, limit: 12 });
+    let reviews =
+      new Array(
+        {
+          image: "user_placeholder.png",
+          text: "Great place, and the best people to study with.",
+          organisation: "interswitch",
+          position: "project marketer",
+          name: "Rico Servey",
+          verified: true,
+        },
+        {
+          image: "user_placeholder.png",
+          text: "Great place, and the best people to study with.",
+          organisation: "interswitch",
+          position: "project marketer",
+          name: "Rico Servey",
+          verified: true,
+        },
+        {
+          image: "user_placeholder.png",
+          text: "Great place, and the best people to study with.",
+          organisation: "interswitch",
+          position: "project marketer",
+          name: "Rico Servey",
+          verified: true,
+        },
+        {
+          image: "user_placeholder.png",
+          text: "Great place, and the best people to study with.",
+          organisation: "interswitch",
+          position: "project marketer",
+          name: "Rico Servey",
+          verified: true,
+        }
+      ) || (await post_request("reviews", { verified: true, limit: 12 }));
     this.setState({ reviews });
 
     this.new_alumni_review = (review) => {
@@ -69,7 +103,9 @@ class Alumni_reviews extends React.Component {
             {alumni_overview ? (
               <Col lg={6} md={6} sm={12} className="align-items-center">
                 <Video
-                  url={`${domain}/Videos/${alumni_overview.video}`}
+                  url={`${domain}/Videos/${
+                    alumni_overview.video || "video_placeholder.mp4"
+                  }`}
                   thumbnail={alumni_overview.thumbnail}
                 />
               </Col>

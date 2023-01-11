@@ -18,7 +18,7 @@ class Loadindicator extends React.Component {
         }
       >
         <img
-          src={`${client_domain}/Assets/css/plugins/ajax-loader.gif`}
+          src={`${client_domain}/ajax-loader.gif`}
           style={{ height: height || 64, width: width || 64 }}
         />
       </div>

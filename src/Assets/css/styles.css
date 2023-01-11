@@ -3781,7 +3781,8 @@ ul.lt_cr_list li i {
   box-shadow: 0 0 10px 0 rgb(62 28 131 / 7%);
   -webkit-box-shadow: 0 0 10px 0 rgb(62 28 131 / 7%);
 }
-.crs_cate_wrap.style_2 .crs_cate_box.simple , .crs_cate_box_no_hover.simple{
+.crs_cate_wrap.style_2 .crs_cate_box.simple,
+.crs_cate_box_no_hover.simple {
   display: flex;
   flex-direction: column;
   transition: all ease 0.4s;
@@ -3791,7 +3792,8 @@ ul.lt_cr_list li i {
   box-shadow: none;
   -webkit-box-shadow: none;
 }
-.crs_cate_wrap.style_2 .crs_cate_box .crs_cate_icon, .crs_cate_box_no_hover {
+.crs_cate_wrap.style_2 .crs_cate_box .crs_cate_icon,
+.crs_cate_box_no_hover {
   color: brown;
   font-size: 27px;
   width: 60px;
@@ -3799,7 +3801,8 @@ ul.lt_cr_list li i {
   background: rgba(3, 185, 124, 0.14);
   margin-bottom: 5px;
 }
-.crs_cate_wrap.style_2 .crs_cate_box.simple .crs_cate_icon, .crs_cate_box_no_hover {
+.crs_cate_wrap.style_2 .crs_cate_box.simple .crs_cate_icon,
+.crs_cate_box_no_hover {
   background: #ffffff;
   margin-bottom: 5px;
 }
@@ -8539,28 +8542,28 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 /* My Style */
 
 .my_header_style {
-  color: #000b47 !important;
+  color: #fff !important;
 }
 .my_header_style_init {
-  background-color: #000b47 !important;
-  color: #fff !important;
+  background-color: #fff !important;
+  color: #000;
 }
 
 .my_header_style_init span {
-  color: #fff !important;
+  color: #000;
 }
 
 .my_header_style {
-  background-color: #fff !important;
-  color: #000b47 !important;
+  background-color: #000 !important;
+  color: #fff !important;
 }
 
 .my_header_style span {
-  color: #000b47 !important;
+  color: #fff !important;
 }
 
 .my_header_style ul.nav-menu li {
-  color: #000b47 !important;
+  color: #fff !important;
 }
 
 .combo_hover {

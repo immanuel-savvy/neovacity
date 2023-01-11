@@ -58,14 +58,14 @@ class Custom_nav extends React.Component {
           this.navs = navs;
           this.set_subnav = set_subnav;
 
-          if (current_subnav && !submenus[current_subnav._id])
-            load_subnavs(current_subnav);
+          // if (current_subnav && !submenus[current_subnav._id])
+          //   load_subnavs(current_subnav);
 
           return (
             <div id="navigation" className="navigation navigation-landscape">
               <Navbar dark expand="lg">
                 <NavbarBrand href="/" className="nav-brand">
-                  <h2 style={{ color: "#fff" }}>Neovacity</h2>
+                  <h2 style={{ color: "#000" }}>Neovacity</h2>
                   {/* <img
                     src={`${domain}/Images/giit_africa_logo_white.png`}
                     className="logo"
@@ -81,7 +81,7 @@ class Custom_nav extends React.Component {
                   /> */}
                 </NavbarBrand>
                 <NavbarToggler
-                  style={{ color: "#fff" }}
+                  style={{ color: "#000" }}
                   onClick={this.toggle}
                 />
                 <Collapse isOpen={this.state.isOpen} navbar>

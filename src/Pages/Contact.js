@@ -200,9 +200,9 @@ class Contact extends React.Component {
                       <div className="ml-3 ml-md-4">
                         <h4>Make a Call</h4>
                         <p>
-                          +(234) 806 051 5686
+                          +(234) 803 302 7439
                           <br />
-                          +(234) 812 925 2489
+                          +(234) 809 944 1722
                         </p>
                       </div>
                     </li>

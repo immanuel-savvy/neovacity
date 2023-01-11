@@ -36,7 +36,7 @@ class How_it_works extends React.Component {
 
     return (
       <>
-        <section class="min gray">
+        <section class="min">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-lg-7 col-md-8">
