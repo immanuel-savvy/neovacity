@@ -23,6 +23,7 @@ import Contact from "./Pages/Contact";
 import FAQS from "./Pages/Faqs";
 import Testimonials from "./Pages/Testimonials";
 import Blog from "./Pages/Blog";
+import { get_request } from "./Assets/js/utils/services";
 
 let emitter = new Emitter();
 
@@ -132,7 +133,18 @@ class Neovacity extends React.Component {
   componentDidMount = async () => {
     !document.getElementsByName("script").length &&
       this.script_paths.map((script_path) => this.append_script(script_path));
+
+    let { banner_stuffs, best_instructors_stuffs, onboarding_stuffs } =
+      (await get_request("entry")) || new Object();
+
+    this.setState({
+      onboarding_stuffs,
+      banner_stuffs,
+      best_instructors_stuffs,
+    });
   };
+
+  log_admin = (admin) => this.setState({ admin_logged: admin });
 
   render = () => {
     let {
@@ -141,7 +153,7 @@ class Neovacity extends React.Component {
       loggeduser,
       subnavs,
       navs,
-      master_courses,
+      schools,
       submenus,
     } = this.state;
 
@@ -168,7 +180,7 @@ class Neovacity extends React.Component {
                   submenus,
                 }}
               >
-                <Footer_context.Provider value={{ master_courses }}>
+                <Footer_context.Provider value={{ schools }}>
                   <BrowserRouter>
                     <Routes>
                       <Route

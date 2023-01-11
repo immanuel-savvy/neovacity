@@ -27,6 +27,8 @@ class Video extends React.Component {
 
     if (!thumbnail) thumbnail = "thumbnail_default.png";
 
+    if (url && url.endsWith("undefined")) url = "";
+
     return (thumbnail && !play) || !url ? (
       <div
         style={{ ...style }}

@@ -14,13 +14,15 @@ class Banner extends React.Component {
     let { banner_stuffs } = this.props;
     let { image, thumbnail } = banner_stuffs || new Object();
 
+    console.log(banner_stuffs);
+
     return (
       <div
         className="hero_banner d-flex justify-content-center image-cover for_top_info"
         style={{
           backgroundColor: "gray",
           backgroundImage: `url(${domain}/Images/${
-            image || "neovacity_banner_background_image.jpg"
+            image || "neovacity_africa_banner_background_image.jpg"
           })`,
           backgroundRepeat: "no-repeat",
           marginTop: "50px",
@@ -39,7 +41,7 @@ class Banner extends React.Component {
                 }}
               >
                 <div className="hero_search-2">
-                  <div className="elsio_tag">RAISING GLOBALSTARS</div>
+                  <div className="elsio_tag">RAISING GLOBAL LEADERS</div>
                   <h1 className="banner_title mb-2">
                     Become a graduate in 1 year
                   </h1>
