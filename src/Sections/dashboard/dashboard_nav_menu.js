@@ -9,10 +9,80 @@ class Dashboard_nav_menu extends React.Component {
 
     this.state = {
       current_nav: "dashboard",
-      navs: new Array({
-        title: "dashboard",
-        icon: "fa-th",
-      }),
+      navs: new Array(
+        {
+          title: "dashboard",
+          icon: "fa-th",
+        },
+        {
+          title: "courses",
+          icon: "fa-shopping-basket",
+          subnav: new Array(
+            { title: "manage_courses" },
+            { title: "add_course" },
+            { title: "manage_schools" }
+          ),
+        },
+        {
+          title: "about",
+          icon: "fa-th",
+          subnav: new Array({
+            title: "about_statement",
+          }),
+        },
+        {
+          title: "trusted_by",
+          icon: "fa-th",
+        },
+        {
+          title: "testimonials",
+          icon: "fa-th",
+          subnav: new Array(
+            { title: "manage_reviews" },
+            { title: "pending_reviews" },
+            { title: "alumni_overview" }
+          ),
+        },
+        {
+          title: "blog",
+          icon: "fa-th",
+          subnav: new Array(
+            { title: "manage_articles" },
+            { title: "new_article" },
+            { title: "manage_categories" }
+          ),
+        },
+        {
+          title: "newsletters",
+          icon: "fa-envelope",
+          subnav: new Array(
+            { title: "manage_newsletters" },
+            { title: "create_newsletter" },
+            { title: "subscribers" }
+          ),
+        },
+        {
+          title: "messages",
+          icon: "fa-gem",
+        },
+        {
+          title: "sections",
+          icon: "fa-th",
+          subnav: new Array(
+            { title: "onboarding" },
+            { title: "best_instructors" },
+            { title: "FAQs" }
+          ),
+        },
+        {
+          title: "admins",
+          icon: "fa-user-shield",
+          subnav: new Array(
+            { title: "manage_admins" },
+            { title: "add_new_admin" }
+          ),
+        }
+      ),
     };
   }
 
@@ -30,16 +100,19 @@ class Dashboard_nav_menu extends React.Component {
     let { current_slide_index } = this.state;
 
     return subnav ? (
-      <div>
-        <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-          <h6 class="m-2 accordion_title">
+      <div key={index}>
+        <div
+          id="headingOne"
+          className="card-header bg-white shadow-sm border-0"
+        >
+          <h6 className="m-2 accordion_title">
             <a
               href="#"
               data-toggle="collapse"
               data-target={`#collapse${index}`}
               aria-expanded={current_slide_index === index ? "true" : "false"}
               aria-controls={`collapse${index}`}
-              class="d-block position-relative text-dark collapsible-link py-2"
+              className="d-block position-relative text-dark collapsible-link py-2"
             >
               {`${to_title(title.replace(/_/g, " "))}`}
             </a>
@@ -49,7 +122,7 @@ class Dashboard_nav_menu extends React.Component {
           id={`collapse${index}`}
           aria-labelledby="headingOne"
           data-parent="#accordionExample"
-          class={`collapse ${current_slide_index === index ? "show" : ""}`}
+          className={`collapse ${current_slide_index === index ? "show" : ""}`}
           style={{ margin: 0, marginLeft: 0, padding: 0, paddingRight: 0 }}
         >
           <div>
@@ -57,7 +130,7 @@ class Dashboard_nav_menu extends React.Component {
               <li
                 style={{ flexWrap: "wrap", padding: 10, cursor: "pointer" }}
                 key={index}
-                class={"incomplete" || "complete"}
+                className={"incomplete" || "complete"}
                 onClick={() => this.nav_dash(title)}
               >
                 {to_title(title.replace(/_/g, " "))}
@@ -68,11 +141,12 @@ class Dashboard_nav_menu extends React.Component {
       </div>
     ) : (
       <h6
-        class="p-2"
+        key={index}
+        className="p-2"
         style={{ cursor: "pointer" }}
         onClick={() => this.nav_dash(title)}
       >
-        <a class="d-block position-relative text-dark py-2">{`${to_title(
+        <a className="d-block position-relative text-dark py-2">{`${to_title(
           title.replace(/_/g, " ")
         )}`}</a>
       </h6>
@@ -86,7 +160,7 @@ class Dashboard_nav_menu extends React.Component {
     let { navs } = this.state;
 
     return (
-      <div id="accordionExample" class="accordion shadow circullum">
+      <div id="accordionExample" className="accordion shadow circullum">
         {navs.map((nav, i) =>
           admin && admin._id !== default_admin && nav.title === "admins"
             ? null

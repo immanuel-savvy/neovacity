@@ -26,6 +26,8 @@ import Manage_faqs from "../Sections/dashboard/manage_faqs";
 import About_statement from "../Sections/dashboard/about_statement";
 import Add_course from "../Sections/dashboard/add_course";
 import Add_admin from "../Sections/dashboard/add_admin";
+import { organisation_name } from "../Constants/constants";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const scroll_to_top = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -46,11 +48,12 @@ class Adminstrator extends React.Component {
     const script = document.createElement("script");
     script.src = path;
     script.async = true;
+    script.type = "text/babel";
     document.body.appendChild(script);
   };
 
   componentDidMount = () => {
-    document.title = "Dashboard | Globalstar Innovative Information Technology";
+    document.title = `Dashboard | ${organisation_name}`;
 
     this.script_paths.map((script_path) => this.append_script(script_path));
 
@@ -58,9 +61,6 @@ class Adminstrator extends React.Component {
     emitter.listen("edit_instructor", this.edit_instructor);
     emitter.listen("edit_course", this.edit_course);
     emitter.listen("edit_article", this.edit_article);
-
-    document.title =
-      "Adminstrator | Globalstar Innovative Information Technology";
   };
 
   componentWillUnmount = () => {

@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { domain } from "../Constants/constants";
+import Preview_image from "../Components/preview_image";
 
 class Banner extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Banner extends React.Component {
 
   render() {
     let { banner_stuffs } = this.props;
-    let { image, thumbnail } = banner_stuffs || new Object();
+    let { image, thumbnail, thumbnail_hash } = banner_stuffs || new Object();
 
     console.log(banner_stuffs);
 
@@ -29,7 +30,7 @@ class Banner extends React.Component {
         }}
         data-overlay="8"
       >
-        <Container style={{ height: 400, overflow: "auto" }} id="banner_video">
+        <Container style={{}}>
           <Row className="align-items-center mb-2">
             <Col xl={6} lg={6} md={6} sm={12}>
               <div
@@ -64,18 +65,20 @@ class Banner extends React.Component {
               </div>
             </Col>
             <Col
-              style={{
-                display: thumbnail ? "inline" : "none",
-                overflow: "hidden",
-                height: "2%",
-              }}
+              style={
+                {
+                  // display: thumbnail ? "inline" : "none",
+                  // overflow: "hidden",
+                  // height: "2%",
+                }
+              }
               xl={6}
               lg={6}
               md={6}
               sm={12}
             >
               <div class="side_block">
-                <img src="assets/img/h-5.png" class="img-fluid" alt="" />
+                <Preview_image image={thumbnail} image_hash={thumbnail_hash} />
               </div>
             </Col>
           </Row>

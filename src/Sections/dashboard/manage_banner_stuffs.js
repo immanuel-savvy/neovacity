@@ -139,7 +139,7 @@ class Banner_stuffs extends Handle_image_upload {
                         id="customFile"
                         accept="video/*"
                         onChange={this.handle_video}
-                        control
+                        control="true"
                       />
                       <label className="custom-file-label" for="customFile">
                         Choose file
