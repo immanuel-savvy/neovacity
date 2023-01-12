@@ -26,6 +26,7 @@ import Blog from "./Pages/Blog";
 import { get_request } from "./Assets/js/utils/services";
 import School from "./Pages/School";
 import Course from "./Pages/Course";
+import { client_domain } from "./Constants/constants";
 
 let emitter = new Emitter();
 
@@ -49,20 +50,7 @@ class Neovacity extends React.Component {
         {
           title: "schools",
           path: "/courses",
-          submenu: new Array(
-            {
-              title: "school_of_engineering",
-            },
-            {
-              title: "school_of_product",
-            },
-            {
-              title: "school_of_people",
-            },
-            {
-              title: "school_of_money",
-            }
-          ),
+          submenu: new Array(),
         },
         {
           title: "about",
@@ -132,6 +120,13 @@ class Neovacity extends React.Component {
     document.body.appendChild(script);
   };
 
+  handle_school = (school) => {
+    window.sessionStorage.setItem("school", JSON.stringify(school));
+    emitter.emit("push_school", school);
+
+    window.location.assign(`${client_domain}/school`);
+  };
+
   componentDidMount = async () => {
     !document.getElementsByName("script").length &&
       this.script_paths.map((script_path) => this.append_script(script_path));
@@ -139,10 +134,27 @@ class Neovacity extends React.Component {
     let { banner_stuffs, best_instructors_stuffs, onboarding_stuffs } =
       (await get_request("entry")) || new Object();
 
+    let schools = await get_request("schools/all");
+
+    let { navs, submenus } = this.state;
+    navs.map((nav) => {
+      if (nav.title === "schools")
+        nav.submenu = schools.map((school) => {
+          submenus[school._id] = school.courses;
+          return {
+            title: school.title,
+            path: "/school",
+            on_click: () => this.handle_school(school),
+          };
+        });
+    });
+
     this.setState({
       onboarding_stuffs,
       banner_stuffs,
       best_instructors_stuffs,
+      navs,
+      submenus,
     });
   };
 

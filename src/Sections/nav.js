@@ -58,9 +58,6 @@ class Custom_nav extends React.Component {
           this.navs = navs;
           this.set_subnav = set_subnav;
 
-          // if (current_subnav && !submenus[current_subnav._id])
-          //   load_subnavs(current_subnav);
-
           return (
             <div id="navigation" className="navigation navigation-landscape">
               <Navbar dark expand="lg">
@@ -128,11 +125,12 @@ class Custom_nav extends React.Component {
                                   onMouseOver={
                                     subnav.view_all
                                       ? null
-                                      : () =>
+                                      : () => {
                                           this.setState(
                                             { current_subnav: subnav },
                                             this.set_submenu
-                                          )
+                                          );
+                                        }
                                   }
                                 >
                                   <Link
@@ -148,7 +146,7 @@ class Custom_nav extends React.Component {
                                         )}
                                   </Link>
                                   {nav.title !==
-                                  "courses" ? null : subnav.submenu &&
+                                  "schools" ? null : subnav.submenu &&
                                     !subnav.submenu
                                       .length ? null : subnav._id ===
                                     (current_subnav && current_subnav._id) ? (
@@ -171,6 +169,11 @@ class Custom_nav extends React.Component {
                                           subnav.view_all
                                             ? null
                                             : () => {
+                                                console.log(
+                                                  "HEY",
+                                                  subnav.title,
+                                                  submenus[subnav._id]
+                                                );
                                                 let comp =
                                                   this[`dropdown_${index}`];
                                                 !comp.context.isOpen &&
@@ -185,25 +188,31 @@ class Custom_nav extends React.Component {
                                         {submenus[subnav._id] ? (
                                           submenus[subnav._id].length ? (
                                             submenus[subnav._id].map(
-                                              (sub_nav) => (
-                                                <li
-                                                  onClick={() =>
-                                                    this.handle_course(sub_nav)
-                                                  }
-                                                  style={{
-                                                    backgroundColor:
-                                                      "transparent",
-                                                  }}
-                                                  key={sub_nav._id}
-                                                >
-                                                  <Link to="/course">
-                                                    {sub_nav.title.replace(
-                                                      /_/g,
-                                                      " "
-                                                    )}
-                                                  </Link>
-                                                </li>
-                                              )
+                                              (sub_nav) => {
+                                                console.log(sub_nav, "ME");
+
+                                                return (
+                                                  <li
+                                                    onClick={() =>
+                                                      this.handle_course(
+                                                        sub_nav
+                                                      )
+                                                    }
+                                                    style={{
+                                                      backgroundColor:
+                                                        "transparent",
+                                                    }}
+                                                    key={sub_nav._id}
+                                                  >
+                                                    <Link to="/course">
+                                                      {sub_nav.title.replace(
+                                                        /_/g,
+                                                        " "
+                                                      )}
+                                                    </Link>
+                                                  </li>
+                                                );
+                                              }
                                             )
                                           ) : null
                                         ) : (
