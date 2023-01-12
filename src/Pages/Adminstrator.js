@@ -57,14 +57,24 @@ class Adminstrator extends React.Component {
 
     this.script_paths.map((script_path) => this.append_script(script_path));
 
+    this.dash_nav_click = (nav_title) =>
+      this.setState(
+        { current_nav: nav_title, course: null, instructor: null },
+        scroll_to_top
+      );
+
+    this.edit_course = (course) =>
+      this.setState({ current_nav: "add_new_course", course }, scroll_to_top);
+
+    this.edit_article = (article) =>
+      this.setState({ current_nav: "new_article", article }, scroll_to_top);
+
     emitter.listen("dash_nav_click", this.dash_nav_click);
-    emitter.listen("edit_instructor", this.edit_instructor);
     emitter.listen("edit_course", this.edit_course);
     emitter.listen("edit_article", this.edit_article);
   };
 
   componentWillUnmount = () => {
-    emitter.remove_listener("edit_instructor", this.edit_instructor);
     emitter.remove_listener("edit_course", this.edit_course);
     emitter.remove_listener("dash_nav_click", this.dash_nav_click);
   };

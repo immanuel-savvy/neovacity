@@ -15,6 +15,7 @@ import Subscribe from "../Components/subscribe";
 import How_it_works from "../Sections/how_it_works";
 import Best_instructors from "../Sections/best_instructors";
 import Onboarding from "../Sections/onboarding";
+import Schools from "../Sections/schools";
 
 const scroll_to_top = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -43,6 +44,7 @@ class Index extends React.Component {
               <Header navs={navs} />
               <Banner banner_stuffs={banner_stuffs} />
               <How_it_works />
+              <Schools />
               <Best_instructors />
               <Onboarding />
               <Alumni_reviews />

@@ -24,7 +24,6 @@ class Add_course extends Handle_image_upload {
     this.state = {
       current_pill: "basic",
       schools: new Array(),
-      certifications: new Array(),
       requirements: new Array(),
       what_you_will_learn: new Array(),
       ...course,
@@ -37,13 +36,9 @@ class Add_course extends Handle_image_upload {
 
   componentDidMount = async () => {
     let schools_options = await get_request("schools/all");
-    let course_certifications = await get_request("certifications");
-    let instructors = await get_request("instructors");
 
     this.setState({
       schools_options,
-      course_certifications,
-      instructors,
     });
   };
 
@@ -248,14 +243,12 @@ class Add_course extends Handle_image_upload {
 
   meta_info_tab_panel = () => {
     let {
-      course_certifications,
       what_you_will_learn,
       requirements,
       what_you_will_learn_in_edit,
       requirement_in_edit,
       requirement_index,
       learn_index,
-      instructors,
       duration,
     } = this.state;
 
@@ -270,53 +263,6 @@ class Add_course extends Handle_image_upload {
         role="tabpanel"
         aria-labelledby="v-pills-meta_info-tab"
       >
-        <div className="form-group smalls">
-          <label>Instructor</label>
-          {instructors ? (
-            instructors.length ? (
-              <div className="simple-input">
-                <select
-                  id="instructor"
-                  onChange={this.set_instructor}
-                  className="form-control"
-                >
-                  <option value="">-- Choose Instructor --</option>
-                  {instructors.map((instructor) => (
-                    <option key={instructor._id} value={instructor._id}>
-                      {to_title(instructor.name.replace(/_/g, " "))}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            ) : (
-              <Listempty text="Cannot get instructors." />
-            )
-          ) : (
-            <Loadindicator />
-          )}
-        </div>
-
-        {course_certifications && course_certifications.length ? (
-          <div className="form-group smalls">
-            <label>Course Certifications</label>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "row",
-              }}
-            >
-              {course_certifications ? (
-                course_certifications.map((certification) =>
-                  this.course_certification_checkbox(certification)
-                )
-              ) : (
-                <Loadindicator />
-              )}
-            </div>
-          </div>
-        ) : null}
-
         <div className="form-group smalls">
           <label>Course Duration (weeks)</label>
           <input
@@ -418,24 +364,8 @@ class Add_course extends Handle_image_upload {
     );
   };
 
-  course_certification_checkbox = ({ title, _id }) => (
-    <div className="form-group smalls" key={_id}>
-      <input
-        id={_id}
-        className="checkbox-custom"
-        name="course_certication"
-        type="checkbox"
-        checked={this.state.certifications.includes(_id)}
-        onChange={() => this.handle_check(_id, "certifications")}
-      />
-      <label for={_id} className="checkbox-custom-label">
-        {to_title(title)}
-      </label>
-    </div>
-  );
-
   basic_tab_panel = () => {
-    let { course_sections, schools_options } = this.state;
+    let { schools_options } = this.state;
     return (
       <div
         className={
@@ -470,20 +400,9 @@ class Add_course extends Handle_image_upload {
           />
         </div>
 
-        <div className="form-group smalls">
-          <label>Description</label>
-          <textarea
-            onChange={({ target }) =>
-              this.setState({ description: target.value })
-            }
-            value={this.state.description}
-            className="summernote form-control"
-          ></textarea>
-        </div>
-
         {schools_options && !schools_options.length ? null : (
           <div className="form-group smalls">
-            <label>Master Course</label>
+            <label>School</label>
             <div
               style={{
                 display: "flex",
@@ -492,9 +411,7 @@ class Add_course extends Handle_image_upload {
               }}
             >
               {schools_options ? (
-                schools_options.map((master_course) =>
-                  this.schools_checkbox(master_course)
-                )
+                schools_options.map((school) => this.schools_checkbox(school))
               ) : (
                 <Loadindicator />
               )}
@@ -541,7 +458,7 @@ class Add_course extends Handle_image_upload {
       <input
         id={_id}
         className="checkbox-custom"
-        name="master_course"
+        name="school"
         type="checkbox"
         checked={this.state.schools.includes(_id)}
         onChange={() => this.handle_check(_id, "schools")}
@@ -585,7 +502,7 @@ class Add_course extends Handle_image_upload {
         aria-labelledby="v-pills-pricing-tab"
       >
         <div className="form-group smalls">
-          <label>Course Price(&dollar;) *</label>
+          <label>Course Price($) *</label>
           <input
             type="number"
             className="form-control"
@@ -706,18 +623,15 @@ class Add_course extends Handle_image_upload {
       sections,
       schools,
       title,
-      description,
       price,
       video,
       image,
       requirements,
       what_you_will_learn,
-      certifications,
       _id,
       banner_image,
       image_hash,
       banner_image_hash,
-      instructor,
       duration,
       instructor_full,
     } = this.state;
@@ -726,19 +640,16 @@ class Add_course extends Handle_image_upload {
       sections,
       schools,
       title,
-      description,
       price: Number(price),
       video,
       image,
       image_hash,
       banner_image_hash,
       banner_image,
-      instructor,
       duration,
     };
     if (what_you_will_learn.length)
       course.what_you_will_learn = what_you_will_learn;
-    if (certifications.length) course.certifications = certifications;
     if (requirements.length) course.requirements = requirements;
 
     let response;
@@ -768,7 +679,6 @@ class Add_course extends Handle_image_upload {
   reset_state = () =>
     this.setState({
       short_description: "",
-      description: "",
       image: "",
       video: "",
       price: "",

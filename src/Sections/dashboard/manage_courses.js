@@ -45,44 +45,29 @@ class Manage_courses extends React.Component {
   };
 
   select_filter = async () => {
-    let sections = await get_request("sections/all");
-    let master_courses = await get_request("master_courses/all");
+    let schools = await get_request("schools/all");
 
-    return new Array(
-      {
-        _id: "master_course",
-        label_text: "master course",
-        options: new Array(
-          { title: "-- All master_courses --", default: true },
-          ...master_courses.map(
-            (master_course) =>
-              new Object({
-                title: master_course.title,
-                value: master_course._id,
-              })
-          )
-        ),
-      },
-      {
-        _id: "section",
-        label_text: "section",
-        options: new Array(
-          { title: "-- All section --", default: true },
-          ...sections.map(
-            (section) =>
-              new Object({ title: section.title, value: section._id })
-          )
-        ),
-      }
-    );
+    return new Array({
+      _id: "school",
+      label_text: "school",
+      options: new Array(
+        { title: "-- All schools --", default: true },
+        ...schools.map(
+          (school) =>
+            new Object({
+              title: school.title,
+              value: school._id,
+            })
+        )
+      ),
+    });
   };
 
   filter_courses = async () => {
-    let { section, master_course, search_param } = this.state;
+    let { school, search_param } = this.state;
 
     let filter = new Object();
-    if (section) filter.section = section;
-    if (master_course) filter.master_course = master_course;
+    if (school) filter.school = school;
     if (search_param) filter.search_param = search_param;
 
     let { total_courses, courses } = await post_request("courses", {

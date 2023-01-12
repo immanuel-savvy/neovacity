@@ -12,35 +12,30 @@ class Create_school extends Handle_image_upload {
     this.state = { search_results: new Array(), courses: new Array() };
   }
 
-  fetch_master_courses = async (master_course) => {
-    if (!master_course) return;
+  fetch_school = async (school) => {
+    if (!school) return;
 
     let courses = await post_request("get_courses", {
-      courses: master_course.courses,
+      courses: school.courses,
     });
     this.setState({ courses });
   };
 
   componentDidMount = () => {
-    let { master_course } = this.props;
+    let { school } = this.props;
 
-    this.fetch_master_courses(master_course);
+    this.fetch_school(school);
 
-    master_course && this.setState({ ...master_course });
+    school && this.setState({ ...school });
 
-    this.master_course_to_update = (master_course) =>
-      this.setState({ ...master_course }, () =>
-        this.fetch_master_courses(master_course)
-      );
+    this.school_to_update = (school) =>
+      this.setState({ ...school }, () => this.fetch_school(school));
 
-    emitter.listen("master_course_to_update", this.master_course_to_update);
+    emitter.listen("school_to_update", this.school_to_update);
   };
 
   componentWillUnmount = () => {
-    emitter.remove_listener(
-      "master_course_to_update",
-      this.master_course_to_update
-    );
+    emitter.remove_listener("school_to_update", this.school_to_update);
   };
 
   set_title = ({ target }) => this.setState({ title: target.value });
@@ -121,7 +116,7 @@ class Create_school extends Handle_image_upload {
       created,
     } = this.state;
 
-    let new_master_course = {
+    let new_school = {
       title,
       tags,
       image,
@@ -132,24 +127,21 @@ class Create_school extends Handle_image_upload {
     };
 
     if (!_id) {
-      let response = await post_request(
-        "create_master_course",
-        new_master_course
-      );
-      new_master_course._id = response._id;
-      new_master_course.created = response.created;
+      let response = await post_request("create_school", new_school);
+      new_school._id = response._id;
+      new_school.created = response.created;
 
-      emitter.emit("new_master_course", new_master_course);
+      emitter.emit("new_school", new_school);
     } else {
-      new_master_course._id = _id;
-      new_master_course.courses = courses;
-      new_master_course.created = created;
-      if (new_master_course.image)
-        if (new_master_course.image.startsWith("http"))
-          new_master_course.image = this.props.master_course.image;
+      new_school._id = _id;
+      new_school.courses = courses;
+      new_school.created = created;
+      if (new_school.image)
+        if (new_school.image.startsWith("http"))
+          new_school.image = this.props.school.image;
 
-      await post_request("update_master_course", new_master_course);
-      emitter.emit("master_course_updated", new_master_course);
+      await post_request("update_school", new_school);
+      emitter.emit("school_updated", new_school);
     }
 
     this.props.toggle();
@@ -235,7 +227,7 @@ class Create_school extends Handle_image_upload {
                 </div>
 
                 <div className="form-group smalls">
-                  <label>Tags*</label>
+                  <label>Tags</label>
                   <input
                     type="text"
                     className="form-control"
@@ -324,12 +316,10 @@ class Create_school extends Handle_image_upload {
 
                 <div className="form-group smalls">
                   <button
-                    onClick={
-                      title && price && tags && short_description && this.sumbit
-                    }
+                    onClick={title && price && short_description && this.sumbit}
                     type="button"
                     className={`btn full-width ${
-                      title && short_description && tags ? "theme-bg" : "grey"
+                      title && short_description ? "theme-bg" : "grey"
                     } short_description-white`}
                   >
                     {_id ? "Update Master Course" : "Add Master Course"}

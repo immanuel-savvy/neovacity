@@ -35,35 +35,6 @@ class New_article extends Handle_image_upload {
     this.setState({ sections });
   };
 
-  handle_pages = (value) => {
-    let { pages } = this.state;
-
-    if (pages.includes(value)) pages = pages.filter((val) => val !== value);
-    else pages.push(value);
-
-    this.setState({ pages });
-  };
-
-  pages = new Array("admission_assistance", "visa_assistance");
-
-  page = (page) => {
-    return (
-      <div className="form-group smalls" key={page}>
-        <input
-          id={page}
-          className="checkbox-custom"
-          name="article_pages"
-          type="checkbox"
-          checked={this.state.pages.includes(page)}
-          onChange={() => this.handle_pages(page)}
-        />
-        <label for={page} className="checkbox-custom-label">
-          {to_title(page.replace(/_/g, " "))}
-        </label>
-      </div>
-    );
-  };
-
   add_section = (type) => {
     let { sections } = this.state;
     sections.push({ type, text: "" });
@@ -97,14 +68,12 @@ class New_article extends Handle_image_upload {
       comments,
       sections,
       _id,
-      pages,
     } = this.state;
 
     let article = {
       title,
       image,
       image_hash,
-      pages,
       categories: categories.map((cat) => cat._id),
       sections,
     };
@@ -148,19 +117,6 @@ class New_article extends Handle_image_upload {
         <Dashboard_breadcrumb crumb="new article" />
         <div class="row">
           <form className="forms_block">
-            <div className="form-group smalls">
-              <label>Pages</label>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  flexDirection: "row",
-                }}
-              >
-                {this.pages.map((page) => this.page(page))}
-              </div>
-            </div>
-
             <div className="form-group smalls">
               <label>Image (1200 x 800)*</label>
               {image_loading ? (

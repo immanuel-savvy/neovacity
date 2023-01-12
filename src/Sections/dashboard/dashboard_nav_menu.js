@@ -2,6 +2,7 @@ import React from "react";
 import { to_title } from "../../Assets/js/utils/functions";
 import { default_admin } from "../../Constants/constants";
 import { emitter } from "../../Neovacity";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class Dashboard_nav_menu extends React.Component {
   constructor(props) {
@@ -101,9 +102,10 @@ class Dashboard_nav_menu extends React.Component {
 
     return subnav ? (
       <div key={index}>
-        <div
+        {/* <div
           id="headingOne"
           className="card-header bg-white shadow-sm border-0"
+          // onClick={() => console.log("clicked")}
         >
           <h6 className="m-2 accordion_title">
             <a
@@ -124,20 +126,24 @@ class Dashboard_nav_menu extends React.Component {
           data-parent="#accordionExample"
           className={`collapse ${current_slide_index === index ? "show" : ""}`}
           style={{ margin: 0, marginLeft: 0, padding: 0, paddingRight: 0 }}
-        >
-          <div>
-            {subnav.map(({ title }, index) => (
-              <li
-                style={{ flexWrap: "wrap", padding: 10, cursor: "pointer" }}
-                key={index}
-                className={"incomplete" || "complete"}
-                onClick={() => this.nav_dash(title)}
-              >
-                {to_title(title.replace(/_/g, " "))}
-              </li>
-            ))}
-          </div>
+        > */}
+        <div className="ml-2 mt-4">
+          <h6>{title}</h6>
         </div>
+        <div>
+          {subnav.map(({ title }, index) => (
+            <li
+              style={{ flexWrap: "wrap", padding: 10, cursor: "pointer" }}
+              key={index}
+              className={"incomplete" || "complete"}
+              onClick={() => this.nav_dash(title)}
+            >
+              {to_title(title.replace(/_/g, " "))}
+            </li>
+          ))}{" "}
+        </div>
+        {/*
+        </div> */}
       </div>
     ) : (
       <h6
@@ -153,7 +159,9 @@ class Dashboard_nav_menu extends React.Component {
     );
   };
 
-  nav_dash = (title) => emitter.emit("dash_nav_click", title);
+  nav_dash = (title) => {
+    emitter.emit("dash_nav_click", title);
+  };
 
   render = () => {
     let { admin } = this.props;
