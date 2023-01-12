@@ -24,7 +24,7 @@ class Header extends React.Component {
         <div
           id="top_info"
           className="top-bar-area address-two-lines text-light"
-          style={{ backgroundColor: "brown" }}
+          style={{ backgroundColor: "#008000" }}
         >
           <div className="container pt-2">
             <div className="row">

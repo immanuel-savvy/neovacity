@@ -39,6 +39,8 @@ class Custom_nav extends React.Component {
   handle_course = (course) => {
     window.sessionStorage.setItem("course", JSON.stringify(course));
     emitter.emit("push_course", course);
+
+    window.location.assign(`${client_domain}/course`);
   };
 
   search = () => {
@@ -60,25 +62,18 @@ class Custom_nav extends React.Component {
 
           return (
             <div id="navigation" className="navigation navigation-landscape">
-              <Navbar dark expand="lg">
+              <Navbar light expand="lg">
                 <NavbarBrand href="/" className="nav-brand">
-                  <h2 style={{ color: "#000" }}>Neovacity</h2>
-                  {/* <img
-                    src={`${domain}/Images/giit_africa_logo_white.png`}
+                  <img
+                    src={`${client_domain}/neovacity_africa_logo.png`}
                     className="logo"
                     id="logo_white"
                     alt=""
+                    style={{ height: 100, width: 100 }}
                   />
-                  <img
-                    src={`${domain}/Images/giit_africa_logo_blue.png`}
-                    className="logo"
-                    id="logo_blue"
-                    style={{ display: "none" }}
-                    alt=""
-                  /> */}
                 </NavbarBrand>
                 <NavbarToggler
-                  style={{ color: "#000" }}
+                  style={{ color: "#fff" }}
                   onClick={this.toggle}
                 />
                 <Collapse isOpen={this.state.isOpen} navbar>
@@ -154,7 +149,11 @@ class Custom_nav extends React.Component {
                                       key={index}
                                       nav
                                       inNavbar
-                                      onClick={subnav.on_click}
+                                      onClick={({ target }) => {
+                                        !target.classList.contains(
+                                          "sub_sub_nav"
+                                        ) && subnav.on_click();
+                                      }}
                                     >
                                       <DropdownToggle
                                         style={{
@@ -169,11 +168,6 @@ class Custom_nav extends React.Component {
                                           subnav.view_all
                                             ? null
                                             : () => {
-                                                console.log(
-                                                  "HEY",
-                                                  subnav.title,
-                                                  submenus[subnav._id]
-                                                );
                                                 let comp =
                                                   this[`dropdown_${index}`];
                                                 !comp.context.isOpen &&
@@ -189,22 +183,24 @@ class Custom_nav extends React.Component {
                                           submenus[subnav._id].length ? (
                                             submenus[subnav._id].map(
                                               (sub_nav) => {
-                                                console.log(sub_nav, "ME");
-
                                                 return (
                                                   <li
-                                                    onClick={() =>
+                                                    className="sub_sub_nav"
+                                                    onClick={({ target }) => {
                                                       this.handle_course(
                                                         sub_nav
-                                                      )
-                                                    }
+                                                      );
+                                                    }}
                                                     style={{
                                                       backgroundColor:
                                                         "transparent",
                                                     }}
                                                     key={sub_nav._id}
                                                   >
-                                                    <Link to="/course">
+                                                    <Link
+                                                      className="sub_sub_nav"
+                                                      to="/course"
+                                                    >
                                                       {sub_nav.title.replace(
                                                         /_/g,
                                                         " "

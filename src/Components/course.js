@@ -7,6 +7,8 @@ import Preview_image from "../Components/preview_image";
 import Video from "../Components/video";
 import { domain } from "../Constants/constants";
 import { emitter } from "../Neovacity";
+import Update_curriculum from "./forms/update_curriculum";
+import Modal from "./modal";
 
 const pricey = (price, percentage_off) => {
   if (!percentage_off) return price;
@@ -77,6 +79,8 @@ class Featured_course extends React.Component {
     window.sessionStorage.setItem("enroll", JSON.stringify(course));
     emitter.emit("push_enroll", course);
   };
+
+  update_curriculum = () => this.curriculum?.toggle();
 
   render() {
     let { progress, image_hash: img_hash, full_desc, play } = this.state;
@@ -245,6 +249,7 @@ class Featured_course extends React.Component {
                   </h2>
                 </div>
               </div>
+
               <div className="crs_fl_last">
                 <div className="crs_linkview">
                   <Link to={adminstrator || is_school ? "/course" : "/enroll"}>
@@ -260,8 +265,32 @@ class Featured_course extends React.Component {
                 </div>
               </div>
             </div>
+            {adminstrator ? (
+              <div className="crs_fl_last">
+                <div className="crs_linkview">
+                  <span
+                    onClick={this.update_curriculum}
+                    className="btn btn_view_detail theme-bg text-light"
+                  >
+                    {"Update Curriculum"}
+                  </span>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
+
+        <Modal
+          style={{ backgroundColor: "#008000" }}
+          title={`Curriculum: ${title}`}
+          aria_labelled_by="contained-modal-title-vcenter"
+          ref={(curriculum) => (this.curriculum = curriculum)}
+        >
+          <Update_curriculum
+            course={course}
+            toggle={() => this.curriculum?.toggle()}
+          />
+        </Modal>
       </div>
     );
   }

@@ -43,7 +43,7 @@ class Course_sidebar extends React.Component {
     let is_school = _id.startsWith("school");
 
     return (
-      <div className="col-lg-4 col-md-12 order-lg-last">
+      <div className="col-lg-3 col-md-12 order-lg-last">
         <div className="ed_view_box style_3 ovrlio stick_top">
           <Video
             thumbnail_class="pro_img img-fluid w100"
@@ -148,7 +148,7 @@ class Course_sidebar extends React.Component {
             <ul>
               <li>
                 <i class="fa fa-gem"></i>
-                {`Four (4) Semesters: Start; Apr-Jun, Jul-Sep, Oct-Dec, End; Jan - Mar`}
+                {`Four (4) Semesters`}
               </li>
               <li>
                 <i class="fa fa-gem"></i>

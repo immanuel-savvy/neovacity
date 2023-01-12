@@ -61,6 +61,30 @@ let phone_regex =
 let email_regex =
   /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
+const next_quarter = () => {
+  let date = new Date();
+  let quarter = (date.getMonth() % 3) + 1,
+    quarter_was_4;
+
+  if (quarter === 4) {
+    quarter_was_4 = true;
+    quarter = 1;
+  }
+
+  let propect_month = quarter * 3,
+    propect_year = date.getFullYear();
+  let str = `${month_index[propect_month - 1]}, ${
+    quarter_was_4 ? propect_year + 1 : propect_year
+  }`;
+
+  let next_prospect_month = propect_month + 2;
+  let next_entry = `${
+    month_index[next_prospect_month > 11 ? 0 : next_prospect_month]
+  }, ${next_prospect_month > 11 ? propect_year + 1 : propect_year}`;
+
+  return { str, next_entry };
+};
+
 export {
   to_title,
   gen_random_int,
@@ -68,5 +92,6 @@ export {
   email_regex,
   phone_regex,
   date_string,
+  next_quarter,
   shuffle_array,
 };

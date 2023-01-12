@@ -8,7 +8,6 @@ import Footer from "../Sections/footer";
 import Header from "../Sections/header";
 import Latest_news_and_articles from "../Sections/latest_news_and_articles";
 import Alumni_reviews from "../Sections/alumni_reviews";
-import Login from "./Login";
 import Faqs from "../Sections/faqs";
 import Modal from "../Components/modal";
 import Subscribe from "../Components/subscribe";

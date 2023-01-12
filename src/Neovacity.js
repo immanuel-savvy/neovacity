@@ -123,7 +123,6 @@ class Neovacity extends React.Component {
   handle_school = (school) => {
     window.sessionStorage.setItem("school", JSON.stringify(school));
     emitter.emit("push_school", school);
-
     window.location.assign(`${client_domain}/school`);
   };
 
@@ -144,6 +143,7 @@ class Neovacity extends React.Component {
           return {
             title: school.title,
             path: "/school",
+            _id: school._id,
             on_click: () => this.handle_school(school),
           };
         });
