@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { email_regex } from "../Assets/js/utils/functions";
+import { email_regex, to_title } from "../Assets/js/utils/functions";
 import { post_request } from "../Assets/js/utils/services";
 import Loadindicator from "../Components/loadindicator";
 import Socials from "../Components/socials";
+import { client_domain } from "../Constants/constants";
 import { Footer_context } from "../Contexts";
 import { emitter } from "../Neovacity";
+import { scroll_to_top } from "../Pages/Home";
 
 class Footer extends React.Component {
   constructor(props) {
@@ -14,11 +16,10 @@ class Footer extends React.Component {
     this.state = { total_length: 1 };
   }
 
-  componentDidMount = async () => {};
-
-  handle_course = (course) => {
-    window.sessionStorage.setItem("course", JSON.stringify(course));
-    emitter.emit("push_course", course);
+  handle_school = (school) => {
+    window.sessionStorage.setItem("school", JSON.stringify(school));
+    emitter.emit("push_school", school);
+    scroll_to_top();
   };
 
   set_email_subscription = ({ target }) =>
@@ -40,7 +41,7 @@ class Footer extends React.Component {
 
     return (
       <Footer_context.Consumer>
-        {({ master_courses: master_courses_ }) => {
+        {({ schools }) => {
           return (
             <span>
               {lock ? <div style={{ height: 300 }}></div> : null}
@@ -53,13 +54,12 @@ class Footer extends React.Component {
                         <div className="col-lg-5 col-md-5">
                           <div className="footer_widget">
                             <Link to="/">
-                              <h2 style={{ color: "#fff" }}>Neovacity</h2>
-                              {/* <img
+                              <img
                                 onClick={scroll_to_top}
-                                src={`${domain}/Images/giit_africa_logo_white.png`}
+                                src={`${client_domain}/neovacity_africa_logo.png`}
                                 className="img-footer small mb-2"
                                 alt=""
-                              /> */}
+                              />
                             </Link>
                             <h4 className="extream mb-3">
                               Do you need help with
@@ -102,7 +102,34 @@ class Footer extends React.Component {
                         </div>
                         <div className="col-lg-6 col-md-7 ml-auto">
                           <div className="row">
-                            {null}
+                            {
+                              <div className="col-lg-8 col-md-8">
+                                <div className="footer_widget">
+                                  <h4 className="widget_title">Company</h4>
+                                  <ul className="footer-menu">
+                                    {schools ? (
+                                      schools.map((school) => {
+                                        return (
+                                          <li
+                                            onClick={() =>
+                                              this.handle_school(school)
+                                            }
+                                          >
+                                            <Link to="/course">
+                                              {to_title(
+                                                school.title.replace(/_/g, " ")
+                                              )}
+                                            </Link>
+                                          </li>
+                                        );
+                                      })
+                                    ) : (
+                                      <Loadindicator />
+                                    )}
+                                  </ul>
+                                </div>
+                              </div>
+                            }
 
                             <div className="col-lg-4 col-md-4">
                               <div className="footer_widget">

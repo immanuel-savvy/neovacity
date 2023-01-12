@@ -18,41 +18,7 @@ class Alumni_reviews extends React.Component {
     let alumni_overview = await get_request("alumni_overview");
     this.setState({ alumni_overview });
 
-    let reviews =
-      new Array(
-        {
-          image: "user_placeholder.png",
-          text: "Great place, and the best people to study with.",
-          organisation: "interswitch",
-          position: "project marketer",
-          name: "Rico Servey",
-          verified: true,
-        },
-        {
-          image: "user_placeholder.png",
-          text: "Great place, and the best people to study with.",
-          organisation: "interswitch",
-          position: "project marketer",
-          name: "Rico Servey",
-          verified: true,
-        },
-        {
-          image: "user_placeholder.png",
-          text: "Great place, and the best people to study with.",
-          organisation: "interswitch",
-          position: "project marketer",
-          name: "Rico Servey",
-          verified: true,
-        },
-        {
-          image: "user_placeholder.png",
-          text: "Great place, and the best people to study with.",
-          organisation: "interswitch",
-          position: "project marketer",
-          name: "Rico Servey",
-          verified: true,
-        }
-      ) || (await post_request("reviews", { verified: true, limit: 12 }));
+    let reviews = await post_request("reviews", { verified: true, limit: 12 });
     this.setState({ reviews });
 
     this.new_alumni_review = (review) => {

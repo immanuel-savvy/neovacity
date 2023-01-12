@@ -9,6 +9,8 @@ class Weekly_outline extends React.Component {
   }
 
   render() {
+    let { week } = this.props;
+
     return (
       <div class="liop_wraps">
         <div class="liop_wraps_01">
@@ -16,10 +18,11 @@ class Weekly_outline extends React.Component {
           <span>04 Lectures</span>
         </div>
         <div class="liop_wraps_list">
-          <Daily_outline />
-          <Daily_outline />
-          <Daily_outline />
-          <Daily_outline />
+          {week && week.lecture
+            ? week.lectures.map((lecture, index) => (
+                <Daily_outline outline={lecture} key={index} index={index} />
+              ))
+            : null}
         </div>
       </div>
     );

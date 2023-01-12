@@ -69,7 +69,6 @@ class Custom_nav extends React.Component {
                     className="logo"
                     id="logo_white"
                     alt=""
-                    style={{ height: 100, width: 100 }}
                   />
                 </NavbarBrand>
                 <NavbarToggler

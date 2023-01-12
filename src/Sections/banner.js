@@ -51,10 +51,10 @@ class Banner extends React.Component {
                     do eiusmod tempor incididunt ut labore et dolore.
                   </p>
                   <div class="inline_btn mt-5">
-                    <a href="#" class="btn theme-bg btn-md text-white">
+                    <a href="#schools" class="btn theme-bg btn-md text-white">
                       Get Started
                     </a>
-                    <a href="#" class="btn text-light pl-sm-0 ml-3">
+                    <a href="#how_it_works" class="btn text-light pl-sm-0 ml-3">
                       <span class="esli_vd">
                         <i class="fa fa-play"></i>
                       </span>

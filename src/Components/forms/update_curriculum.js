@@ -1,6 +1,5 @@
 import React from "react";
-import { post_request } from "../../Assets/js/utils/services";
-import { emitter } from "../../Neovacity";
+import { get_request, post_request } from "../../Assets/js/utils/services";
 import Daily_outline from "../daily_outline";
 import Loadindicator from "../loadindicator";
 
@@ -15,7 +14,7 @@ class Update_curriculum extends React.Component {
 
   componentDidMount = async () => {
     let { course } = this.props;
-    let weeks = await post_request(`curriculum/${course._id}`),
+    let weeks = await get_request(`curriculum/${course._id}`),
       active_week;
 
     if (weeks && !weeks.length) {
@@ -45,23 +44,23 @@ class Update_curriculum extends React.Component {
       week: weeks.length + 1,
       _id: Math.random(),
       lectures: new Array(),
+      course: this.props.course._id,
     });
 
     this.setState({ weeks });
   };
 
   handle_file = ({ target }) => {
-    console.log("here tho");
     let file = target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
 
-    this.setState({ cv_loading: true });
+    this.setState({ resource_loading: true });
     reader.onloadend = async (e) =>
       this.setState({
         resource: reader.result,
         resource_file_name: file.name,
-        cv_loading: false,
+        resource_loading: false,
       });
   };
 
@@ -91,15 +90,45 @@ class Update_curriculum extends React.Component {
 
   active_week = (week_id) => this.setState({ active_week: week_id });
 
+  submit = async () => {
+    this.setState({ loading: true });
+    let { weeks, active_week } = this.state;
+
+    let week = weeks.find((week) => week._id === active_week);
+
+    let res = await post_request(
+      typeof week._id === "string" ? "update_week" : "new_week",
+      { week }
+    );
+
+    if (res && res.week) {
+      week._id = res.week._id;
+      week.lectures = res.week.lectures;
+      week.created = res.week.created;
+    }
+
+    this.setState({
+      active_week: "",
+      topic: "",
+      resource: "",
+      resource_file_name: "",
+      loading: false,
+    });
+  };
+
   render() {
     let { toggle } = this.props;
-    let { topic, weeks, active_week, resource_loading, resource_file_name } =
-      this.state;
+    let {
+      topic,
+      loading,
+      weeks,
+      active_week,
+      resource_loading,
+      resource_file_name,
+    } = this.state;
 
     if (active_week)
       active_week = weeks.find((week) => week._id === active_week);
-
-    console.log(active_week && active_week.lectures.length, "HHHHAAAHHHAAAA");
 
     return (
       <div>
@@ -144,67 +173,73 @@ class Update_curriculum extends React.Component {
               </div>
 
               <br />
-              <h6>Add Lecture</h6>
-              <form className="forms_block">
-                <div className="form-group smalls">
-                  <label>Topic*</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={({ target }) =>
-                      this.setState({ topic: target.value })
-                    }
-                    value={topic}
-                  />
-                </div>
+              {active_week && typeof active_week._id === "string" ? null : (
+                <>
+                  <h6>Add Lecture</h6>
+                  <form className="forms_block">
+                    <div className="form-group smalls">
+                      <label>Topic*</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={({ target }) =>
+                          this.setState({ topic: target.value })
+                        }
+                        value={topic}
+                      />
+                    </div>
 
-                <div className="form-group smalls">
-                  <label>Lecture Resource (PDF)</label>
-                  <div className="custom-file">
-                    <input
-                      type="file"
-                      className="custom-file-input"
-                      id="customFile"
-                      accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                      onChange={this.handle_file}
-                    />
-                    {resource_loading ? (
-                      <Loadindicator />
-                    ) : (
-                      <label className="custom-file-label" for="customFile">
-                        {resource_file_name || "Choose Resource"}
-                      </label>
-                    )}
-                  </div>
-                </div>
+                    <div className="form-group smalls">
+                      <label>Lecture Resource (PDF)</label>
+                      <div className="custom-file">
+                        <input
+                          type="file"
+                          className="custom-file-input"
+                          id="customFile"
+                          accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                          onChange={this.handle_file}
+                        />
+                        {resource_loading ? (
+                          <Loadindicator />
+                        ) : (
+                          <label className="custom-file-label" for="customFile">
+                            {resource_file_name || "Choose Resource"}
+                          </label>
+                        )}
+                      </div>
+                    </div>
 
-                {topic ? (
-                  <a
-                    href="#"
-                    style={{ color: "#fff" }}
-                    onClick={this.save_lecture}
-                    class="btn theme-bg btn-md"
-                  >
-                    Save
-                  </a>
-                ) : null}
-              </form>
+                    {topic ? (
+                      <a
+                        href="#"
+                        style={{ color: "#fff" }}
+                        onClick={this.save_lecture}
+                        class="btn theme-bg btn-md"
+                      >
+                        Save
+                      </a>
+                    ) : null}
+                  </form>
 
-              <hr />
+                  <hr />
 
-              {active_week && active_week.lectures.length > 0 ? (
-                <div className="form-group smalls">
-                  <button
-                    onClick={this.sumbit}
-                    type="button"
-                    className={`btn theme-bg full-width text-white`}
-                  >
-                    {typeof active_week._id === "string"
-                      ? "Update Week"
-                      : "Add Week"}
-                  </button>
-                </div>
-              ) : null}
+                  {loading ? (
+                    <Loadindicator />
+                  ) : active_week && active_week.lectures.length > 0 ? (
+                    <div className="form-group smalls">
+                      <button
+                        onClick={this.submit}
+                        type="button"
+                        className={`btn theme-bg full-width text-white`}
+                      >
+                        {typeof active_week._id === "string"
+                          ? "Update Week"
+                          : "Add Week"}
+                      </button>
+                    </div>
+                  ) : null}
+                </>
+              )}
 
               {active_week
                 ? active_week.lectures.map((lecture, index) => (

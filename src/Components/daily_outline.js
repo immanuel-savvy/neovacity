@@ -9,6 +9,8 @@ class Daily_outline extends React.Component {
 
   render() {
     let { outline, index } = this.props;
+    if (!outline) return;
+
     let { topic, resource } = outline;
 
     return (

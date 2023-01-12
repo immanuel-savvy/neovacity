@@ -281,7 +281,7 @@ class Featured_course extends React.Component {
         </div>
 
         <Modal
-          style={{ backgroundColor: "#008000" }}
+          // style={{ backgroundColor: "#008000" }}
           title={`Curriculum: ${title}`}
           aria_labelled_by="contained-modal-title-vcenter"
           ref={(curriculum) => (this.curriculum = curriculum)}

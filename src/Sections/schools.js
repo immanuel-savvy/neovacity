@@ -27,7 +27,7 @@ class Schools extends React.Component {
     if ((schools && !schools.length) || removed) return null;
 
     return (
-      <section class="min">
+      <section class="min" id="schools">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">

@@ -267,7 +267,7 @@ class New_article extends Handle_image_upload {
 
             <div className="form-group smalls mt-5">
               <button
-                onClick={is_set && this.sumbit}
+                onClick={is_set ? this.sumbit : () => {}}
                 type="button"
                 className={`btn full-width ${
                   is_set ? "theme-bg" : "grey"

@@ -155,6 +155,7 @@ class Neovacity extends React.Component {
       best_instructors_stuffs,
       navs,
       submenus,
+      schools,
     });
   };
 
