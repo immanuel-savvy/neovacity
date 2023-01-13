@@ -53,7 +53,6 @@ class Index extends React.Component {
               <Footer />
 
               <Modal
-                style={{ backgroundColor: "#000b47" }}
                 title="Subscribe to our newletters."
                 on_hide={() =>
                   window.localStorage.setItem("ask_to_subscribe", "true")

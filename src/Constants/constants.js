@@ -1,6 +1,6 @@
 const DEV = true;
 
-const hostname = DEV ? "http://localhost" : "http://neovacity.com";
+const hostname = DEV ? "http://192.168.1.18" : "http://neovacity.com";
 
 const client_domain = DEV ? `${hostname}:3000` : `${hostname}`;
 

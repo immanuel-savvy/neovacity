@@ -27,6 +27,7 @@ import { get_request } from "./Assets/js/utils/services";
 import School from "./Pages/School";
 import Course from "./Pages/Course";
 import { client_domain } from "./Constants/constants";
+import Article from "./Pages/Article";
 
 let emitter = new Emitter();
 
@@ -209,6 +210,7 @@ class Neovacity extends React.Component {
                       <Route path="signup" element={<Signup />} />
                       <Route path="faqs" element={<FAQS />} />
                       <Route path="blog" element={<Blog />} />
+                      <Route path="article" element={<Article />} />
                       <Route path="school" element={<School />} />
                       <Route path="course" element={<Course />} />
                       <Route

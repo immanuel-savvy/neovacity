@@ -41,12 +41,12 @@ class Subscribe extends React.Component {
             alt=""
           />
         </Link>
-        <h4 className="extream mb-3 text-light">
+        <h4 className="extream mb-3 text-dark">
           Do you need help with
           <br />
           anything?
         </h4>
-        <p className="text-light">
+        <p className="text-dark">
           Receive updates, hot deals, tutorials, discounts sent straight in your
           inbox every month
         </p>

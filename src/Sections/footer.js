@@ -48,7 +48,7 @@ class Footer extends React.Component {
               <footer className="dark-footer skin-dark-footer style-2">
                 {lock ? null : (
                   <div className="footer-middle">
-                    <Socials />
+                    {/* <Socials /> */}
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-5 col-md-5">
