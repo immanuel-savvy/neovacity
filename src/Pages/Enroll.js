@@ -6,6 +6,8 @@ import Contact_us_today from "../Sections/contact_us_today";
 import Footer from "../Sections/footer";
 import Header from "../Sections/header";
 import { scroll_to_top } from "./Home";
+import { PaystackButton, PaystackConsumer } from "react-paystack";
+import Loadindicator from "../Components/loadindicator";
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -34,14 +36,41 @@ class Enroll extends React.Component {
     return email_regex.test(email) && firstname && lastname && phone;
   };
 
-  proceed = async () => {
-    let { email, firstname, lastname, phone } = this.state;
-    if (!phone_regex.test(phone)) return;
+  payment_succesful = () => {
+    console.log("PAYMENT SUCCESSFUL");
   };
+
+  cancel = () => {};
 
   render() {
     let { navs } = this.props;
     let { email, firstname, lastname, phone, course } = this.state;
+
+    if (!course) return <Loadindicator contained />;
+
+    let payment_props = {
+      email: "immanuelsavvy@gmail.com",
+      amount: 1000,
+      metadata: {
+        name:
+          "immanuel savvy" ||
+          (firstname && lastname && `${firstname} ${lastname}`),
+        phone: "2348022693560",
+      },
+      publicKey: "pk_test_bb18a2e51d82edaf36aa443679756267d6fef396",
+      text: "Proceed to Payment",
+      onSuccess: this.payment_succesful,
+      onClose: this.cancel,
+    };
+
+    // console.log(
+    //   payment_props,
+    //   payment_props.email,
+    //   email,
+    //   payment_props.metadata,
+    //   firstname,
+    //   lastname
+    // );
 
     return (
       <div id="main-wrapper">
@@ -54,14 +83,14 @@ class Enroll extends React.Component {
             <div className="row justify-content-between">
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-12">
                 <form>
-                  <div class="row">
+                  <div className="row">
                     <h5>Enrollment Form</h5>
                     <br />
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                      <div class="form-group">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="form-group">
                         <label>Name</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           autoFocus
                           placeholder="Firstname"
@@ -73,11 +102,11 @@ class Enroll extends React.Component {
                       </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                      <div class="form-group">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="form-group">
                         <label>Lastname*</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           placeholder="Lastname"
                           onChange={({ target }) =>
@@ -88,7 +117,7 @@ class Enroll extends React.Component {
                       </div>
                     </div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div className="col-lg-12 col-md-12 col-sm-12">
                       <div className="form-group smalls">
                         <label>Email*</label>
                         <input
@@ -101,7 +130,7 @@ class Enroll extends React.Component {
                         />
                       </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div className="col-lg-12 col-md-12 col-sm-12">
                       <div className="form-group smalls">
                         <label>Phone Number*</label>
                         <input
@@ -116,16 +145,43 @@ class Enroll extends React.Component {
                     </div>
                   </div>
 
+                  <PaystackConsumer {...payment_props}>
+                    {({ initializePayment }) => (
+                      <button
+                        className="paystack-button"
+                        onClick={() =>
+                          initializePayment(this.payment_succesful, this.cancel)
+                        }
+                      >
+                        Paystack Consumer Implementation
+                      </button>
+                    )}
+                  </PaystackConsumer>
+
+                  <PaystackButton
+                    className="paystack-button"
+                    email="immanuelsavvy@gmail.com"
+                    metadata={{ name: "immanuel", phone: "08022693560" }}
+                    onClose={() => alert("closed")}
+                    onSuccess={() => alert("success!")}
+                    text="Hello"
+                    reference={new Date().getTime().toString()}
+                    publicKey="pk_test_bb18a2e51d82edaf36aa443679756267d6fef396"
+                  />
                   <div className="form-group smalls">
-                    <button
-                      onClick={this._is_set() && this.proceed}
-                      type="button"
-                      className={`btn full-width text-light ${
-                        this._is_set() ? "theme-bg" : "grey"
-                      } short_description-white`}
-                    >
-                      Proceed to payment
-                    </button>
+                    {this._is_set() ? (
+                      <PaystackButton
+                        className="paystack-button"
+                        {...payment_props}
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        className={`btn full-width text-light grey short_description-white`}
+                      >
+                        Proceed to payment
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>

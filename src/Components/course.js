@@ -219,13 +219,13 @@ class Featured_course extends React.Component {
               <ul className="mt-2">
                 {duration ? (
                   <li>
-                    <i class="fa fa-calendar text-danger mr-2"></i>
+                    <i className="fa fa-calendar text-danger mr-2"></i>
                     <span>{`${duration} Weeks`}</span>
                   </li>
                 ) : null}
                 {lectures ? (
                   <li>
-                    <i class="fa fa-video text-success mx-2"></i>
+                    <i className="fa fa-video text-success mx-2"></i>
                     <span>{`${lectures} Lectures`}</span>
                   </li>
                 ) : null}

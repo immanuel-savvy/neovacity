@@ -116,6 +116,7 @@ class Custom_nav extends React.Component {
                             >
                               {nav.submenu.map((subnav, index) => (
                                 <li
+                                  key={index}
                                   onMouseOver={
                                     subnav.view_all
                                       ? null

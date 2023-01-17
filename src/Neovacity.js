@@ -185,60 +185,46 @@ class Neovacity extends React.Component {
     } = this.state;
 
     return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="Savvy" content="Neovacity Africa" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="shortcut icon" href="../assets/images/gt_favicon.png" />
-        </head>
-
-        <body>
-          <Logged_user.Provider value={{ loggeduser, login: this.login }}>
-            <Logged_admin.Provider
-              value={{ admin_logged, log_admin: this.log_admin }}
-            >
-              <Nav_context.Provider
-                value={{
-                  navs,
-                  subnavs,
-                  set_subnav: this.set_subnav,
-                  load_subnavs: this.load_subnavs,
-                  submenus,
-                }}
-              >
-                <Footer_context.Provider value={{ schools }}>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route
-                        index
-                        element={<Index banner_stuffs={banner_stuffs} />}
-                      />
-                      <Route path="adminstrator" element={<Adminstrator />} />
-                      <Route path="contact_us" element={<Contact />} />
-                      <Route path="about" element={<About />} />
-                      <Route path="login" element={<Login />} />
-                      <Route path="signup" element={<Signup />} />
-                      <Route path="faqs" element={<FAQS />} />
-                      <Route path="blog" element={<Blog />} />
-                      <Route path="article" element={<Article />} />
-                      <Route path="school" element={<School />} />
-                      <Route path="course" element={<Course />} />
-                      <Route path="enroll" element={<Enroll />} />
-                      <Route
-                        path="forgot_password"
-                        element={<Forgot_password />}
-                      />
-                      <Route path="testimonials" element={<Testimonials />} />
-                      <Route path="*" element={<Page_not_found />} />
-                    </Routes>
-                  </BrowserRouter>
-                </Footer_context.Provider>
-              </Nav_context.Provider>
-            </Logged_admin.Provider>
-          </Logged_user.Provider>
-        </body>
-      </html>
+      <Logged_user.Provider value={{ loggeduser, login: this.login }}>
+        <Logged_admin.Provider
+          value={{ admin_logged, log_admin: this.log_admin }}
+        >
+          <Nav_context.Provider
+            value={{
+              navs,
+              subnavs,
+              set_subnav: this.set_subnav,
+              load_subnavs: this.load_subnavs,
+              submenus,
+            }}
+          >
+            <Footer_context.Provider value={{ schools }}>
+              <BrowserRouter>
+                <Routes>
+                  <Route
+                    index
+                    element={<Index banner_stuffs={banner_stuffs} />}
+                  />
+                  <Route path="adminstrator" element={<Adminstrator />} />
+                  <Route path="contact_us" element={<Contact />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="signup" element={<Signup />} />
+                  <Route path="faqs" element={<FAQS />} />
+                  <Route path="blog" element={<Blog />} />
+                  <Route path="article" element={<Article />} />
+                  <Route path="school" element={<School />} />
+                  <Route path="course" element={<Course />} />
+                  <Route path="enroll" element={<Enroll />} />
+                  <Route path="forgot_password" element={<Forgot_password />} />
+                  <Route path="testimonials" element={<Testimonials />} />
+                  <Route path="*" element={<Page_not_found />} />
+                </Routes>
+              </BrowserRouter>
+            </Footer_context.Provider>
+          </Nav_context.Provider>
+        </Logged_admin.Provider>
+      </Logged_user.Provider>
     );
   };
 }
