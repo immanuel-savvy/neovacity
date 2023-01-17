@@ -9,16 +9,18 @@ class Weekly_outline extends React.Component {
   }
 
   render() {
-    let { week } = this.props;
+    let { week, index } = this.props;
+
+    if (!week) return;
 
     return (
       <div class="liop_wraps">
         <div class="liop_wraps_01">
-          <h6>Week 01</h6>
-          <span>04 Lectures</span>
+          <h6>{`Week 0${index + 1}`}</h6>
+          <span>{`0${week.lectures.length} Lectures`}</span>
         </div>
         <div class="liop_wraps_list">
-          {week && week.lecture
+          {week && week.lectures
             ? week.lectures.map((lecture, index) => (
                 <Daily_outline outline={lecture} key={index} index={index} />
               ))

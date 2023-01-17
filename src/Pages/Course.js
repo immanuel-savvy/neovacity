@@ -56,7 +56,7 @@ class Course extends React.Component {
         <section class="gray">
           <div class="container">
             <div class="row">
-              <Course_outline />
+              <Course_outline course={course} />
 
               <Course_sidebar course={course} />
             </div>

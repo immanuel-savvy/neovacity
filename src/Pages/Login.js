@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { email_regex } from "../Assets/js/utils/functions";
 import { post_request } from "../Assets/js/utils/services";
 import Loadindicator from "../Components/loadindicator";
-import { client_domain } from "../Constants/constants";
 import { Logged_user } from "../Contexts";
 import Footer from "../Sections/footer";
 import Header from "../Sections/header";
@@ -50,7 +49,7 @@ class Login extends React.Component {
                         <div className="crs_log_wrap">
                           <div className="crs_log__thumb">
                             <img
-                              src={`${client_domain}/loginbg4.jpg`}
+                              src={require(`../Assets/img/loginbg4.jpg`)}
                               className="img-fluid"
                               alt=""
                             />

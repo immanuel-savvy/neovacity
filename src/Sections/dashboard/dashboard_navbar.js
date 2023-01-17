@@ -15,7 +15,7 @@ class Dashboard_navbar extends React.Component {
     return (
       <div class="col-lg-3 col-md-3">
         <div class="dashboard-navbar">
-          <Admin_card />
+          <Admin_card admin={admin} />
           <Dashboard_nav_menu admin={admin} />
         </div>
       </div>

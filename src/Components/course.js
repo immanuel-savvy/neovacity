@@ -85,8 +85,14 @@ class Featured_course extends React.Component {
   render() {
     let { progress, image_hash: img_hash, full_desc, play } = this.state;
 
-    let { course, classname, adminstrator, edit_course, delete_course } =
-      this.props;
+    let {
+      course,
+      classname,
+      in_enroll,
+      adminstrator,
+      edit_course,
+      delete_course,
+    } = this.props;
 
     if (!course) return null;
 
@@ -252,14 +258,22 @@ class Featured_course extends React.Component {
 
               <div className="crs_fl_last">
                 <div className="crs_linkview">
-                  <Link to={adminstrator || is_school ? "/course" : "/enroll"}>
+                  <Link
+                    to={
+                      adminstrator || in_enroll || is_school
+                        ? "/course"
+                        : "/enroll"
+                    }
+                  >
                     <span
                       onClick={
                         adminstrator ? this.handle_course : this.handle_enroll
                       }
                       className="btn btn_view_detail theme-bg text-light"
                     >
-                      {adminstrator || is_school ? "View Course" : "Enroll Now"}
+                      {adminstrator || in_enroll || is_school
+                        ? "View Course"
+                        : "Enroll Now"}
                     </span>
                   </Link>
                 </div>

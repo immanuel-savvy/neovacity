@@ -28,6 +28,7 @@ import School from "./Pages/School";
 import Course from "./Pages/Course";
 import { client_domain } from "./Constants/constants";
 import Article from "./Pages/Article";
+import Enroll from "./Pages/Enroll";
 
 let emitter = new Emitter();
 
@@ -150,6 +151,11 @@ class Neovacity extends React.Component {
         });
     });
 
+    this.restore_logged_admin = (admin) => {
+      console.log("uh");
+      this.setState({ admin_logged: admin });
+    };
+
     this.setState({
       onboarding_stuffs,
       banner_stuffs,
@@ -158,9 +164,14 @@ class Neovacity extends React.Component {
       submenus,
       schools,
     });
+
+    emitter.listen("restore_logged_admin", this.restore_logged_admin);
   };
 
-  log_admin = (admin) => this.setState({ admin_logged: admin });
+  log_admin = (admin) =>
+    this.setState({ admin_logged: admin }, () => {
+      window.sessionStorage.setItem("logged_admin", JSON.stringify(admin));
+    });
 
   render = () => {
     let {
@@ -213,6 +224,7 @@ class Neovacity extends React.Component {
                       <Route path="article" element={<Article />} />
                       <Route path="school" element={<School />} />
                       <Route path="course" element={<Course />} />
+                      <Route path="enroll" element={<Enroll />} />
                       <Route
                         path="forgot_password"
                         element={<Forgot_password />}

@@ -22,7 +22,6 @@ class Schools extends React.Component {
   componentWillUnmount = () => {};
 
   render() {
-    let { section, gray } = this.props;
     let { schools, removed } = this.state;
     if ((schools && !schools.length) || removed) return null;
 

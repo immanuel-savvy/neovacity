@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { to_title } from "../../Assets/js/utils/functions";
 import { post_request } from "../../Assets/js/utils/services";
-import { client_domain } from "../../Constants/constants";
 import Footer from "../../Sections/footer";
 import Header from "../../Sections/header";
 
@@ -44,7 +43,7 @@ class Admin_login extends React.Component {
                   <div className="crs_log_wrap">
                     <div className="crs_log__thumb">
                       <img
-                        src={`${client_domain}/loginbg4.jpg`}
+                        src={require(`../../Assets/img/loginbg4.jpg`)}
                         className="img-fluid"
                         alt=""
                       />

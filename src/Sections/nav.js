@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import { to_title } from "../Assets/js/utils/functions";
 import Loadindicator from "../Components/loadindicator";
-import { client_domain, domain } from "../Constants/constants";
+import { client_domain } from "../Constants/constants";
 import { Nav_context } from "../Contexts";
 import { emitter } from "../Neovacity";
 import { scroll_to_top } from "../Pages/Home";
@@ -65,7 +65,7 @@ class Custom_nav extends React.Component {
               <Navbar light expand="lg">
                 <NavbarBrand href="/" className="nav-brand">
                   <img
-                    src={`${client_domain}/neovacity_africa_logo.png`}
+                    src={require(`../Assets/img/neovacity_africa_logo.png`)}
                     className="logo"
                     id="logo_white"
                     alt=""

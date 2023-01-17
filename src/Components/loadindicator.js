@@ -1,5 +1,4 @@
 import React from "react";
-import { client_domain } from "../Constants/constants";
 
 class Loadindicator extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class Loadindicator extends React.Component {
         }
       >
         <img
-          src={`${client_domain}/ajax-loader.gif`}
+          src={require("../Assets/img/ajax-loader.gif")}
           style={{ height: height || 64, width: width || 64 }}
         />
       </div>

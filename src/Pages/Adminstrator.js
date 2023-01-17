@@ -55,6 +55,10 @@ class Adminstrator extends React.Component {
   componentDidMount = () => {
     document.title = `Dashboard | ${organisation_name}`;
 
+    let logged_admin = window.sessionStorage.getItem("logged_admin");
+
+    logged_admin && this.setState({ restored_admin: JSON.parse(logged_admin) });
+
     this.script_paths.map((script_path) => this.append_script(script_path));
 
     this.dash_nav_click = (nav_title) =>
@@ -104,11 +108,13 @@ class Adminstrator extends React.Component {
     });
 
   render() {
-    let { current_nav } = this.state;
+    let { current_nav, restored_admin } = this.state;
 
     return (
       <Logged_admin.Consumer>
         {({ admin_logged, log_admin }) => {
+          if (!admin_logged) admin_logged = restored_admin;
+
           return admin_logged ? (
             <div id="main-wrapper">
               <Header page="dashboard" />

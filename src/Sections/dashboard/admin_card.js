@@ -10,10 +10,21 @@ class Admin_card extends React.Component {
     this.state = {};
   }
 
+  log_admin_out = () => {
+    window.sessionStorage.removeItem("logged_admin");
+
+    this.logout_admin ? this.logout_admin() : window.location.reload();
+  };
+
   render() {
+    let { admin } = this.props;
+
     return (
       <Logged_admin.Consumer>
-        {({ admin_logged }) => {
+        {({ admin_logged, logout_admin }) => {
+          if (!admin_logged) admin_logged = admin;
+
+          this.logout_admin = logout_admin;
           let { firstname, lastname, image: _image, _id } = admin_logged;
           return (
             <div class="d-user-avater">
@@ -29,6 +40,11 @@ class Admin_card extends React.Component {
                   <li>
                     <a href="#">
                       <i class="ti-pencil"></i>
+                    </a>
+                  </li>
+                  <li onClick={this.log_admin_out}>
+                    <a href="#">
+                      <i class="ti-close"></i>
                     </a>
                   </li>
                 </ul>

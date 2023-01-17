@@ -14,6 +14,8 @@ class Course_outline extends React.Component {
     let { course } = this.props;
     let curriculum = await get_request(`curriculum/${course._id}`);
 
+    curriculum = curriculum.sort((c1, c2) => c1.created - c2.created);
+
     this.setState({ curriculum });
   };
 
@@ -23,9 +25,15 @@ class Course_outline extends React.Component {
     return (
       <div class="col-lg-8 col-md-12 order-lg-first">
         {curriculum ? (
-          curriculum.weeks.map((week) => (
-            <Weekly_outline week={week} key={week._id} />
-          ))
+          curriculum.map((weeks) => {
+            return weeks.weeks.map((week, index) => (
+              <Weekly_outline
+                index={index}
+                week={week}
+                key={week && week._id}
+              />
+            ));
+          })
         ) : (
           <Loadindicator contained />
         )}

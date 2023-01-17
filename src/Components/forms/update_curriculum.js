@@ -17,13 +17,19 @@ class Update_curriculum extends React.Component {
     let weeks = await get_request(`curriculum/${course._id}`),
       active_week;
 
+    let weeks_ = new Array();
+    weeks = weeks.map((week) => {
+      week.weeks.map((week) => weeks_.push(week));
+    });
+
     if (weeks && !weeks.length) {
       weeks = new Array({
         _id: Math.random(),
         lectures: new Array(),
         topic: "",
       });
-    }
+    } else weeks = weeks_;
+
     active_week = weeks[0]._id;
 
     this.setState({ weeks, active_week });
@@ -47,7 +53,7 @@ class Update_curriculum extends React.Component {
       course: this.props.course._id,
     });
 
-    this.setState({ weeks });
+    this.setState({ weeks, active_week: weeks.slice(-1)[0]._id });
   };
 
   handle_file = ({ target }) => {
@@ -72,7 +78,11 @@ class Update_curriculum extends React.Component {
     if (active_week === week_id) active_week = weeks[0];
     this.setState({ weeks, active_week });
 
-    await post_request("remove_week", { week: week_id, course: course._id });
+    typeof week_id === "string" &&
+      (await post_request("delete_week", {
+        week: week_id,
+        course: course._id,
+      }));
   };
 
   save_lecture = () => {
@@ -92,14 +102,16 @@ class Update_curriculum extends React.Component {
 
   submit = async () => {
     this.setState({ loading: true });
+    let { course } = this.props;
     let { weeks, active_week } = this.state;
 
     let week = weeks.find((week) => week._id === active_week);
 
-    let res = await post_request(
-      typeof week._id === "string" ? "update_week" : "new_week",
-      { week }
-    );
+    week.course = course._id;
+    let route = typeof week._id === "string" ? "update_week" : "new_week";
+    route === "new_week" && delete week._id;
+
+    let res = await post_request(route, { week });
 
     if (res && res.week) {
       week._id = res.week._id;

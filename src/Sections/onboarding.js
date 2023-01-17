@@ -18,17 +18,17 @@ class Onboarding extends React.Component {
                 <div class="side_block extream_img">
                   <div class="list_crs_img">
                     <img
-                      src={`${client_domain}/at-1.png`}
+                      src={require("../Assets/img/at-1.png")}
                       class="img-fluid elsio cirl animate-fl-y"
                       alt=""
                     />
                     <img
-                      src={`${client_domain}/at-3.png`}
+                      src={require("../Assets/img/at-3.png")}
                       class="img-fluid elsio arrow animate-fl-x"
                       alt=""
                     />
                     <img
-                      src={`${client_domain}/at-2.png`}
+                      src={require("../Assets/img/at-2.png")}
                       class="img-fluid elsio moon animate-fl-x"
                       alt=""
                     />
@@ -37,7 +37,7 @@ class Onboarding extends React.Component {
                     style={{
                       borderRadius: "25%",
                     }}
-                    src={`${client_domain}/sp-2.png`}
+                    src={require("../Assets/img/sp-2.png")}
                     class="img-fluid"
                     alt=""
                   />

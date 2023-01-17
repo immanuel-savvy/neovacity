@@ -1,4 +1,5 @@
 import React from "react";
+import { domain } from "../Constants/constants";
 
 class Daily_outline extends React.Component {
   constructor(props) {
@@ -17,12 +18,16 @@ class Daily_outline extends React.Component {
       <div class="liop_wraps_single">
         <div class="lki_813">
           <h6>Day</h6>
-          <span>{`${index}`.padStart(2, "0")}</span>
+          <span>{`${index + 1}`.padStart(2, "0")}</span>
         </div>
         <div class="bhu_486">
           <h5>{topic}</h5>
           {resource ? (
-            <a>
+            <a
+              style={{ textDecoration: "none" }}
+              href={`${domain}/Files/${resource}`}
+              blank="_target"
+            >
               <span>Download Resource</span>
             </a>
           ) : null}

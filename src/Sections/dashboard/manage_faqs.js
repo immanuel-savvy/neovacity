@@ -80,7 +80,6 @@ class Manage_faqs extends React.Component {
         <Dashboard_breadcrumb
           crumb="manage faqs"
           on_click={this.toggle_form}
-          hide={show_form || !faqs || (faqs && !faqs.length)}
           title="add faq"
         />
         <div class="row">
