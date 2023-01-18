@@ -26,11 +26,11 @@ class Banner extends React.Component {
             image || "neovacity_africa_banner_background_image.jpg"
           })`,
           backgroundRepeat: "no-repeat",
-          marginTop: "50px",
+          marginTop: "80px",
         }}
         data-overlay="8"
       >
-        <Container style={{}}>
+        <Container>
           <Row className="align-items-center mb-2">
             <Col xl={6} lg={6} md={6} sm={12}>
               <div
@@ -51,10 +51,35 @@ class Banner extends React.Component {
                     do eiusmod tempor incididunt ut labore et dolore.
                   </p>
                   <div class="inline_btn mt-5">
-                    <a href="#schools" class="btn theme-bg btn-md text-white">
-                      Get Started
-                    </a>
-                    <a href="#how_it_works" class="btn text-light pl-sm-0 ml-3">
+                    <button
+                      class="btn_svg slide-in"
+                      id="slider_stuff"
+                      onClick={() => window.location.assign("#schools")}
+                    >
+                      <svg
+                        width="155px"
+                        height="60px"
+                        viewBox="0 0 155 60"
+                        class="svg border"
+                      >
+                        <polyline
+                          points="179,1 179,59 1,59 1,1 179,1"
+                          class="bg-line"
+                        />
+                        <polyline
+                          points="179,1 179,59 1,59 1,1 179,1"
+                          class="hl-line"
+                        />
+                      </svg>
+                      <a className="btn theme-bg btn-md text-white">
+                        Get Started
+                      </a>
+                    </button>
+
+                    <a
+                      href="#how_it_works"
+                      class="mt-2 btn text-light pl-sm-0 ml-3"
+                    >
                       <span class="esli_vd">
                         <i class="fa fa-play"></i>
                       </span>

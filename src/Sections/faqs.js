@@ -122,13 +122,13 @@ class Faqs extends React.Component {
   };
 
   render() {
-    let { admin, paged } = this.props;
+    let { admin, paged, grey } = this.props;
     let { faqs } = this.state;
 
     if (faqs && !faqs.length) return null;
 
     return (
-      <section>
+      <section className={grey ? "gray" : ""}>
         <div class="container">
           {admin ? null : (
             <div class="row justify-content-center">

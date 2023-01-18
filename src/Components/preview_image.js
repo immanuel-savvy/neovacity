@@ -2,7 +2,6 @@ import React from "react";
 import { domain } from "../Constants/constants";
 import { Blurhash } from "react-blurhash";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Image from "next/image";
 import Loadindicator from "./loadindicator";
 
 class Preview_image extends React.Component {

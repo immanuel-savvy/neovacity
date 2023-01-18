@@ -56,7 +56,7 @@ class Footer extends React.Component {
                             <Link to="/">
                               <img
                                 onClick={scroll_to_top}
-                                src={`${client_domain}/neovacity_africa_logo.png`}
+                                src={require(`../Assets/img/neovacity_africa_logo.png`)}
                                 className="img-footer small mb-2"
                                 alt=""
                               />
@@ -115,7 +115,7 @@ class Footer extends React.Component {
                                               this.handle_school(school)
                                             }
                                           >
-                                            <Link to="/course">
+                                            <Link to="/school">
                                               {to_title(
                                                 school.title.replace(/_/g, " ")
                                               )}
@@ -135,22 +135,22 @@ class Footer extends React.Component {
                               <div className="footer_widget">
                                 <h4 className="widget_title">Company</h4>
                                 <ul className="footer-menu">
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/">Home</Link>
                                   </li>
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/about">About</Link>
                                   </li>
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/blog">Blog</Link>
                                   </li>
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/testimonials">Testimonials</Link>
                                   </li>
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/contact_us">Contact</Link>
                                   </li>
-                                  <li>
+                                  <li onClick={scroll_to_top}>
                                     <Link to="/login">Login</Link>
                                   </li>
                                 </ul>

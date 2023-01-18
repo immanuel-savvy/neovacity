@@ -68,7 +68,7 @@ class About extends React.Component {
                 <div className="col-xl-5 col-lg-5 col-md-5 col-sm-12">
                   <div className="lmp_thumb">
                     <img
-                      src={`${client_domain}/logo_placeholder.png`}
+                      src={require(`../Assets/img/logo_badge.png`)}
                       className="img-fluid"
                       alt=""
                     />

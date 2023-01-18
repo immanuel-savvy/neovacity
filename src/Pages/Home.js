@@ -43,12 +43,12 @@ class Index extends React.Component {
               <Header navs={navs} />
               <Banner banner_stuffs={banner_stuffs} />
               <How_it_works />
-              <Schools />
               <Best_instructors />
+              <Schools />
               <Onboarding />
               <Alumni_reviews />
               <Latest_news_and_articles />
-              <Faqs limit={6} />
+              <Faqs limit={6} grey />
               <Contact_us_today />
               <Footer />
 

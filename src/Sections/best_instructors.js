@@ -19,7 +19,7 @@ class Best_instructors extends React.Component {
     let { heading, text, bullets, image } = best_instructors_stuffs || {
       bullets: new Array(
         "Full lifetime access",
-        "20+ downloadable resources",
+        "Best Instructors in the City",
         "Guaranteed Job Placement",
         "Certificate of completion"
       ),
@@ -50,10 +50,7 @@ class Best_instructors extends React.Component {
               <div class="row align-items-center justify-content-between">
                 <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12">
                   <div class="lmp_caption">
-                    <h2 class="mb-3">
-                      {heading ||
-                        "We Have The Best Instructors Available in The City"}
-                    </h2>
+                    <h2 class="mb-3">{heading || "Features"}</h2>
                     <p>{text}</p>
 
                     {bullets

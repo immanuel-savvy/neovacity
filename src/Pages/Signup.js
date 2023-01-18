@@ -183,28 +183,6 @@ class Signup extends React.Component {
                           )}
                         </div>
                       </div>
-                      <div className="rcs_log_125">
-                        <span>Or SignUp with Social Info</span>
-                      </div>
-                      <div className="rcs_log_126">
-                        <ul className="social_log_45 row">
-                          <li className="col-xl-4 col-lg-4 col-md-4 col-4">
-                            <Link to="javascript:void(0);" className="sl_btn">
-                              <i className="ti-facebook text-info"></i>Facebook
-                            </Link>
-                          </li>
-                          <li className="col-xl-4 col-lg-4 col-md-4 col-4">
-                            <Link to="javascript:void(0);" className="sl_btn">
-                              <i className="ti-google text-danger"></i>Google
-                            </Link>
-                          </li>
-                          <li className="col-xl-4 col-lg-4 col-md-4 col-4">
-                            <Link to="javascript:void(0);" className="sl_btn">
-                              <i className="ti-twitter theme-cl"></i>Twitter
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                     <div className="crs_log__footer d-flex justify-content-between">
                       <div className="fhg_45">

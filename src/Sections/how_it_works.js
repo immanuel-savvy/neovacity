@@ -12,17 +12,17 @@ class How_it_works extends React.Component {
   componentDidMount = () => {
     let how_it_works = new Array(
       {
-        title: "Find Courses",
+        title: "Find Courses and Enroll",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
       },
       {
-        title: "Book Your Seat",
+        title: "Get certified",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
       },
       {
-        title: "Get Certificate",
+        title: "Land your dream job",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
       }
@@ -59,6 +59,7 @@ class How_it_works extends React.Component {
                   <How_it_work
                     how_it_work={work}
                     key={index}
+                    index={index}
                     active={index % 2}
                   />
                 ))

@@ -49,12 +49,10 @@ class Enroll extends React.Component {
     if (!course) return <Loadindicator contained />;
 
     let payment_props = {
-      email: "immanuelsavvy@gmail.com",
-      amount: 1000,
+      email,
+      amount: course.price * 100,
       metadata: {
-        name:
-          "immanuel savvy" ||
-          (firstname && lastname && `${firstname} ${lastname}`),
+        name: firstname && lastname && `${firstname} ${lastname}`,
         phone: "2348022693560",
       },
       publicKey: "pk_test_bb18a2e51d82edaf36aa443679756267d6fef396",
@@ -62,15 +60,6 @@ class Enroll extends React.Component {
       onSuccess: this.payment_succesful,
       onClose: this.cancel,
     };
-
-    // console.log(
-    //   payment_props,
-    //   payment_props.email,
-    //   email,
-    //   payment_props.metadata,
-    //   firstname,
-    //   lastname
-    // );
 
     return (
       <div id="main-wrapper">
@@ -144,46 +133,22 @@ class Enroll extends React.Component {
                       </div>
                     </div>
                   </div>
-
-                  <PaystackConsumer {...payment_props}>
-                    {({ initializePayment }) => (
-                      <button
-                        className="paystack-button"
-                        onClick={() =>
-                          initializePayment(this.payment_succesful, this.cancel)
-                        }
-                      >
-                        Paystack Consumer Implementation
-                      </button>
-                    )}
-                  </PaystackConsumer>
-
-                  <PaystackButton
-                    className="paystack-button"
-                    email="immanuelsavvy@gmail.com"
-                    metadata={{ name: "immanuel", phone: "08022693560" }}
-                    onClose={() => alert("closed")}
-                    onSuccess={() => alert("success!")}
-                    text="Hello"
-                    reference={new Date().getTime().toString()}
-                    publicKey="pk_test_bb18a2e51d82edaf36aa443679756267d6fef396"
-                  />
-                  <div className="form-group smalls">
-                    {this._is_set() ? (
-                      <PaystackButton
-                        className="paystack-button"
-                        {...payment_props}
-                      />
-                    ) : (
-                      <button
-                        type="button"
-                        className={`btn full-width text-light grey short_description-white`}
-                      >
-                        Proceed to payment
-                      </button>
-                    )}
-                  </div>
                 </form>
+                <div className="form-group smalls">
+                  {this._is_set() ? (
+                    <PaystackButton
+                      className="paystack-button"
+                      {...payment_props}
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      className={`btn full-width text-light grey short_description-white`}
+                    >
+                      Proceed to payment
+                    </button>
+                  )}
+                </div>
               </div>
               <Featured_course
                 in_enroll

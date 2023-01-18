@@ -24,7 +24,7 @@ class Header extends React.Component {
         <div
           id="top_info"
           className="top-bar-area address-two-lines text-light"
-          style={{ backgroundColor: "#008000" }}
+          style={{ backgroundColor: "#0000f0", letterSpacing: 1 }}
         >
           <div className="container pt-2">
             <div className="row">
@@ -34,7 +34,6 @@ class Header extends React.Component {
                     display: "flex",
                     gap: "20px",
                     justifyContent: "space-between",
-                    fontWeight: "bold",
                     color: "#fff",
                   }}
                 >
@@ -57,7 +56,8 @@ class Header extends React.Component {
                       <i className="fas fa-phone"></i> Contact
                     </span>
                     <br />
-                    +2348033027439, 2348099441722{" "}
+                    +234 8033027439,
+                    <br /> +234 8099441722{" "}
                   </li>
                   <li>
                     <span
@@ -72,7 +72,7 @@ class Header extends React.Component {
                       target="_blank"
                       style={{ color: "#fff" }}
                     >
-                      +234 803 302 7439
+                      +234 8033027439
                     </a>
                   </li>
                   <li></li>
