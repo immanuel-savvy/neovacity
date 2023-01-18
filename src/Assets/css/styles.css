@@ -7854,7 +7854,7 @@ h4.widget_title {
   display: block;
 }
 .footer_widget ul li a {
-  color: #626a70;
+  color: #ccc !important;
 }
 .light-footer .footer-bottom {
   background: rgba(3, 178, 123, 0.05);

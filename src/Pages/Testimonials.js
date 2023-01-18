@@ -83,14 +83,14 @@ class Testimonials extends React.Component {
                   </div>
                 </span>
               ) : (
-                <span class="elkios" onClick={this.toggle_form}>
+                <span className="elkios" onClick={this.toggle_form}>
                   <a
                     href="#"
-                    class="add_new_btn"
+                    className="add_new_btn"
                     data-toggle="modal"
                     data-target="#catModal"
                   >
-                    <i class="fas fa-plus-circle mr-1"></i>
+                    <i className="fas fa-plus-circle mr-1"></i>
                     Add a review
                   </a>
                 </span>

@@ -14,7 +14,6 @@ const get_request = async (path) => {
     return res && res.data;
   } catch (e) {
     console.log(e, domain);
-    return path;
   }
 };
 
@@ -26,6 +25,7 @@ const upload_file = async (file) => {
   try {
     let ftch = await fetch("/upload_file", {
       method: "POST",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
@@ -51,6 +51,7 @@ const post_request = async (path, data) => {
   try {
     let ftch = await fetch(`${domain}/${path}`, {
       method: "POST",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

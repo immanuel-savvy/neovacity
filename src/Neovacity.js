@@ -135,6 +135,8 @@ class Neovacity extends React.Component {
     let { banner_stuffs, best_instructors_stuffs, onboarding_stuffs } =
       (await get_request("entry")) || new Object();
 
+    console.log(await get_request("entry"), "entry_stuff");
+
     let schools = await get_request("schools/all");
 
     let { navs, submenus } = this.state;

@@ -66,7 +66,7 @@ class Footer extends React.Component {
                               <br />
                               anything?
                             </h4>
-                            <p>
+                            <p style={{ color: "#ccc" }}>
                               Receive updates, hot deals, tutorials, discounts
                               sent straight in your inbox every week
                             </p>
