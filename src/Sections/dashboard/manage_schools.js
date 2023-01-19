@@ -89,10 +89,10 @@ class Manage_schools extends React.Component {
     return (
       <div className="col-lg-9 col-md-9 col-sm-12">
         <Dashboard_breadcrumb
-          crumb="school"
+          crumb="schools"
           on_click={this.toggle_form}
           hide={show_form || !schools || (schools && !schools.length)}
-          title="manage school"
+          title="add school"
         />
 
         <div class="row">

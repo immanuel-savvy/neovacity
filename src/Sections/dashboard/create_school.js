@@ -116,6 +116,8 @@ class Create_school extends Handle_image_upload {
       created,
     } = this.state;
 
+    this.setState({ loading: true });
+
     let new_school = {
       title,
       tags,
@@ -160,6 +162,7 @@ class Create_school extends Handle_image_upload {
       _id,
       tags,
       image_loading,
+      loading,
     } = this.state;
 
     return (
@@ -316,9 +319,15 @@ class Create_school extends Handle_image_upload {
 
                 <div className="form-group smalls">
                   <button
-                    onClick={title && price && short_description && this.sumbit}
+                    onClick={
+                      title &&
+                      price &&
+                      !loading &&
+                      short_description &&
+                      this.sumbit
+                    }
                     type="button"
-                    className={`btn full-width ${
+                    className={`btn full-width text-light ${
                       title && short_description ? "theme-bg" : "grey"
                     } short_description-white`}
                   >

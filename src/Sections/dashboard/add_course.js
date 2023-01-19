@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { to_title } from "../../Assets/js/utils/functions";
 import { get_request, post_request } from "../../Assets/js/utils/services";
 import Handle_image_upload from "../../Components/handle_image_upload";
-import Listempty from "../../Components/list_empty";
 import Loadindicator from "../../Components/loadindicator";
 import { domain } from "../../Constants/constants";
 import { emitter } from "../../Neovacity";
@@ -419,27 +418,6 @@ class Add_course extends Handle_image_upload {
           </div>
         )}
 
-        {/* {course_sections && !course_sections.length ? null : (
-          <div className="form-group smalls">
-            <label>Course Section</label>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "row",
-              }}
-            >
-              {course_sections ? (
-                course_sections.map((section) =>
-                  this.course_section_checkbox(section)
-                )
-              ) : (
-                <Loadindicator />
-              )}
-            </div>
-          </div>
-        )} */}
-
         {this.pill_nav("basic")}
       </div>
     );
@@ -468,22 +446,6 @@ class Add_course extends Handle_image_upload {
       </label>
     </div>
   );
-
-  // course_section_checkbox = ({ title, _id }) => (
-  //   <div className="form-group smalls" key={_id}>
-  //     <input
-  //       id={_id}
-  //       className="checkbox-custom"
-  //       name="course_sections"
-  //       type="checkbox"
-  //       checked={this.state.sections.includes(_id)}
-  //       onChange={() => this.handle_check(_id, "sections")}
-  //     />
-  //     <label for={_id} className="checkbox-custom-label">
-  //       {to_title(title.replace(/_/g, " "))}
-  //     </label>
-  //   </div>
-  // );
 
   handle_price = ({ target }) => this.setState({ price: target.value });
 
@@ -635,6 +597,9 @@ class Add_course extends Handle_image_upload {
       duration,
       instructor_full,
     } = this.state;
+
+    this.setState({ loading: true });
+    schools = schools.map((school) => school._id || school);
     let course = {
       short_description,
       sections,
