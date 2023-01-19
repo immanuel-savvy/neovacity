@@ -8,6 +8,7 @@ import { client_domain } from "../Constants/constants";
 import { Footer_context } from "../Contexts";
 import { emitter } from "../Neovacity";
 import { scroll_to_top } from "../Pages/Home";
+import { route_prefix } from "./nav";
 
 class Footer extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Footer extends React.Component {
                       <div className="row">
                         <div className="col-lg-5 col-md-5">
                           <div className="footer_widget">
-                            <Link to="/">
+                            <Link to={`/${route_prefix}`}>
                               <img
                                 onClick={scroll_to_top}
                                 src={require(`../Assets/img/neovacity_africa_logo.png`)}
@@ -115,7 +116,7 @@ class Footer extends React.Component {
                                               this.handle_school(school)
                                             }
                                           >
-                                            <Link to="/school">
+                                            <Link to={`/${route_prefix}school`}>
                                               {to_title(
                                                 school.title.replace(/_/g, " ")
                                               )}
@@ -136,22 +137,24 @@ class Footer extends React.Component {
                                 <h4 className="widget_title">Company</h4>
                                 <ul className="footer-menu">
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/">Home</Link>
+                                    <Link to={`/${""}`}>Home</Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/about">About</Link>
+                                    <Link to={`/${""}about`}>About</Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/blog">Blog</Link>
+                                    <Link to={`/${""}blog`}>Blog</Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/testimonials">Testimonials</Link>
+                                    <Link to={`/${""}testimonials`}>
+                                      Testimonials
+                                    </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/contact_us">Contact</Link>
+                                    <Link to={`/${""}contact_us`}>Contact</Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to="/login">Login</Link>
+                                    <Link to={`/${""}login`}>Login</Link>
                                   </li>
                                 </ul>
                               </div>
@@ -171,8 +174,19 @@ class Footer extends React.Component {
                         }
                         className="col-lg-12 col-md-12 text-center"
                       >
+                        <Link to={`${route_prefix}adminstrator`}>
+                          <p className="mb-0">
+                            {`© ${new Date().getFullYear()} Neovacity Africa. All rights reserved.`}
+                          </p>
+                        </Link>
                         <p className="mb-0">
-                          © 2022 Neovacity Africa. All rights reserved.
+                          Site managed by{" "}
+                          <a
+                            href="https://digitaladplanet.com/ng/"
+                            target="_blank"
+                          >
+                            Digital Ad Planet
+                          </a>
                         </p>
                       </div>
                     </div>

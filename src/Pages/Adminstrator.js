@@ -68,7 +68,7 @@ class Adminstrator extends React.Component {
       );
 
     this.edit_course = (course) =>
-      this.setState({ current_nav: "add_new_course", course }, scroll_to_top);
+      this.setState({ current_nav: "add_course", course }, scroll_to_top);
 
     this.edit_article = (article) =>
       this.setState({ current_nav: "new_article", article }, scroll_to_top);
@@ -81,6 +81,7 @@ class Adminstrator extends React.Component {
   componentWillUnmount = () => {
     emitter.remove_listener("edit_course", this.edit_course);
     emitter.remove_listener("dash_nav_click", this.dash_nav_click);
+    emitter.remove_listener("edit_article", this.edit_article);
   };
 
   nav_et_component = () =>

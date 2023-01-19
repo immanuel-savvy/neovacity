@@ -7,6 +7,7 @@ import Preview_image from "../Components/preview_image";
 import Video from "../Components/video";
 import { domain } from "../Constants/constants";
 import { emitter } from "../Neovacity";
+import { route_prefix } from "../Sections/nav";
 import Update_curriculum from "./forms/update_curriculum";
 import Modal from "./modal";
 
@@ -259,11 +260,11 @@ class Featured_course extends React.Component {
               <div className="crs_fl_last">
                 <div className="crs_linkview">
                   <Link
-                    to={
+                    to={`${route_prefix}${
                       adminstrator || in_enroll || is_school
                         ? "/course"
                         : "/enroll"
-                    }
+                    }`}
                   >
                     <span
                       onClick={

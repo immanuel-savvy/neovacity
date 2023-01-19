@@ -1,5 +1,4 @@
 import React from "react";
-import Loadindicator from "../Components/loadindicator";
 import { organisation_name } from "../Constants/constants";
 import { Logged_user } from "../Contexts";
 import Banner from "../Sections/banner";

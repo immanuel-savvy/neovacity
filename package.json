@@ -1,7 +1,7 @@
 {
   "name": "neovacityafrica",
   "version": "0.1.0",
-  "homepage": "http://immanuel-savvy.github.io/neovacity",
+  "homepage": "http://giitafrica.com/neovacity",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",

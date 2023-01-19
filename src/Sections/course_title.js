@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { gen_random_int } from "../Assets/js/utils/functions";
 import Video from "../Components/video";
+import { emitter } from "../Neovacity";
 
 class Course_title extends React.Component {
   constructor(props) {
@@ -8,6 +10,14 @@ class Course_title extends React.Component {
 
     this.state = {};
   }
+
+  handle_enroll = () => {
+    let { course, school } = this.props;
+    if (!course) course = school;
+
+    window.sessionStorage.setItem("enroll", JSON.stringify(course));
+    emitter.emit("push_enroll", course);
+  };
 
   render() {
     let { course } = this.props;
@@ -73,7 +83,14 @@ class Course_title extends React.Component {
                 </div>
                 <div class="dlkio_last">
                   <div style={{ visibility: "hidden" }}> </div>
-
+                  <Link to="/enroll" style={{ textDecorationLine: "none" }}>
+                    <span
+                      onClick={this.handle_enroll}
+                      className="btn theme-bg text-light enroll-btn"
+                    >
+                      Enroll Now<i className="ti-angle-right"></i>
+                    </span>
+                  </Link>
                   <div class="ed_view_link">
                     <a href="#" class="btn theme-border enroll-btn">
                       Share<i class="fas fa-share"></i>

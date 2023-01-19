@@ -11,10 +11,7 @@ class Schools extends React.Component {
   }
 
   componentDidMount = async () => {
-    let { section } = this.props;
-
     let schools = await get_request("schools/all");
-    console.log(schools);
 
     this.setState({ schools });
   };

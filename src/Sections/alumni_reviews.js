@@ -90,7 +90,7 @@ class Alumni_reviews extends React.Component {
           </div>
 
           {reviews && reviews.length ? (
-            <Explore_more_btn title="Testimonies" to={"/testimonials"} />
+            <Explore_more_btn text="More testimonies" to={"/testimonials"} />
           ) : null}
         </div>
       </section>

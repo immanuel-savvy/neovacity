@@ -1,10 +1,12 @@
-const DEV = false;
+const DEV = true;
 
 const hostname = DEV
   ? "http://localhost"
   : "https://neovacity.udaralinksapp.com";
 
-const client_domain = DEV ? `${hostname}:3000` : `${hostname}`;
+const client_domain = DEV
+  ? `${hostname}:3000`
+  : `http://giitafrica.com/neovacity`;
 
 const domain = DEV ? `${hostname}:1178` : `https://neovacity.udaralinksapp.com`;
 

@@ -19,6 +19,8 @@ import { Nav_context } from "../Contexts";
 import { emitter } from "../Neovacity";
 import { scroll_to_top } from "../Pages/Home";
 
+const route_prefix = "";
+
 class Custom_nav extends React.Component {
   constructor(props) {
     super(props);
@@ -40,13 +42,13 @@ class Custom_nav extends React.Component {
     window.sessionStorage.setItem("course", JSON.stringify(course));
     emitter.emit("push_course", course);
 
-    window.location.assign(`${client_domain}/course`);
+    window.location.assign(`${client_domain}/${route_prefix}course`);
   };
 
   search = () => {
     let { search_param } = this.state;
     window.location.assign(
-      `${client_domain}/courses?search_param=${search_param}`
+      `${client_domain}/${route_prefix}courses?search_param=${search_param}`
     );
     scroll_to_top();
   };
@@ -63,7 +65,7 @@ class Custom_nav extends React.Component {
           return (
             <div id="navigation" className="navigation navigation-landscape">
               <Navbar light expand="lg">
-                <NavbarBrand href="/" className="nav-brand">
+                <NavbarBrand href={`/${route_prefix}`} className="nav-brand">
                   <img
                     src={require(`../Assets/img/neovacity_africa_logo.png`)}
                     className="logo"
@@ -131,9 +133,9 @@ class Custom_nav extends React.Component {
                                 >
                                   <Link
                                     onClick={subnav.on_click}
-                                    to={
+                                    to={`${route_prefix}${
                                       subnav.view_all ? "/courses" : subnav.path
-                                    }
+                                    }`}
                                   >
                                     {subnav.view_all
                                       ? "View all courses..."
@@ -200,7 +202,7 @@ class Custom_nav extends React.Component {
                                                   >
                                                     <Link
                                                       className="sub_sub_nav"
-                                                      to="/course"
+                                                      to={`/${route_prefix}course`}
                                                     >
                                                       {sub_nav.title.replace(
                                                         /_/g,
@@ -243,7 +245,7 @@ class Custom_nav extends React.Component {
                         <ul className="nav-menu nav-menu-social align-to-right">
                           <li>
                             <Link
-                              to="/login"
+                              to={`/${route_prefix}login`}
                               className="alio_green"
                               data-toggle="modal"
                               data-target="#login"
@@ -256,7 +258,10 @@ class Custom_nav extends React.Component {
                       ) : nav.path === "/signup" ? (
                         <ul className="nav-menu nav-menu-social align-to-right mb-3">
                           <li className="add-listing theme-bg">
-                            <Link to="/signup" className="text-white">
+                            <Link
+                              to={`/${route_prefix}signup`}
+                              className="text-white"
+                            >
                               Get Started
                             </Link>
                           </li>
@@ -270,7 +275,7 @@ class Custom_nav extends React.Component {
                           >
                             <Link
                               style={{ textDecorationColor: "none" }}
-                              to={nav.path}
+                              to={`/${route_prefix}${nav.path.slice(1)}`}
                             >
                               <span>
                                 {to_title(nav.title.replace(/_/g, " "))}
@@ -317,3 +322,4 @@ class Custom_nav extends React.Component {
 }
 
 export default Custom_nav;
+export { route_prefix };

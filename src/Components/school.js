@@ -32,7 +32,7 @@ class School extends React.Component {
           {play ? (
             <Video url={video} />
           ) : (
-            <Link className="crs_detail_link" to="/school">
+            <Link className="crs_detail_link" to={`school`}>
               <Preview_image
                 image={image}
                 image_hash={image_hash}
@@ -81,7 +81,7 @@ class School extends React.Component {
             </ul>
           </div>
           <div class="prt_footer">
-            <Link to="/school">
+            <Link to={`school`}>
               <span class="btn choose_package" onClick={this.handle_school}>
                 Register
               </span>

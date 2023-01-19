@@ -132,7 +132,7 @@ class Manage_courses extends React.Component {
                 onClick={this.prev_page}
                 className={`page-item ${page === 0 ? "disabled" : ""}`}
               >
-                <a className="page-link" href="#" tabindex="-1">
+                <a className="page-link" href="#" tabIndex="-1">
                   <i className="fas fa-arrow-circle-left"></i>
                 </a>
               </li>
