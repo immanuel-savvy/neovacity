@@ -56,8 +56,6 @@ class Enroll extends React.Component {
       set: next_quarter().str,
     };
 
-    console.log(payload);
-
     post_request("register_course", payload).then((res) => {
       !this.user && this.set_loggeduser(res.user);
 

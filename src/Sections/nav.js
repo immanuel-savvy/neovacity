@@ -209,7 +209,7 @@ class Custom_nav extends React.Component {
                                               {submenus[subnav._id] ? (
                                                 submenus[subnav._id].length ? (
                                                   submenus[subnav._id].map(
-                                                    (sub_nav) => {
+                                                    (sub_nav, index) => {
                                                       return (
                                                         <li
                                                           className="sub_sub_nav"
@@ -224,7 +224,7 @@ class Custom_nav extends React.Component {
                                                             backgroundColor:
                                                               "transparent",
                                                           }}
-                                                          key={sub_nav._id}
+                                                          key={index}
                                                         >
                                                           <Link
                                                             className="sub_sub_nav"

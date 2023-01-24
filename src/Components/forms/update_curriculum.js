@@ -1,5 +1,8 @@
 import React from "react";
+import { _id } from "../../Assets/js/utils/functions";
 import { get_request, post_request } from "../../Assets/js/utils/services";
+import { emitter } from "../../Neovacity";
+import Course_outline from "../../Sections/course_outline";
 import Daily_outline from "../daily_outline";
 import Loadindicator from "../loadindicator";
 
@@ -18,11 +21,13 @@ class Update_curriculum extends React.Component {
     this.state = {
       weeks: new Array(),
       dow: new Array(),
+      outlines: new Object(),
     };
   }
 
   componentDidMount = async () => {
     let { course } = this.props;
+
     let weeks = await get_request(`curriculum/${course._id}`),
       active_week;
 
@@ -42,6 +47,50 @@ class Update_curriculum extends React.Component {
     active_week = weeks[0]._id;
 
     this.setState({ weeks, active_week, dow });
+
+    this.daily_outline = ({
+      course: course_id,
+      week,
+      date: date_,
+      outline,
+    }) => {
+      if (course_id !== course._id) return;
+
+      let { date, outlines } = this.state;
+
+      outlines[outline._id || outline.topic] = date_;
+
+      if (!date && !this.date) {
+        if (date_.getTime() > new Date().getTime() && !this.state.date) {
+          this.date = date_;
+
+          let weekindex = this.state.weeks.findIndex(
+            (week_) => week_._id === week
+          );
+
+          this.setState(
+            { date: date_, outline, weekindex, outlines },
+            this.reset_outlines
+          );
+        }
+      } else if (date) {
+        if (
+          date.getTime() > date_.getTime() &&
+          date_.getTime() > new Date().getTime()
+        ) {
+          let weekindex = this.state.weeks.findIndex(
+            (week_) => week_._id === week
+          );
+
+          this.setState(
+            { date: date_, outlines, weekindex },
+            this.reset_outlines
+          );
+        }
+      }
+    };
+
+    emitter.listen("daily_outline", this.daily_outline);
   };
 
   reset_state = () =>
@@ -50,6 +99,11 @@ class Update_curriculum extends React.Component {
       subtopics: new Array(),
       _id: null,
     });
+
+  reset_outlines = () =>
+    this.setState({ show_outlines: false }, () =>
+      this.setState({ show_outlines: true })
+    );
 
   add_new_week = (e) => {
     e.preventDefault();
@@ -102,12 +156,14 @@ class Update_curriculum extends React.Component {
       topic,
       resource,
       resource_file_name,
+      _id: _id("lectures"),
     });
 
     this.setState({ weeks, resource_file_name: "", resource: "", topic: "" });
   };
 
-  active_week = (week_id) => this.setState({ active_week: week_id });
+  active_week = (week_id) =>
+    this.setState({ active_week: week_id }, this.reset_outlines);
 
   submit = async () => {
     this.setState({ loading: true });
@@ -155,6 +211,11 @@ class Update_curriculum extends React.Component {
       resource_loading,
       dow,
       resource_file_name,
+      date,
+      outlines,
+      weekindex,
+      outline,
+      show_outlines,
     } = this.state;
 
     if (active_week)
@@ -178,6 +239,7 @@ class Update_curriculum extends React.Component {
                   let selected = dow.includes(day);
                   return (
                     <span
+                      key={day}
                       onClick={() => this.handle_dow(day)}
                       style={{
                         borderColor: selected ? "#000132" : "#333",
@@ -216,7 +278,7 @@ class Update_curriculum extends React.Component {
                 }}
               >
                 {weeks.map((week, index) => (
-                  <span>
+                  <span key={index}>
                     <a
                       href="#"
                       style={{
@@ -328,15 +390,25 @@ class Update_curriculum extends React.Component {
                 </>
               )}
 
-              {active_week
+              {active_week && show_outlines
                 ? active_week.lectures.map((lecture, index) => (
                     <Daily_outline
                       outline={lecture}
                       key={index}
                       index={index}
+                      course={course._id}
+                      date={outlines[lecture._id || lecture.topic]}
+                      in_update={date}
+                      in_week={weekindex}
                     />
                   ))
                 : null}
+
+              {
+                <div style={{ display: "none" }}>
+                  <Course_outline course={course} enrolled />
+                </div>
+              }
             </div>
           </div>
         </div>

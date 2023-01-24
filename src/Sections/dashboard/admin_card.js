@@ -27,24 +27,24 @@ class Admin_card extends React.Component {
           this.logout_admin = logout_admin;
           let { firstname, lastname, image: _image, _id } = admin_logged;
           return (
-            <div class="d-user-avater">
+            <div className="d-user-avater">
               <img
                 src={`${domain}/Images/${_image || "logo_single.png"}`}
-                class="img-fluid avater"
+                className="img-fluid avater"
                 alt=""
               />
               <h4>{to_title(`${firstname} ${lastname}`.trim())}</h4>
               <span>{_id === default_admin ? "Default Admin" : "Admin"}</span>
-              <div class="elso_syu89">
+              <div className="elso_syu89">
                 <ul>
                   <li>
                     <a href="#">
-                      <i class="ti-pencil"></i>
+                      <i className="ti-pencil"></i>
                     </a>
                   </li>
                   <li onClick={this.log_admin_out}>
                     <a href="#">
-                      <i class="ti-close"></i>
+                      <i className="ti-close"></i>
                     </a>
                   </li>
                 </ul>

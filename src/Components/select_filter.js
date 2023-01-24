@@ -20,7 +20,7 @@ class Select_filter extends React.Component {
             <select onChange={on_select} id={_id} class="form-control">
               {options.map((option, index) =>
                 option.default ? (
-                  <option selected value="">
+                  <option key={index} selected value="">
                     {option.title}
                   </option>
                 ) : (

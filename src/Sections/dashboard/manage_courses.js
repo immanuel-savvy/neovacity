@@ -103,6 +103,7 @@ class Manage_courses extends React.Component {
 
     return mapper.map((pager, index) => (
       <li
+        key={index}
         className={`page-item ${index === page ? "active" : ""}`}
         onClick={() => this.page(index)}
       >

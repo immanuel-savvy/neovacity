@@ -47,8 +47,10 @@ class Weekly_outline extends React.Component {
                   outline={lecture}
                   key={index}
                   course={course}
+                  week={week._id}
                   enrolled={enrolled}
                   dow={dow[index]}
+                  weekindex={index}
                   index={index}
                 />
               ))

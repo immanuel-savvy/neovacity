@@ -32,11 +32,13 @@ class Handle_image_upload extends React.Component {
     reader.readAsDataURL(file);
     let prop = "image",
       prop_hash = "image_hash",
+      prop_name = "image_name",
       prop_loading = "image_loading";
     if (prefix) {
       prop_hash = `${prefix}_${prop_hash}`;
       prop_loading = `${prefix}_${prop_loading}`;
       prop = `${prefix}_${prop}`;
+      prop_name = `${prefix}_${prop_name}`;
     }
     this.setState({ [prop_loading]: true });
 
@@ -47,7 +49,7 @@ class Handle_image_upload extends React.Component {
       this.setState({
         file,
         [prop]: reader.result,
-        image_name: file.name,
+        [prop_name]: file.name,
         [prop_loading]: false,
       });
     };

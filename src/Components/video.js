@@ -70,7 +70,7 @@ class Video extends React.Component {
           onLoadedData={() => this.setState({ video_loaded: false })}
           style={{ ...style }}
         />
-        {video_loaded ? <Loadindicator /> : null}
+        {/* {video_loaded ? <Loadindicator /> : null} */}
       </>
     ) : (
       <>
@@ -88,7 +88,7 @@ class Video extends React.Component {
             type="video/mp4"
           />
         </video>
-        {video_loaded ? <Loadindicator /> : null}
+        {/* {video_loaded ? <Loadindicator /> : null} */}
       </>
     );
   }

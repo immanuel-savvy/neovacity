@@ -99,13 +99,23 @@ const next_quarter = () => {
       month: curr_month,
       quarter: curr_entry === 0 ? 1 : curr_entry,
       year: curr_year,
+      str: `${month_index[curr_month - 1]}, ${curr_year}`,
     },
   };
 };
 
 const countdown = (date) => {};
 
+const _id = (prefix) => {
+  let random_value = "";
+  for (let i = 0; i < gen_random_int(32, 12); i++)
+    random_value += charset[gen_random_int(charset.length)];
+
+  return `${prefix}~${random_value}~${Date.now()}`;
+};
+
 export {
+  _id,
   to_title,
   gen_random_int,
   generate_random_string,

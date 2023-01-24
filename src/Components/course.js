@@ -31,14 +31,13 @@ class Featured_course extends React.Component {
 
     if (enrolled) {
       this.daily_outline = ({ course: course_id, date: date_, outline }) => {
-        enrolled(date_, course, outline);
-
         if (course_id !== course._id) return;
 
         let { date } = this.state;
         if (!date && !this.date) {
           if (date_.getTime() > new Date().getTime() && !this.state.date) {
             this.date = date_;
+            enrolled(date_, course, outline);
             this.setState({ date: date_, outline }, this.reset_counter);
           }
         } else {

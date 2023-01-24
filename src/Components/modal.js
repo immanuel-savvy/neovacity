@@ -20,6 +20,7 @@ class Modal extends React.Component {
       keyboard,
       size,
       title,
+      centered,
     } = this.props;
     let { show } = this.state;
 
@@ -28,6 +29,7 @@ class Modal extends React.Component {
         size={size}
         scrollable
         show={show}
+        centered={centered}
         backdrop={backdrop}
         keyboard={keyboard !== null ? keyboard : null}
         fullscreen="sm-down"
