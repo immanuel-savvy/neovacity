@@ -54,7 +54,7 @@ class Footer extends React.Component {
                       <div className="row">
                         <div className="col-lg-5 col-md-5">
                           <div className="footer_widget">
-                            <Link to={`/${route_prefix}`}>
+                            <Link to={`/`}>
                               <img
                                 onClick={scroll_to_top}
                                 src={require(`../Assets/img/neovacity_africa_logo.png`)}
@@ -116,7 +116,7 @@ class Footer extends React.Component {
                                               this.handle_school(school)
                                             }
                                           >
-                                            <Link to={`/${route_prefix}school`}>
+                                            <Link to={`/school`}>
                                               {to_title(
                                                 school.title.replace(/_/g, " ")
                                               )}
@@ -177,7 +177,7 @@ class Footer extends React.Component {
                         }
                         className="col-lg-12 col-md-12 text-center"
                       >
-                        <Link to={`${route_prefix}adminstrator`}>
+                        <Link to="/adminstrator">
                           <p className="mb-0">
                             {`© ${new Date().getFullYear()} Neovacity Africa. All rights reserved.`}
                           </p>

@@ -3,12 +3,21 @@ import { get_request, post_request } from "../../Assets/js/utils/services";
 import Daily_outline from "../daily_outline";
 import Loadindicator from "../loadindicator";
 
+let sorted_dow = new Array(
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday"
+);
+
 class Update_curriculum extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       weeks: new Array(),
+      dow: new Array(),
     };
   }
 
@@ -17,10 +26,10 @@ class Update_curriculum extends React.Component {
     let weeks = await get_request(`curriculum/${course._id}`),
       active_week;
 
+    let dow = (weeks && weeks.dow) || new Array();
+
     let weeks_ = new Array();
-    weeks = weeks.map((week) => {
-      week.weeks.map((week) => weeks_.push(week));
-    });
+    weeks = weeks.weeks.map((week) => weeks_.push(week));
 
     if (weeks && !weeks.length) {
       weeks = new Array({
@@ -32,7 +41,7 @@ class Update_curriculum extends React.Component {
 
     active_week = weeks[0]._id;
 
-    this.setState({ weeks, active_week });
+    this.setState({ weeks, active_week, dow });
   };
 
   reset_state = () =>
@@ -103,7 +112,7 @@ class Update_curriculum extends React.Component {
   submit = async () => {
     this.setState({ loading: true });
     let { course } = this.props;
-    let { weeks, active_week } = this.state;
+    let { weeks, active_week, dow } = this.state;
 
     let week = weeks.find((week) => week._id === active_week);
 
@@ -111,7 +120,7 @@ class Update_curriculum extends React.Component {
     let route = typeof week._id === "string" ? "update_week" : "new_week";
     route === "new_week" && delete week._id;
 
-    let res = await post_request(route, { week });
+    let res = await post_request(route, { week, dow });
 
     if (res && res.week) {
       week._id = res.week._id;
@@ -128,14 +137,23 @@ class Update_curriculum extends React.Component {
     });
   };
 
+  handle_dow = (day) => {
+    let { dow } = this.state;
+    if (dow.includes(day)) dow = dow.filter((d) => d !== day);
+    else dow.push(day);
+
+    this.setState({ dow });
+  };
+
   render() {
-    let { toggle } = this.props;
+    let { toggle, course } = this.props;
     let {
       topic,
       loading,
       weeks,
       active_week,
       resource_loading,
+      dow,
       resource_file_name,
     } = this.state;
 
@@ -148,7 +166,55 @@ class Update_curriculum extends React.Component {
           <div className="modal-content">
             <br />
             <div className="modal-body">
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <p>Lecture Days of the Week</p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                }}
+              >
+                {sorted_dow.map((day) => {
+                  let selected = dow.includes(day);
+                  return (
+                    <span
+                      onClick={() => this.handle_dow(day)}
+                      style={{
+                        borderColor: selected ? "#000132" : "#333",
+                        borderWidth: selected ? 1 : 0,
+                        borderStyle: "solid",
+                        borderRadius: 10,
+                        marginRight: 15,
+                        marginBottom: 5,
+                        cursor: "pointer",
+                        padding: 10,
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          padding: 5,
+                          textDecoration: "none",
+                          color: selected ? "#000132" : "#000",
+                          borderRadius: 10,
+                          borderWidth: 1,
+                          textTransform: "capitalize",
+                        }}
+                        key={day}
+                      >{`${day}`}</a>
+                    </span>
+                  );
+                })}
+              </div>
+
+              <p className="mt-3">Weeks</p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                }}
+              >
                 {weeks.map((week, index) => (
                   <span>
                     <a
@@ -176,62 +242,71 @@ class Update_curriculum extends React.Component {
                   </span>
                 ))}
 
-                <a href="#" onClick={this.add_new_week}>
-                  <span>
-                    <i class="fa fa-plus"></i>
-                    {`New week`}
-                  </span>
-                </a>
+                {weeks.length < (course.duration || 12) ? (
+                  <a href="#" onClick={this.add_new_week}>
+                    <span>
+                      <i class="fa fa-plus"></i>
+                      {`New week`}
+                    </span>
+                  </a>
+                ) : null}
               </div>
 
               <br />
               {active_week && typeof active_week._id === "string" ? null : (
                 <>
-                  <h6>Add Lecture</h6>
-                  <form className="forms_block">
-                    <div className="form-group smalls">
-                      <label>Topic*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={({ target }) =>
-                          this.setState({ topic: target.value })
-                        }
-                        value={topic}
-                      />
-                    </div>
+                  {active_week?.lectures?.length >= dow.length ? null : (
+                    <div>
+                      <h6>Add Lecture</h6>
+                      <form className="forms_block">
+                        <div className="form-group smalls">
+                          <label>Topic*</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={({ target }) =>
+                              this.setState({ topic: target.value })
+                            }
+                            value={topic}
+                          />
+                        </div>
 
-                    <div className="form-group smalls">
-                      <label>Lecture Resource (PDF)</label>
-                      <div className="custom-file">
-                        <input
-                          type="file"
-                          className="custom-file-input"
-                          id="customFile"
-                          accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                          onChange={this.handle_file}
-                        />
-                        {resource_loading ? (
-                          <Loadindicator />
-                        ) : (
-                          <label className="custom-file-label" for="customFile">
-                            {resource_file_name || "Choose Resource"}
-                          </label>
-                        )}
-                      </div>
-                    </div>
+                        <div className="form-group smalls">
+                          <label>Lecture Resource (PDF)</label>
+                          <div className="custom-file">
+                            <input
+                              type="file"
+                              className="custom-file-input"
+                              id="customFile"
+                              accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                              onChange={this.handle_file}
+                            />
+                            {resource_loading ? (
+                              <Loadindicator />
+                            ) : (
+                              <label
+                                className="custom-file-label"
+                                for="customFile"
+                              >
+                                {resource_file_name || "Choose Resource"}
+                              </label>
+                            )}
+                          </div>
+                        </div>
 
-                    {topic ? (
-                      <a
-                        href="#"
-                        style={{ color: "#fff" }}
-                        onClick={this.save_lecture}
-                        class="btn theme-bg btn-md"
-                      >
-                        Save
-                      </a>
-                    ) : null}
-                  </form>
+                        {topic ? (
+                          <a
+                            href="#"
+                            style={{ color: "#fff" }}
+                            onClick={this.save_lecture}
+                            class="btn theme-bg btn-md"
+                          >
+                            Save
+                          </a>
+                        ) : null}
+                      </form>
+                    </div>
+                  )}
 
                   <hr />
 
@@ -271,3 +346,4 @@ class Update_curriculum extends React.Component {
 }
 
 export default Update_curriculum;
+export { sorted_dow };

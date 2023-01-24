@@ -44,7 +44,7 @@ class Dashboard_breadcrumb extends React.Component {
                         onClick={() =>
                           emitter.emit("dash_nav_click", "dashboard")
                         }
-                        style={{ color: "brown" }}
+                        style={{ color: "#000132" }}
                       >
                         Home
                       </Link>
@@ -61,7 +61,7 @@ class Dashboard_breadcrumb extends React.Component {
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <Link style={{ color: "brown" }} to="/">
+                  <Link style={{ color: "#000132" }} to="/">
                     Home
                   </Link>
                 </li>

@@ -51,12 +51,6 @@ class Course_title extends React.Component {
             <div class="col-lg-9 col-md-12 col-sm-12">
               <div class="dlkio_452">
                 <div class="ed_detail_wrap">
-                  {/* <div class="crs_cates cl_1">
-                    <span>Design</span>
-                  </div>
-                  <div class="crs_cates cl_3">
-                    <span>Design</span>
-                  </div> */}
                   <div class="ed_header_caption">
                     <h2 class="ed_title">{title}</h2>
                     <ul>

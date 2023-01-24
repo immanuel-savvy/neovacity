@@ -49,13 +49,13 @@ class Custom_nav extends React.Component {
     window.sessionStorage.setItem("course", JSON.stringify(course));
     emitter.emit("push_course", course);
 
-    window.location.assign(`${client_domain}/${route_prefix}course`);
+    window.location.assign(`${client_domain}/course`);
   };
 
   search = () => {
     let { search_param } = this.state;
     window.location.assign(
-      `${client_domain}/${route_prefix}courses?search_param=${search_param}`
+      `${client_domain}/courses?search_param=${search_param}`
     );
     scroll_to_top();
   };
@@ -82,10 +82,7 @@ class Custom_nav extends React.Component {
                     className="navigation navigation-landscape"
                   >
                     <Navbar light expand="lg">
-                      <NavbarBrand
-                        href={`/${route_prefix}`}
-                        className="nav-brand"
-                      >
+                      <NavbarBrand href={`/`} className="nav-brand">
                         <img
                           src={require(`../Assets/img/neovacity_africa_logo.png`)}
                           className="logo"
@@ -154,7 +151,7 @@ class Custom_nav extends React.Component {
                                       >
                                         <Link
                                           onClick={subnav.on_click}
-                                          to={`${route_prefix}${
+                                          to={`${
                                             subnav.view_all
                                               ? "/courses"
                                               : subnav.path
@@ -231,7 +228,7 @@ class Custom_nav extends React.Component {
                                                         >
                                                           <Link
                                                             className="sub_sub_nav"
-                                                            to={`/${route_prefix}course`}
+                                                            to={`/course`}
                                                           >
                                                             {sub_nav.title.replace(
                                                               /_/g,
@@ -274,11 +271,7 @@ class Custom_nav extends React.Component {
                               <ul className="nav-menu nav-menu-social align-to-right">
                                 <li onClick={this.loggeduser && logout}>
                                   <Link
-                                    to={
-                                      this.loggeduser
-                                        ? "/"
-                                        : `/${route_prefix}login`
-                                    }
+                                    to={this.loggeduser ? "/" : `/login`}
                                     className="alio_green"
                                     data-toggle="modal"
                                     data-target="#login"
@@ -295,7 +288,7 @@ class Custom_nav extends React.Component {
                                 <ul className="nav-menu nav-menu-social align-to-right mb-3">
                                   <li className="add-listing theme-bg">
                                     <Link
-                                      to={`/${route_prefix}profile`}
+                                      to={`/profile`}
                                       className="text-white"
                                       style={{ textTransform: "capitalize" }}
                                     >
@@ -306,10 +299,7 @@ class Custom_nav extends React.Component {
                               ) : (
                                 <ul className="nav-menu nav-menu-social align-to-right mb-3">
                                   <li className="add-listing theme-bg">
-                                    <Link
-                                      to={`/${route_prefix}signup`}
-                                      className="text-white"
-                                    >
+                                    <Link to={`/signup`} className="text-white">
                                       Get Started
                                     </Link>
                                   </li>
@@ -324,7 +314,7 @@ class Custom_nav extends React.Component {
                                 >
                                   <Link
                                     style={{ textDecorationColor: "none" }}
-                                    to={`/${route_prefix}${nav.path.slice(1)}`}
+                                    to={`/${nav.path.slice(1)}`}
                                   >
                                     <span>
                                       {to_title(nav.title.replace(/_/g, " "))}

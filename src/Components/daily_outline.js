@@ -1,5 +1,6 @@
 import React from "react";
 import { domain } from "../Constants/constants";
+import { emitter } from "../Neovacity";
 
 class Daily_outline extends React.Component {
   constructor(props) {
@@ -8,8 +9,16 @@ class Daily_outline extends React.Component {
     this.state = {};
   }
 
+  componentDidMount = () => {
+    let { enrolled, outline, date, course } = this.props;
+
+    enrolled &&
+      date &&
+      emitter.emit("daily_outline", { date, course, outline });
+  };
+
   render() {
-    let { outline, index } = this.props;
+    let { outline, date, dow } = this.props;
     if (!outline) return;
 
     let { topic, resource } = outline;
@@ -17,8 +26,10 @@ class Daily_outline extends React.Component {
     return (
       <div class="liop_wraps_single">
         <div class="lki_813">
-          <h6>Day</h6>
-          <span>{`${index + 1}`.padStart(2, "0")}</span>
+          <h6>{(dow && dow.slice(0, 3)) || "Day"}</h6>
+          <span>
+            {date ? `${date.getDate() || "--"}`.padStart(2, "0") : ""}
+          </span>
         </div>
         <div class="bhu_486">
           <h5>{topic}</h5>
@@ -26,7 +37,7 @@ class Daily_outline extends React.Component {
             <a
               style={{ textDecoration: "none" }}
               href={`${domain}/Files/${resource}`}
-              blank="_target"
+              download
             >
               <span>Download Resource</span>
             </a>

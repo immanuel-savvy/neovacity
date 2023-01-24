@@ -1,4 +1,4 @@
-const DEV = true;
+const DEV = false;
 
 const hostname = DEV
   ? "http://localhost"
@@ -27,6 +27,26 @@ const month_index = new Object({
   11: "dec",
 });
 
+const dow_index = new Object({
+  1: "monday",
+  2: "tuesday",
+  3: "wednesday",
+  4: "thursday",
+  5: "friday",
+  6: "saturday",
+  7: "sunday",
+});
+
+const dow_index_inverse = new Object({
+  monday: 1,
+  tuesday: 2,
+  wednesday: 3,
+  thursday: 4,
+  friday: 5,
+  saturday: 6,
+  sunday: 7,
+});
+
 const organisation_name = "Neovacity Africa";
 
 export {
@@ -37,4 +57,6 @@ export {
   default_admin,
   organisation_name,
   DEV,
+  dow_index,
+  dow_index_inverse,
 };

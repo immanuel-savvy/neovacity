@@ -128,7 +128,7 @@ class Neovacity extends React.Component {
   handle_school = (school) => {
     window.sessionStorage.setItem("school", JSON.stringify(school));
     emitter.emit("push_school", school);
-    window.location.assign(`${client_domain}/${route_prefix}school`);
+    window.location.assign(`${client_domain}/school`);
   };
 
   componentDidMount = async () => {
@@ -225,51 +225,27 @@ class Neovacity extends React.Component {
                 <Routes>
                   <Route
                     index
-                    path={route_prefix || "/"}
+                    path={"/"}
                     element={<Index banner_stuffs={banner_stuffs} />}
                   />
+                  <Route path={`adminstrator`} element={<Adminstrator />} />
+                  <Route path={`contact_us`} element={<Contact />} />
+                  <Route path={`about`} element={<About />} />
+                  <Route path={`login`} element={<Login />} />
+                  <Route path={`signup`} element={<Signup />} />
+                  <Route path={`faqs`} element={<FAQS />} />
+                  <Route path={`blog`} element={<Blog />} />
+                  <Route path={`profile`} element={<Profile />} />
+                  <Route path={`verify_email`} element={<Verify_email />} />
+                  <Route path={`article`} element={<Article />} />
+                  <Route path={`school`} element={<School />} />
+                  <Route path={`course`} element={<Course />} />
+                  <Route path={`enroll`} element={<Enroll />} />
                   <Route
-                    path={`${route_prefix}adminstrator`}
-                    element={<Adminstrator />}
-                  />
-                  <Route
-                    path={`${route_prefix}contact_us`}
-                    element={<Contact />}
-                  />
-                  <Route path={`${route_prefix}about`} element={<About />} />
-                  <Route path={`${route_prefix}login`} element={<Login />} />
-                  <Route path={`${route_prefix}signup`} element={<Signup />} />
-                  <Route path={`${route_prefix}faqs`} element={<FAQS />} />
-                  <Route path={`${route_prefix}blog`} element={<Blog />} />
-                  <Route
-                    path={`${route_prefix}profile`}
-                    element={<Profile />}
-                  />
-                  <Route
-                    path={`${route_prefix}verify_email`}
-                    element={<Verify_email />}
-                  />
-                  <Route
-                    path={`${route_prefix}article`}
-                    element={<Article />}
-                  />
-                  <Route
-                    path={`/${route_prefix}/school`}
-                    element={<School />}
-                  />
-                  <Route
-                    path={`/${route_prefix}/course`}
-                    element={<Course />}
-                  />
-                  <Route path={`${route_prefix}enroll`} element={<Enroll />} />
-                  <Route
-                    path={`${route_prefix}forgot_password`}
+                    path={`forgot_password`}
                     element={<Forgot_password />}
                   />
-                  <Route
-                    path={`${route_prefix}testimonials`}
-                    element={<Testimonials />}
-                  />
+                  <Route path={`testimonials`} element={<Testimonials />} />
                   <Route path="*" element={<Page_not_found />} />
                 </Routes>
               </BrowserRouter>

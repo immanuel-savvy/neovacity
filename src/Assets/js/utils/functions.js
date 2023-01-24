@@ -65,6 +65,7 @@ const next_quarter = () => {
   let date = new Date();
   let quarter = (date.getMonth() % 3) + 1,
     quarter_was_4;
+  let curr_entry = quarter;
 
   if (quarter === 4) {
     quarter_was_4 = true;
@@ -73,7 +74,7 @@ const next_quarter = () => {
 
   let propect_month = quarter * 3,
     propect_year = date.getFullYear();
-  let str = `${month_index[propect_month - 1]}, ${
+  let str = `${month_index[propect_month]}, ${
     quarter_was_4 ? propect_year + 1 : propect_year
   }`;
 
@@ -82,8 +83,27 @@ const next_quarter = () => {
     month_index[next_prospect_month > 11 ? 0 : next_prospect_month]
   }, ${next_prospect_month > 11 ? propect_year + 1 : propect_year}`;
 
-  return { str, next_entry };
+  let curr_year = propect_year;
+  curr_entry = curr_entry - 1;
+
+  if (curr_entry === 0) {
+    curr_entry = 0;
+  }
+
+  let curr_month = curr_entry * 3 + 1;
+
+  return {
+    str,
+    next_entry,
+    curr_entry: {
+      month: curr_month,
+      quarter: curr_entry === 0 ? 1 : curr_entry,
+      year: curr_year,
+    },
+  };
 };
+
+const countdown = (date) => {};
 
 export {
   to_title,
@@ -94,4 +114,5 @@ export {
   date_string,
   next_quarter,
   shuffle_array,
+  countdown,
 };

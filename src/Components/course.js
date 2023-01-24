@@ -7,7 +7,9 @@ import Preview_image from "../Components/preview_image";
 import Video from "../Components/video";
 import { domain } from "../Constants/constants";
 import { emitter } from "../Neovacity";
+import Course_outline from "../Sections/course_outline";
 import { route_prefix } from "../Sections/nav";
+import Countdown from "./countdown";
 import Update_curriculum from "./forms/update_curriculum";
 import Modal from "./modal";
 
@@ -25,7 +27,31 @@ class Featured_course extends React.Component {
   }
 
   componentDidMount = async () => {
-    let { course } = this.props;
+    let { course, enrolled } = this.props;
+
+    if (enrolled) {
+      this.daily_outline = ({ course: course_id, date: date_, outline }) => {
+        enrolled(date_, course, outline);
+
+        if (course_id !== course._id) return;
+
+        let { date } = this.state;
+        if (!date && !this.date) {
+          if (date_.getTime() > new Date().getTime() && !this.state.date) {
+            this.date = date_;
+            this.setState({ date: date_, outline }, this.reset_counter);
+          }
+        } else {
+          if (
+            date.getTime() > date_.getTime() &&
+            date_.getTime() > new Date().getTime()
+          )
+            this.setState({ date: date_ }, this.reset_counter);
+        }
+      };
+
+      emitter.listen("daily_outline", this.daily_outline);
+    }
 
     this.full_desc = (course_id) => {
       if (!this.state.full_desc || course_id === course._id) return;
@@ -56,8 +82,16 @@ class Featured_course extends React.Component {
     }
   };
 
+  reset_counter = () => {
+    this.setState({ show_counter: false }, () =>
+      this.setState({ show_counter: true })
+    );
+  };
+
   componentWillUnmount = () => {
     emitter.remove_listener("full_desc", this.full_desc);
+    this.props.enrolled &&
+      emitter.remove_listener("daily_outline", this.daily_outline);
   };
 
   toggle_description = () =>
@@ -84,7 +118,15 @@ class Featured_course extends React.Component {
   update_curriculum = () => this.curriculum?.toggle();
 
   render() {
-    let { progress, image_hash: img_hash, full_desc, play } = this.state;
+    let {
+      progress,
+      show_counter,
+      image_hash: img_hash,
+      date,
+      full_desc,
+      play,
+      outline,
+    } = this.state;
 
     let {
       course,
@@ -93,6 +135,7 @@ class Featured_course extends React.Component {
       adminstrator,
       edit_course,
       delete_course,
+      enrolled,
     } = this.props;
 
     if (!course) return null;
@@ -130,6 +173,8 @@ class Featured_course extends React.Component {
     if (!duration) duration = 12;
 
     let is_school = _id.startsWith("school");
+
+    date && console.log(date);
 
     return (
       <div
@@ -246,57 +291,81 @@ class Featured_course extends React.Component {
               </div>
             </div>
           </div>
-          <div className="crs_grid_foot">
-            <div className="crs_flex">
+          {date ? (
+            <div className="crs_grid_foot center">
+              <div className="crs_flex"></div>
               <div className="crs_fl_first">
                 <div className="crs_price">
+                  <span className="currency">Upcoming Lecture:</span>
+                  <br />
                   <h2>
-                    <span className="currency">$</span>
-                    <span className="theme-cl">{pricey(price)}</span>
+                    <span className="currency">{outline.topic} </span>
                   </h2>
                 </div>
               </div>
-
-              <div className="crs_fl_last">
-                <div className="crs_linkview">
-                  <Link
-                    to={`${route_prefix}${
-                      adminstrator || in_enroll || is_school
-                        ? "/course"
-                        : "/enroll"
-                    }`}
-                  >
-                    <span
-                      onClick={
-                        adminstrator ? this.handle_course : this.handle_enroll
-                      }
-                      className="btn btn_view_detail theme-bg text-light"
-                    >
-                      {adminstrator || in_enroll || is_school
-                        ? "View Course"
-                        : "Enroll Now"}
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            {adminstrator ? (
               <div className="crs_fl_last">
                 <div className="crs_linkview">
                   <span
-                    onClick={this.update_curriculum}
+                    onClick={this.handle_upcoming_lecture}
                     className="btn btn_view_detail theme-bg text-light"
                   >
-                    {"Update Curriculum"}
+                    {show_counter ? <Countdown date={date} /> : null}
                   </span>
                 </div>
               </div>
-            ) : null}
-          </div>
+            </div>
+          ) : (
+            <div className="crs_grid_foot">
+              <div className="crs_flex">
+                <div className="crs_fl_first">
+                  <div className="crs_price">
+                    <h2>
+                      <span className="currency">$</span>
+                      <span className="theme-cl">{pricey(price)}</span>
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="crs_fl_last">
+                  <div className="crs_linkview">
+                    <Link
+                      to={`${route_prefix}${
+                        adminstrator || in_enroll || is_school
+                          ? "/course"
+                          : "/enroll"
+                      }`}
+                    >
+                      <span
+                        onClick={
+                          adminstrator ? this.handle_course : this.handle_enroll
+                        }
+                        className="btn btn_view_detail theme-bg text-light"
+                      >
+                        {adminstrator || in_enroll || is_school
+                          ? "View Course"
+                          : "Enroll Now"}
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              {adminstrator ? (
+                <div className="crs_fl_last">
+                  <div className="crs_linkview">
+                    <span
+                      onClick={this.update_curriculum}
+                      className="btn btn_view_detail theme-bg text-light"
+                    >
+                      {"Update Curriculum"}
+                    </span>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          )}
         </div>
 
         <Modal
-          // style={{ backgroundColor: "#008000" }}
           title={`Curriculum: ${title}`}
           aria_labelled_by="contained-modal-title-vcenter"
           ref={(curriculum) => (this.curriculum = curriculum)}
@@ -306,6 +375,12 @@ class Featured_course extends React.Component {
             toggle={() => this.curriculum?.toggle()}
           />
         </Modal>
+
+        {enrolled ? (
+          <div style={{ display: "none" }}>
+            <Course_outline course={course} enrolled />
+          </div>
+        ) : null}
       </div>
     );
   }
