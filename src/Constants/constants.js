@@ -1,4 +1,4 @@
-const DEV = false;
+const DEV = true;
 
 const hostname = DEV
   ? "http://localhost"
@@ -6,7 +6,7 @@ const hostname = DEV
 
 const client_domain = DEV
   ? `${hostname}:3000`
-  : `http://giitafrica.com/neovacity`;
+  : `https://magenta-sprinkles-e1e108.netlify.app`;
 
 const domain = DEV ? `${hostname}:1178` : `https://neovacity.udaralinksapp.com`;
 
