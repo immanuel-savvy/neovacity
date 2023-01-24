@@ -146,6 +146,7 @@ class Signup extends React.Component {
                         </div>
                         <div className="form-group">
                           <label>Password</label>
+
                           <input
                             type={reveal_password ? "text" : "password"}
                             className="form-control"
@@ -158,6 +159,17 @@ class Signup extends React.Component {
                               })
                             }
                           />
+                          <a
+                            onClick={() =>
+                              this.setState({
+                                reveal_password: !this.state.reveal_password,
+                              })
+                            }
+                            style={{ cursor: "pointer" }}
+                            className="text-dark"
+                          >
+                            {`${reveal_password ? "Hide" : "Show"}`}
+                          </a>
                         </div>
                         {message ? (
                           <div className="alert alert-danger" role="alert">

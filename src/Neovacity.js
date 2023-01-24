@@ -30,6 +30,8 @@ import { client_domain } from "./Constants/constants";
 import Article from "./Pages/Article";
 import Enroll from "./Pages/Enroll";
 import { route_prefix } from "./Sections/nav";
+import Verify_email from "./Pages/Verify_email";
+import Profile from "./Pages/Profile";
 
 let emitter = new Emitter();
 
@@ -153,7 +155,6 @@ class Neovacity extends React.Component {
     });
 
     this.restore_logged_admin = (admin) => {
-      console.log("uh");
       this.setState({ admin_logged: admin });
     };
 
@@ -166,13 +167,26 @@ class Neovacity extends React.Component {
       schools,
     });
 
+    emitter.listen("restore_loggeduser", this.restore_loggeduser);
     emitter.listen("restore_logged_admin", this.restore_logged_admin);
   };
+
+  login = (user) =>
+    this.setState({ loggeduser: user }, () =>
+      window.sessionStorage.setItem("loggeduser", JSON.stringify(user))
+    );
 
   log_admin = (admin) =>
     this.setState({ admin_logged: admin }, () => {
       window.sessionStorage.setItem("logged_admin", JSON.stringify(admin));
     });
+
+  logout = () =>
+    this.setState({ loggeduser: null }, () =>
+      window.sessionStorage.removeItem("loggeduser")
+    );
+
+  restore_loggeduser = (loggeduser) => this.setState({ loggeduser });
 
   render = () => {
     let {
@@ -186,7 +200,14 @@ class Neovacity extends React.Component {
     } = this.state;
 
     return (
-      <Logged_user.Provider value={{ loggeduser, login: this.login }}>
+      <Logged_user.Provider
+        value={{
+          loggeduser,
+          logout: this.logout,
+          set_loggeduser: this.restore_loggeduser,
+          login: this.login,
+        }}
+      >
         <Logged_admin.Provider
           value={{ admin_logged, log_admin: this.log_admin }}
         >
@@ -220,6 +241,14 @@ class Neovacity extends React.Component {
                   <Route path={`${route_prefix}signup`} element={<Signup />} />
                   <Route path={`${route_prefix}faqs`} element={<FAQS />} />
                   <Route path={`${route_prefix}blog`} element={<Blog />} />
+                  <Route
+                    path={`${route_prefix}profile`}
+                    element={<Profile />}
+                  />
+                  <Route
+                    path={`${route_prefix}verify_email`}
+                    element={<Verify_email />}
+                  />
                   <Route
                     path={`${route_prefix}article`}
                     element={<Article />}

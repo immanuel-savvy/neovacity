@@ -165,7 +165,10 @@ class Footer extends React.Component {
                     </div>
                   </div>
                 )}
-                <div className="footer-bottom">
+                <div
+                  className="footer-bottom"
+                  style={{ backgroundColor: "#12133a" }}
+                >
                   <div className="container">
                     <div className="row align-items-center">
                       <div

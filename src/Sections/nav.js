@@ -15,7 +15,7 @@ import {
 import { to_title } from "../Assets/js/utils/functions";
 import Loadindicator from "../Components/loadindicator";
 import { client_domain } from "../Constants/constants";
-import { Nav_context } from "../Contexts";
+import { Logged_user, Nav_context } from "../Contexts";
 import { emitter } from "../Neovacity";
 import { scroll_to_top } from "../Pages/Home";
 
@@ -38,6 +38,13 @@ class Custom_nav extends React.Component {
     });
   }
 
+  componentDidMount = async () => {
+    if (!this.loggeduser) {
+      let loggeduser = window.sessionStorage.getItem("loggeduser");
+      loggeduser && this.set_loggeduser(JSON.parse(loggeduser));
+    }
+  };
+
   handle_course = (course) => {
     window.sessionStorage.setItem("course", JSON.stringify(course));
     emitter.emit("push_course", course);
@@ -57,266 +64,311 @@ class Custom_nav extends React.Component {
     let { current_subnav, current_nav, show_search, search_param } = this.state;
 
     return (
-      <Nav_context.Consumer>
-        {({ navs, set_subnav, submenus, load_subnavs, subnavs }) => {
-          this.navs = navs;
-          this.set_subnav = set_subnav;
+      <Logged_user>
+        {({ loggeduser, logout, set_loggeduser }) => {
+          this.set_loggeduser = set_loggeduser;
+          this.loggeduser = loggeduser;
+          if (this.loggeduser === "fetching") this.loggeduser = null;
 
           return (
-            <div id="navigation" className="navigation navigation-landscape">
-              <Navbar light expand="lg">
-                <NavbarBrand href={`/${route_prefix}`} className="nav-brand">
-                  <img
-                    src={require(`../Assets/img/neovacity_africa_logo.png`)}
-                    className="logo"
-                    id="logo_white"
-                    style={{ height: 80 }}
-                    alt=""
-                  />
-                </NavbarBrand>
-                <NavbarToggler
-                  style={{ color: "#fff" }}
-                  onClick={this.toggle}
-                />
-                <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav
-                    className="ml-auto"
-                    navbar
-                    style={{ alignItems: "center" }}
+            <Nav_context.Consumer>
+              {({ navs, set_subnav, submenus, load_subnavs, subnavs }) => {
+                this.navs = navs;
+                this.set_subnav = set_subnav;
+
+                return (
+                  <div
+                    id="navigation"
+                    className="navigation navigation-landscape"
                   >
-                    {navs.map((nav, index) => {
-                      return nav.submenu && nav.submenu.length ? (
-                        <UncontrolledDropdown key={index} nav inNavbar>
-                          <DropdownToggle
-                            style={{
-                              backgroundColor: "transparent",
-                            }}
-                            nav
-                            caret
-                            ref={(dropdown) =>
-                              (this[`main_dropdown_${index}`] = dropdown)
-                            }
-                            onMouseOver={() => {
-                              let comp = this[`main_dropdown_${index}`];
-                              !comp.context.isOpen && comp.context.toggle();
-                              this.setState({ current_nav: nav.title });
-                            }}
-                            onMouseMove={() => {
-                              let comp = this[`main_dropdown_${index}`];
-                              current_nav !== nav.title &&
-                                comp.context.isOpen &&
-                                comp.context.toggle();
-                            }}
-                          >
-                            <span>
-                              {to_title(nav.title.replace(/_/g, " "))}
-                            </span>
-                          </DropdownToggle>
-                          {current_nav === nav.title ? (
-                            <DropdownMenu
-                              className="nav-dropdown nav-submenu"
-                              end
-                            >
-                              {nav.submenu.map((subnav, index) => (
-                                <li
-                                  key={index}
-                                  onMouseOver={
-                                    subnav.view_all
-                                      ? null
-                                      : () => {
-                                          this.setState(
-                                            { current_subnav: subnav },
-                                            this.set_submenu
-                                          );
-                                        }
+                    <Navbar light expand="lg">
+                      <NavbarBrand
+                        href={`/${route_prefix}`}
+                        className="nav-brand"
+                      >
+                        <img
+                          src={require(`../Assets/img/neovacity_africa_logo.png`)}
+                          className="logo"
+                          id="logo_white"
+                          style={{ height: 80 }}
+                          alt=""
+                        />
+                      </NavbarBrand>
+                      <NavbarToggler
+                        style={{ color: "#fff" }}
+                        onClick={this.toggle}
+                      />
+                      <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav
+                          className="ml-auto"
+                          navbar
+                          style={{ alignItems: "center" }}
+                        >
+                          {navs.map((nav, index) => {
+                            return nav.submenu && nav.submenu.length ? (
+                              <UncontrolledDropdown key={index} nav inNavbar>
+                                <DropdownToggle
+                                  style={{
+                                    backgroundColor: "transparent",
+                                  }}
+                                  nav
+                                  caret
+                                  ref={(dropdown) =>
+                                    (this[`main_dropdown_${index}`] = dropdown)
                                   }
+                                  onMouseOver={() => {
+                                    let comp = this[`main_dropdown_${index}`];
+                                    !comp.context.isOpen &&
+                                      comp.context.toggle();
+                                    this.setState({ current_nav: nav.title });
+                                  }}
+                                  onMouseMove={() => {
+                                    let comp = this[`main_dropdown_${index}`];
+                                    current_nav !== nav.title &&
+                                      comp.context.isOpen &&
+                                      comp.context.toggle();
+                                  }}
                                 >
-                                  <Link
-                                    onClick={subnav.on_click}
-                                    to={`${route_prefix}${
-                                      subnav.view_all ? "/courses" : subnav.path
-                                    }`}
+                                  <span>
+                                    {to_title(nav.title.replace(/_/g, " "))}
+                                  </span>
+                                </DropdownToggle>
+                                {current_nav === nav.title ? (
+                                  <DropdownMenu
+                                    className="nav-dropdown nav-submenu"
+                                    end
                                   >
-                                    {subnav.view_all
-                                      ? "View all courses..."
-                                      : to_title(
-                                          subnav.title.replace(/_/g, " ")
-                                        )}
-                                  </Link>
-                                  {nav.title !==
-                                  "schools" ? null : subnav.submenu &&
-                                    !subnav.submenu
-                                      .length ? null : subnav._id ===
-                                    (current_subnav && current_subnav._id) ? (
-                                    <UncontrolledDropdown
-                                      key={index}
-                                      nav
-                                      inNavbar
-                                      onClick={({ target }) => {
-                                        !target.classList.contains(
-                                          "sub_sub_nav"
-                                        ) && subnav.on_click();
-                                      }}
-                                    >
-                                      <DropdownToggle
-                                        style={{
-                                          backgroundColor: "transparent",
-                                        }}
-                                        nav
-                                        caret
-                                        ref={(dropdown) =>
-                                          (this[`dropdown_${index}`] = dropdown)
-                                        }
+                                    {nav.submenu.map((subnav, index) => (
+                                      <li
+                                        key={index}
                                         onMouseOver={
                                           subnav.view_all
                                             ? null
                                             : () => {
-                                                let comp =
-                                                  this[`dropdown_${index}`];
-                                                !comp.context.isOpen &&
-                                                  comp.context.toggle();
-                                              }
-                                        }
-                                      ></DropdownToggle>
-                                      <DropdownMenu
-                                        className="nav-dropdown nav-submenu"
-                                        end
-                                      >
-                                        {submenus[subnav._id] ? (
-                                          submenus[subnav._id].length ? (
-                                            submenus[subnav._id].map(
-                                              (sub_nav) => {
-                                                return (
-                                                  <li
-                                                    className="sub_sub_nav"
-                                                    onClick={({ target }) => {
-                                                      this.handle_course(
-                                                        sub_nav
-                                                      );
-                                                    }}
-                                                    style={{
-                                                      backgroundColor:
-                                                        "transparent",
-                                                    }}
-                                                    key={sub_nav._id}
-                                                  >
-                                                    <Link
-                                                      className="sub_sub_nav"
-                                                      to={`/${route_prefix}course`}
-                                                    >
-                                                      {sub_nav.title.replace(
-                                                        /_/g,
-                                                        " "
-                                                      )}
-                                                    </Link>
-                                                  </li>
+                                                this.setState(
+                                                  { current_subnav: subnav },
+                                                  this.set_submenu
                                                 );
                                               }
-                                            )
-                                          ) : null
-                                        ) : (
-                                          <Loadindicator />
-                                        )}
-                                      </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                  ) : null}
+                                        }
+                                      >
+                                        <Link
+                                          onClick={subnav.on_click}
+                                          to={`${route_prefix}${
+                                            subnav.view_all
+                                              ? "/courses"
+                                              : subnav.path
+                                          }`}
+                                        >
+                                          {subnav.view_all
+                                            ? "View all courses..."
+                                            : to_title(
+                                                subnav.title.replace(/_/g, " ")
+                                              )}
+                                        </Link>
+                                        {nav.title !==
+                                        "schools" ? null : subnav.submenu &&
+                                          !subnav.submenu
+                                            .length ? null : subnav._id ===
+                                          (current_subnav &&
+                                            current_subnav._id) ? (
+                                          <UncontrolledDropdown
+                                            key={index}
+                                            nav
+                                            inNavbar
+                                            onClick={({ target }) => {
+                                              !target.classList.contains(
+                                                "sub_sub_nav"
+                                              ) && subnav.on_click();
+                                            }}
+                                          >
+                                            <DropdownToggle
+                                              style={{
+                                                backgroundColor: "transparent",
+                                              }}
+                                              nav
+                                              caret
+                                              ref={(dropdown) =>
+                                                (this[`dropdown_${index}`] =
+                                                  dropdown)
+                                              }
+                                              onMouseOver={
+                                                subnav.view_all
+                                                  ? null
+                                                  : () => {
+                                                      let comp =
+                                                        this[
+                                                          `dropdown_${index}`
+                                                        ];
+                                                      !comp.context.isOpen &&
+                                                        comp.context.toggle();
+                                                    }
+                                              }
+                                            ></DropdownToggle>
+                                            <DropdownMenu
+                                              className="nav-dropdown nav-submenu"
+                                              end
+                                            >
+                                              {submenus[subnav._id] ? (
+                                                submenus[subnav._id].length ? (
+                                                  submenus[subnav._id].map(
+                                                    (sub_nav) => {
+                                                      return (
+                                                        <li
+                                                          className="sub_sub_nav"
+                                                          onClick={({
+                                                            target,
+                                                          }) => {
+                                                            this.handle_course(
+                                                              sub_nav
+                                                            );
+                                                          }}
+                                                          style={{
+                                                            backgroundColor:
+                                                              "transparent",
+                                                          }}
+                                                          key={sub_nav._id}
+                                                        >
+                                                          <Link
+                                                            className="sub_sub_nav"
+                                                            to={`/${route_prefix}course`}
+                                                          >
+                                                            {sub_nav.title.replace(
+                                                              /_/g,
+                                                              " "
+                                                            )}
+                                                          </Link>
+                                                        </li>
+                                                      );
+                                                    }
+                                                  )
+                                                ) : null
+                                              ) : (
+                                                <Loadindicator />
+                                              )}
+                                            </DropdownMenu>
+                                          </UncontrolledDropdown>
+                                        ) : null}
+                                      </li>
+                                    ))}
+                                  </DropdownMenu>
+                                ) : null}
+                              </UncontrolledDropdown>
+                            ) : nav.title === "search" ? (
+                              <li
+                                onClick={() =>
+                                  this.setState({
+                                    show_search: !this.state.show_search,
+                                  })
+                                }
+                              >
+                                <Link
+                                  to="#"
+                                  style={{ border: "none" }}
+                                  className="btn btn-action"
+                                >
+                                  <i className="ti-search"></i>
+                                </Link>
+                              </li>
+                            ) : nav.path === "/login" ? (
+                              <ul className="nav-menu nav-menu-social align-to-right">
+                                <li onClick={this.loggeduser && logout}>
+                                  <Link
+                                    to={
+                                      this.loggeduser
+                                        ? "/"
+                                        : `/${route_prefix}login`
+                                    }
+                                    className="alio_green"
+                                    data-toggle="modal"
+                                    data-target="#login"
+                                  >
+                                    <i className="fas fa-sign-in-alt mr-1"></i>
+                                    <span className="dn-lg">{`Log ${
+                                      this.loggeduser ? "out" : "In"
+                                    }`}</span>
+                                  </Link>
                                 </li>
-                              ))}
-                            </DropdownMenu>
-                          ) : null}
-                        </UncontrolledDropdown>
-                      ) : nav.title === "search" ? (
-                        <li
-                          onClick={() =>
-                            this.setState({
-                              show_search: !this.state.show_search,
-                            })
-                          }
-                        >
-                          <Link
-                            to="#"
-                            style={{ border: "none" }}
-                            className="btn btn-action"
-                          >
-                            <i className="ti-search"></i>
-                          </Link>
-                        </li>
-                      ) : nav.path === "/login" ? (
-                        <ul className="nav-menu nav-menu-social align-to-right">
-                          <li>
-                            <Link
-                              to={`/${route_prefix}login`}
-                              className="alio_green"
-                              data-toggle="modal"
-                              data-target="#login"
-                            >
-                              <i className="fas fa-sign-in-alt mr-1"></i>
-                              <span className="dn-lg">Log In</span>
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : nav.path === "/signup" ? (
-                        <ul className="nav-menu nav-menu-social align-to-right mb-3">
-                          <li className="add-listing theme-bg">
-                            <Link
-                              to={`/${route_prefix}signup`}
-                              className="text-white"
-                            >
-                              Get Started
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : (
-                        <NavItem>
-                          <NavLink
-                            style={{
-                              backgroundColor: "transparent",
+                              </ul>
+                            ) : nav.path === "/signup" ? (
+                              this.loggeduser ? (
+                                <ul className="nav-menu nav-menu-social align-to-right mb-3">
+                                  <li className="add-listing theme-bg">
+                                    <Link
+                                      to={`/${route_prefix}profile`}
+                                      className="text-white"
+                                      style={{ textTransform: "capitalize" }}
+                                    >
+                                      {`${this.loggeduser.firstname} ${this.loggeduser.lastname}`.trim()}
+                                    </Link>
+                                  </li>
+                                </ul>
+                              ) : (
+                                <ul className="nav-menu nav-menu-social align-to-right mb-3">
+                                  <li className="add-listing theme-bg">
+                                    <Link
+                                      to={`/${route_prefix}signup`}
+                                      className="text-white"
+                                    >
+                                      Get Started
+                                    </Link>
+                                  </li>
+                                </ul>
+                              )
+                            ) : (
+                              <NavItem>
+                                <NavLink
+                                  style={{
+                                    backgroundColor: "transparent",
+                                  }}
+                                >
+                                  <Link
+                                    style={{ textDecorationColor: "none" }}
+                                    to={`/${route_prefix}${nav.path.slice(1)}`}
+                                  >
+                                    <span>
+                                      {to_title(nav.title.replace(/_/g, " "))}
+                                    </span>
+                                  </Link>
+                                </NavLink>
+                              </NavItem>
+                            );
+                          })}
+                        </Nav>
+                      </Collapse>
+                    </Navbar>
+                    {show_search ? (
+                      <div className="form-group col-md-6 col-lg-4">
+                        <div className="input-with-icon">
+                          <input
+                            type="text"
+                            className="form-control"
+                            autoFocus
+                            placeholder="Search Your Courses"
+                            value={search_param}
+                            onKeyUp={async (e) => {
+                              if (
+                                e.target.value === this.previous_value &&
+                                this.previous_value
+                              )
+                                return this.search(e);
+                              this.previous_value = e.target.value;
                             }}
-                          >
-                            <Link
-                              style={{ textDecorationColor: "none" }}
-                              to={`/${route_prefix}${nav.path.slice(1)}`}
-                            >
-                              <span>
-                                {to_title(nav.title.replace(/_/g, " "))}
-                              </span>
-                            </Link>
-                          </NavLink>
-                        </NavItem>
-                      );
-                    })}
-                  </Nav>
-                </Collapse>
-              </Navbar>
-              {show_search ? (
-                <div className="form-group col-md-6 col-lg-4">
-                  <div className="input-with-icon">
-                    <input
-                      type="text"
-                      className="form-control"
-                      autoFocus
-                      placeholder="Search Your Courses"
-                      value={search_param}
-                      onKeyUp={async (e) => {
-                        if (
-                          e.target.value === this.previous_value &&
-                          this.previous_value
-                        )
-                          return this.search(e);
-                        this.previous_value = e.target.value;
-                      }}
-                      onChange={({ target }) =>
-                        this.setState({ search_param: target.value })
-                      }
-                    />
-                    <i className="ti-search"></i>
+                            onChange={({ target }) =>
+                              this.setState({ search_param: target.value })
+                            }
+                          />
+                          <i className="ti-search"></i>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
-                </div>
-              ) : null}
-            </div>
+                );
+              }}
+            </Nav_context.Consumer>
           );
         }}
-      </Nav_context.Consumer>
+      </Logged_user>
     );
   }
 }

@@ -31,7 +31,7 @@ class Login extends React.Component {
 
   render() {
     let { lock } = this.props;
-    let { email, password, message, logging_in } = this.state;
+    let { email, reveal_password, password, message, logging_in } = this.state;
 
     return (
       <Logged_user.Consumer>
@@ -90,7 +90,7 @@ class Login extends React.Component {
                               <div className="form-group">
                                 <label>Password</label>
                                 <input
-                                  type="password"
+                                  type={reveal_password ? "text" : "password"}
                                   className="form-control"
                                   placeholder="*******"
                                   value={password}
@@ -101,6 +101,18 @@ class Login extends React.Component {
                                     })
                                   }
                                 />
+                                <a
+                                  onClick={() =>
+                                    this.setState({
+                                      reveal_password:
+                                        !this.state.reveal_password,
+                                    })
+                                  }
+                                  style={{ cursor: "pointer" }}
+                                  className="text-dark"
+                                >
+                                  {`${reveal_password ? "Hide" : "Show"}`}
+                                </a>
                               </div>
                               {message ? (
                                 <p className="text-danger">{message}</p>
