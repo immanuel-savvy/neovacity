@@ -5,6 +5,7 @@ class Countdown extends React.Component {
     super(props);
 
     let { date } = this.props;
+    console.log(date, "HELLO");
     this.state = {
       date,
     };

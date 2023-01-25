@@ -14,31 +14,22 @@ class Daily_outline extends React.Component {
   }
 
   componentDidMount = async () => {
-    let {
-      enrolled,
-      in_update,
-      outline,
-      weekindex,
-      in_week,
-      week,
-      date,
-      course,
-      set,
-    } = this.props;
+    let { enrolled, outline, week, date, course, set } = this.props;
+    console.log(enrolled);
 
     enrolled &&
       date &&
       emitter.emit("daily_outline", { date, week, course, outline });
 
-    if (in_update && date) {
-      if (in_update.getTime() <= date.getTime()) {
-        this.setState({ past: false });
-      } else this.setState({ past: true });
-    } else if (!date && weekindex > in_week) this.setState({ past: false });
+    if (!date) this.setState({ past: null });
+    else if (date.getTime() > Date.now()) this.setState({ past: false });
+    else this.setState({ past: true });
 
     set = set || next_quarter().curr_entry.str;
 
     this.past_timeout = setTimeout(async () => {
+      if (!this.props.enrolled) return;
+
       let { past } = this.state;
       if (past) {
         let video_url = await post_request("fetch_lecture_video_url", {
@@ -74,7 +65,7 @@ class Daily_outline extends React.Component {
     lecture_url && this.setState({ lecture_url });
 
   render() {
-    let { outline, date, dow, course } = this.props;
+    let { outline, date, in_course, dow, course } = this.props;
     if (!outline) return;
     let { past, video_url, lecture_url } = this.state;
 
@@ -100,10 +91,11 @@ class Daily_outline extends React.Component {
             </a>
           ) : null}
 
-          {past ? (
+          {past === null ? null : past ? (
             <Lecture_video
               video_url={video_url}
               course={course}
+              hide_edit={in_course}
               return_video={this.set_video_url}
               outline={outline}
             />
@@ -112,6 +104,7 @@ class Daily_outline extends React.Component {
               course={course}
               return_url={this.set_lecture_url}
               lecture_url={lecture_url}
+              in_curriculum={!in_course}
               outline={outline}
             />
           )}

@@ -15,26 +15,29 @@ class Lecture_video extends React.Component {
   toggle_video = () => this.video?.toggle();
 
   render() {
-    let { course, video_url, return_video, outline } = this.props;
+    let { course, video_url, hide_edit, return_video, outline } = this.props;
 
     return (
       <div>
         {!video_url ? (
-          <span onClick={this.toggle_video_url} style={{ cursor: "pointer" }}>
-            Update video URL
-          </span>
+          hide_edit ? null : (
+            <span onClick={this.toggle_video_url} style={{ cursor: "pointer" }}>
+              Update video URL
+            </span>
+          )
         ) : (
           /*  video === "fetching" ? (
           <Loadindicator />
         ) : */
           <span>
-            {" "}
             <span onClick={this.toggle_video} style={{ cursor: "pointer" }}>
               {video_url.video}
             </span>
-            <a onClick={this.toggle_video_url} className="btn btn-action">
-              <i className={`fas fa-edit`}></i>
-            </a>
+            {hide_edit ? null : (
+              <a onClick={this.toggle_video_url} className="btn btn-action">
+                <i className={`fas fa-edit`}></i>
+              </a>
+            )}
           </span>
         )}
 
@@ -57,7 +60,6 @@ class Lecture_video extends React.Component {
 
         <Modal
           centered
-          title={`Lecture video`}
           aria_labelled_by="contained-modal-title-vcenter"
           ref={(video) => (this.video = video)}
         >

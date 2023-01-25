@@ -103,8 +103,15 @@ class Featured_course extends React.Component {
   padd_length = 70;
 
   handle_course = () => {
-    let { course } = this.props;
+    let { course, enrolled } = this.props;
+    let { date, outline } = this.state;
     window.sessionStorage.setItem("course", JSON.stringify(course));
+    if (enrolled && date && outline)
+      window.sessionStorage.setItem(
+        "next_lecture",
+        JSON.stringify({ date, outline })
+      );
+
     emitter.emit("push_course", course);
   };
 
@@ -173,8 +180,6 @@ class Featured_course extends React.Component {
 
     let is_school = _id.startsWith("school");
 
-    date && console.log(date);
-
     return (
       <div
         className={
@@ -239,7 +244,10 @@ class Featured_course extends React.Component {
 
             <div className="crs_title">
               <h4>
-                <Link to="/course" className="crs_title_link">
+                <Link
+                  to={enrolled ? "/course?enrolled" : "/course"}
+                  className="crs_title_link"
+                >
                   <span onClick={this.handle_course}>
                     {to_title(title.trim().replace(/_/g, " "))}
                   </span>
@@ -330,7 +338,9 @@ class Featured_course extends React.Component {
                     <Link
                       to={`${route_prefix}${
                         adminstrator || in_enroll || is_school
-                          ? "/course"
+                          ? enrolled
+                            ? "/course?enrolled"
+                            : "/course"
                           : "/enroll"
                       }`}
                     >

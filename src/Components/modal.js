@@ -39,14 +39,18 @@ class Modal extends React.Component {
           on_hide && on_hide();
         }}
       >
-        <Modal_.Header style={{ ...style }} closeButton>
-          <Modal_.Title
-            style={style ? { color: "#fff" } : null}
-            id={aria_labelled_by}
-          >
-            {title}
-          </Modal_.Title>
-        </Modal_.Header>
+        {title ? (
+          <Modal_.Header style={{ ...style }} closeButton>
+            {title ? (
+              <Modal_.Title
+                style={style ? { color: "#fff" } : null}
+                id={aria_labelled_by}
+              >
+                {title}
+              </Modal_.Title>
+            ) : null}
+          </Modal_.Header>
+        ) : null}
         <Modal_.Body style={{ ...style }}>{children}</Modal_.Body>
       </Modal_>
     );

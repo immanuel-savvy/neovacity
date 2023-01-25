@@ -35,6 +35,8 @@ class Course extends React.Component {
     };
 
     emitter.listen("push_course", this.push_course);
+
+    this.setState({ enrolled: window.location.search.includes("enrolled") });
   };
 
   componentWillUnmount = () => {
@@ -42,23 +44,25 @@ class Course extends React.Component {
   };
 
   render() {
-    let { course } = this.state;
+    let { course, enrolled } = this.state;
     if (!course) return <Loadindicator contained />;
+
+    console.log(enrolled);
 
     return (
       <div id="main-wrapper">
         <Header page="course" />
         <div class="clearfix"></div>
 
-        <Course_title course={course} />
+        <Course_title enrolled={enrolled} course={course} />
 
         <Course_stats course={course} />
         <section class="gray">
           <div class="container">
             <div class="row">
-              <Course_outline course={course} />
+              <Course_outline enrolled={enrolled} course={course} />
 
-              <Course_sidebar course={course} />
+              <Course_sidebar enrolled={enrolled} course={course} />
             </div>
           </div>
         </section>

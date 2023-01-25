@@ -20,6 +20,7 @@ class Update_curriculum extends React.Component {
 
     this.state = {
       weeks: new Array(),
+      show_outlines: true,
       dow: new Array(),
       outlines: new Object(),
     };
@@ -214,7 +215,6 @@ class Update_curriculum extends React.Component {
       date,
       outlines,
       weekindex,
-      outline,
       show_outlines,
     } = this.state;
 
@@ -394,12 +394,13 @@ class Update_curriculum extends React.Component {
                 ? active_week.lectures.map((lecture, index) => (
                     <Daily_outline
                       outline={lecture}
-                      key={index}
+                      key={lecture._id || lecture.topic}
                       index={index}
                       course={course._id}
                       date={outlines[lecture._id || lecture.topic]}
                       in_update={date}
                       in_week={weekindex}
+                      enrolled
                     />
                   ))
                 : null}

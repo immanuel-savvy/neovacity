@@ -3,13 +3,28 @@ import { Link } from "react-router-dom";
 import Video from "../Components/video";
 import { domain } from "../Constants/constants";
 import { emitter } from "../Neovacity";
+import Countdown from "./countdown";
 
 class Course_sidebar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { show_counter: true };
   }
+
+  componentDidMount = () => {
+    let { course, enrolled } = this.props;
+    if (enrolled) {
+      let next_lecture = window.sessionStorage.getItem("next_lecture");
+      if (next_lecture) {
+        next_lecture = JSON.parse(next_lecture);
+        this.setState({
+          date: new Date(next_lecture.date),
+          outline: next_lecture.outline,
+        });
+      }
+    }
+  };
 
   toggle_short_description = () =>
     this.setState({ show_full: !this.state.show_full });
@@ -22,9 +37,15 @@ class Course_sidebar extends React.Component {
     emitter.emit("push_enroll", course);
   };
 
+  reset_counter = () => {
+    this.setState({ show_counter: false }, () =>
+      this.setState({ show_counter: true })
+    );
+  };
+
   render() {
-    let { show_full } = this.state;
-    let { course, school, cummulative_price } = this.props;
+    let { show_full, show_counter, outline, date } = this.state;
+    let { course, school, cummulative_price, enrolled } = this.props;
 
     if (!course) course = school;
 
@@ -175,16 +196,43 @@ class Course_sidebar extends React.Component {
             </ul>
           </div>
 
-          <div className="ed_view_link">
-            <Link to="/enroll" style={{ textDecorationLine: "none" }}>
-              <span
-                onClick={this.handle_enroll}
-                className="btn theme-bg enroll-btn"
-              >
-                Enroll Now<i className="ti-angle-right"></i>
-              </span>
-            </Link>
-          </div>
+          {date ? (
+            <div className="crs_grid_foot center">
+              <div className="crs_flex"></div>
+              <div className="crs_fl_first">
+                <div className="crs_price">
+                  <span className="currency">Upcoming Lecture:</span>
+                  <br />
+                  <br />
+                  <h2>
+                    <span className="currency">{outline.topic} </span>
+                  </h2>
+                </div>
+              </div>
+              <br />
+              <div className="crs_fl_last">
+                <div className="crs_linkview">
+                  <span
+                    onClick={this.handle_upcoming_lecture}
+                    className="btn btn_view_detail theme-bg text-light"
+                  >
+                    {show_counter ? <Countdown date={date} /> : null}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="ed_view_link">
+              <Link to="/enroll" style={{ textDecorationLine: "none" }}>
+                <span
+                  onClick={this.handle_enroll}
+                  className="btn theme-bg enroll-btn"
+                >
+                  Enroll Now<i className="ti-angle-right"></i>
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     );

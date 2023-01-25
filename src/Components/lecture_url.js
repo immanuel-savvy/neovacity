@@ -11,16 +11,33 @@ class Lecture_url extends React.Component {
 
   toggle_update_url = () => this.update_url?.toggle();
 
+  open_lecture_link = () => {
+    let { lecture_url } = this.props;
+    if (!lecture_url) return;
+
+    window.open(lecture_url.url);
+  };
+
   render() {
-    let { lecture_url, return_url, course, outline } = this.props;
+    let { lecture_url, in_curriculum, return_url, course, outline } =
+      this.props;
 
     return (
       <div>
         <span>
-          <span onClick={this.toggle_update_url} style={{ cursor: "pointer" }}>
-            {lecture_url ? lecture_url.url : "Add Lecture Url"}
+          <span
+            onClick={
+              in_curriculum ? this.toggle_update_url : this.open_lecture_link
+            }
+            style={{ cursor: "pointer" }}
+          >
+            {lecture_url
+              ? lecture_url.url
+              : in_curriculum
+              ? "Add Lecture Url"
+              : ""}
           </span>
-          {lecture_url ? (
+          {lecture_url && in_curriculum ? (
             <a
               target="_blank"
               href={lecture_url.url}

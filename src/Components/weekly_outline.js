@@ -46,6 +46,7 @@ class Weekly_outline extends React.Component {
                   date={this.calculate_daily_date(date, dow, index)}
                   outline={lecture}
                   key={index}
+                  in_course
                   course={course}
                   week={week._id}
                   enrolled={enrolled}

@@ -19,7 +19,7 @@ class Banner extends React.Component {
       <div
         className="hero_banner d-flex justify-content-center image-cover for_top_info"
         style={{
-          backgroundColor: "gray",
+          backgroundColor: "#000132",
           backgroundImage: `url(${domain}/Images/${
             image || "neovacity_africa_banner_background_image.jpg"
           })`,
