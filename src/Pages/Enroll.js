@@ -86,8 +86,6 @@ class Enroll extends React.Component {
       onClose: this.cancel,
     };
 
-    console.log(payment_props);
-
     return (
       <Logged_user.Consumer>
         {({ loggeduser, set_loggeduser }) => {
