@@ -2,6 +2,7 @@ import React from "react";
 import { next_quarter } from "../Assets/js/utils/functions";
 import { get_request } from "../Assets/js/utils/services";
 import { sorted_dow } from "../Components/forms/update_curriculum";
+import Listempty from "../Components/list_empty";
 import Loadindicator from "../Components/loadindicator";
 import Weekly_outline from "../Components/weekly_outline";
 import { dow_index } from "../Constants/constants";
@@ -10,7 +11,7 @@ class Course_outline extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { curriculum: "fetching" };
   }
 
   componentDidMount = async () => {
@@ -21,7 +22,7 @@ class Course_outline extends React.Component {
   };
 
   start_date = (curriculum) => {
-    if (!curriculum) return;
+    if (!curriculum || curriculum === "fetching") return;
 
     let { curr_entry } = next_quarter();
     let { dow, weeks } = curriculum;
@@ -90,7 +91,11 @@ class Course_outline extends React.Component {
 
     return (
       <div className="col-lg-8 col-md-12 order-lg-first">
-        {curriculum ? (
+        {!curriculum ? (
+          <Listempty text="No outline yet" />
+        ) : curriculum === "fetching" ? (
+          <Loadindicator contained />
+        ) : (
           curriculum.weeks.map((week, index) => (
             <Weekly_outline
               date={this.calculate_date_from_weeks_interval(date, index)}
@@ -102,8 +107,6 @@ class Course_outline extends React.Component {
               key={week && week._id}
             />
           ))
-        ) : (
-          <Loadindicator contained />
         )}
       </div>
     );
