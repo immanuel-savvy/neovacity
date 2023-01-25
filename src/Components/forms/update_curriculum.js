@@ -35,7 +35,7 @@ class Update_curriculum extends React.Component {
     let dow = (weeks && weeks.dow) || new Array();
 
     let weeks_ = new Array();
-    weeks = weeks.weeks.map((week) => weeks_.push(week));
+    weeks = weeks && weeks.weeks.map((week) => weeks_.push(week));
 
     if (weeks && !weeks.length) {
       weeks = new Array({
