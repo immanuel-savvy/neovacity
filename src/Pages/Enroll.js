@@ -20,12 +20,12 @@ class Enroll extends React.Component {
 
   componentDidMount = () => {
     let course = window.sessionStorage.getItem("enroll");
-    if (!course) window.history.back();
+    if (!course) window.history.go(-1);
 
     try {
       course = JSON.parse(course);
     } catch (e) {
-      window.history.back();
+      window.history.go(-1);
     }
 
     this.setState({ course });
@@ -78,7 +78,7 @@ class Enroll extends React.Component {
       amount: course.price * this.exchange_rate * 100,
       metadata: {
         name: firstname && lastname && `${firstname} ${lastname}`,
-        phone: "2348022693560",
+        phone,
       },
       publicKey: "pk_test_bb18a2e51d82edaf36aa443679756267d6fef396",
       text: "Proceed to Payment",
