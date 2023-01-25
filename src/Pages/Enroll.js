@@ -30,9 +30,14 @@ class Enroll extends React.Component {
 
     this.setState({ course });
     scroll_to_top();
+
+    this.set_user_details();
   };
 
-  set_user_details = (user) => {
+  set_user_details = () => {
+    let user = window.sessionStorage.getItem("loggeduser");
+    if (!user) return;
+    user = JSON.parse(user);
     let { firstname, lastname, email } = user;
     this.setState({ firstname, lastname, email });
   };
@@ -90,8 +95,6 @@ class Enroll extends React.Component {
       <Logged_user.Consumer>
         {({ loggeduser, set_loggeduser }) => {
           this.user = loggeduser;
-          if (this.user && !firstname) this.set_user_details(loggeduser);
-
           this.set_loggeduser = set_loggeduser;
 
           return (
