@@ -25,6 +25,11 @@ class Dashboard_nav_menu extends React.Component {
           ),
         },
         {
+          title: "admissions",
+          icon: "fa-shopping-basket",
+          subnav: new Array({ title: "manage_exam_questions" }),
+        },
+        {
           title: "about",
           icon: "fa-th",
           subnav: new Array({

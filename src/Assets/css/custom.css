@@ -16,6 +16,10 @@
   padding-inline-start: 0 !important;
 }
 
+.cpointer {
+  cursor: pointer !important;
+}
+
 .fixed_on_page_box {
   position: fixed;
   bottom: 15px;

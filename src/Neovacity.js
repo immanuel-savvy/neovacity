@@ -32,6 +32,7 @@ import Enroll from "./Pages/Enroll";
 import { route_prefix } from "./Sections/nav";
 import Verify_email from "./Pages/Verify_email";
 import Profile from "./Pages/Profile";
+import Admission from "./Pages/Admission";
 
 let emitter = new Emitter();
 
@@ -235,6 +236,7 @@ class Neovacity extends React.Component {
                   <Route path={`signup`} element={<Signup />} />
                   <Route path={`faqs`} element={<FAQS />} />
                   <Route path={`blog`} element={<Blog />} />
+                  <Route path={`admission`} element={<Admission />} />
                   <Route path={`profile`} element={<Profile />} />
                   <Route path={`verify_email`} element={<Verify_email />} />
                   <Route path={`article`} element={<Article />} />

@@ -6,10 +6,12 @@ import Contact_us_today from "../Sections/contact_us_today";
 import Footer from "../Sections/footer";
 import Header from "../Sections/header";
 import { scroll_to_top } from "./Home";
-import { PaystackButton } from "react-paystack";
+import { PaystackConsumer } from "react-paystack";
 import Loadindicator from "../Components/loadindicator";
 import { post_request } from "../Assets/js/utils/services";
 import { Logged_user } from "../Contexts";
+import { Link } from "react-router-dom";
+import { emitter } from "../Neovacity";
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Enroll extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     let course = window.sessionStorage.getItem("enroll");
     if (!course) window.history.go(-1);
 
@@ -28,18 +30,59 @@ class Enroll extends React.Component {
       window.history.go(-1);
     }
 
+    this.proceed_to_payment?.click();
     this.setState({ course });
     scroll_to_top();
 
     this.set_user_details();
+
+    this.admission_id = ({ admission_id, course: course_id }) => {
+      if (course._id !== course_id) return;
+
+      this.setState({
+        admission_exam_id: admission_id,
+        disable_admission_field: true,
+      });
+    };
+
+    emitter.listen("admission_id", this.admission_id);
+  };
+
+  componentWillUnmount = () => {
+    emitter.remove_listener("admission_id", this.admission_id);
+  };
+
+  can_enroll = async () => {
+    let { email, _id, course, admission_exam_id } = this.state;
+
+    let payload = {
+      email,
+      student: _id,
+      course: course._id,
+    };
+
+    let response = await post_request("student_already_enrolled", payload);
+    if (!response && response.enrolled)
+      return { enrolled: "You are already enrolled for this course." };
+
+    if (!disable_admission_field) {
+      let check_admission_id = await post_request("find_admission_exam", {
+        admission_id: admission_exam_id,
+        school: course.schools[0],
+      });
+      if (!check_admission_id.exam)
+        return { invalid_admission_id: "Invalid Exam ID" };
+    }
+
+    return response;
   };
 
   set_user_details = () => {
     let user = window.sessionStorage.getItem("loggeduser");
     if (!user) return;
     user = JSON.parse(user);
-    let { firstname, lastname, email } = user;
-    this.setState({ firstname, lastname, email });
+    let { firstname, lastname, email, _id } = user;
+    this.setState({ firstname, lastname, email, _id });
   };
 
   _is_set = () => {
@@ -74,7 +117,16 @@ class Enroll extends React.Component {
 
   render() {
     let { navs } = this.props;
-    let { email, firstname, lastname, phone, course } = this.state;
+    let {
+      email,
+      firstname,
+      admission_exam_id,
+      lastname,
+      phone,
+      cant_enroll,
+      course,
+      disable_admission_field,
+    } = this.state;
 
     if (!course) return <Loadindicator contained />;
 
@@ -109,15 +161,53 @@ class Enroll extends React.Component {
                     <div className="col-xl-6 col-lg-6 col-md-7 col-sm-12">
                       <form>
                         <div className="row">
-                          <h5>Enrollment Form</h5>
+                          <h5>Step 1: Application Form</h5>
                           <br />
-                          <div className="col-lg-6 col-md-6 col-sm-12">
+                          <div className="col-lg-12 col-md-12 col-sm-12">
                             <div className="form-group">
-                              <label>Name</label>
+                              <label>Admission Exam ID</label>
                               <input
                                 className="form-control"
                                 type="text"
                                 autoFocus
+                                placeholder="XYZABC"
+                                disabled={disable_admission_field}
+                                onChange={({ target }) =>
+                                  this.setState({
+                                    admission_exam_id: target.value,
+                                  })
+                                }
+                                value={admission_exam_id}
+                              />
+                            </div>
+                          </div>
+                          <br />
+                          <span className="h4 mt-3 text-center"> -- OR --</span>
+
+                          <div className="col-lg-12 col-md-12 col-sm-12">
+                            <Link
+                              to="/admission"
+                              className={`mt-5 btn full-width text-light theme-bg short_description-white`}
+                            >
+                              Take Admission Examination
+                            </Link>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-7 col-sm-12">
+                      <form>
+                        <div className="row">
+                          <h5>Step 2: Enrollment</h5>
+                          <br />
+                          <div className="col-lg-6 col-md-6 col-sm-12">
+                            <div className="form-group">
+                              <label>Firstname</label>
+                              <input
+                                className="form-control"
+                                type="text"
+                                autoFocus
+                                disabled={!admission_exam_id}
                                 placeholder="Firstname"
                                 onChange={({ target }) =>
                                   this.setState({ firstname: target.value })
@@ -134,6 +224,7 @@ class Enroll extends React.Component {
                                 className="form-control"
                                 type="text"
                                 placeholder="Lastname"
+                                disabled={!admission_exam_id}
                                 onChange={({ target }) =>
                                   this.setState({ lastname: target.value })
                                 }
@@ -148,8 +239,12 @@ class Enroll extends React.Component {
                               <input
                                 type="email"
                                 className="form-control"
+                                disabled={!admission_exam_id}
                                 onChange={({ target }) =>
-                                  this.setState({ email: target.value })
+                                  this.setState({
+                                    email: target.value,
+                                    cant_enroll: false,
+                                  })
                                 }
                                 value={email}
                               />
@@ -161,6 +256,7 @@ class Enroll extends React.Component {
                               <input
                                 type="number"
                                 className="form-control"
+                                disabled={!admission_exam_id}
                                 onChange={({ target }) =>
                                   this.setState({ phone: target.value })
                                 }
@@ -171,11 +267,38 @@ class Enroll extends React.Component {
                         </div>
                       </form>
                       <div className="form-group smalls">
-                        {this._is_set() ? (
-                          <PaystackButton
-                            className="paystack-button"
-                            {...payment_props}
-                          />
+                        {cant_enroll ? (
+                          <div class="alert alert-primary" role="alert">
+                            <strong>Cannot Proceed</strong>&nbsp; {cant_enroll}
+                          </div>
+                        ) : this._is_set() ? (
+                          <PaystackConsumer {...payment_props}>
+                            {({ initializePayment }) => (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  this.can_enroll()
+                                    .then((res) => {
+                                      res &&
+                                      (res.enrolled || res.invalid_admission_id)
+                                        ? this.setState({
+                                            cant_enroll:
+                                              res.enrolled ||
+                                              res.invalid_admission_id,
+                                          })
+                                        : initializePayment(
+                                            this.payment_successful,
+                                            this.cancel
+                                          );
+                                    })
+                                    .catch((e) => console.log(e));
+                                }}
+                                className={`btn full-width text-light theme-bg short_description-white`}
+                              >
+                                Proceed to payment
+                              </button>
+                            )}
+                          </PaystackConsumer>
                         ) : (
                           <button
                             type="button"

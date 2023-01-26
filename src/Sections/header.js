@@ -39,34 +39,27 @@ class Header extends React.Component {
                 >
                   <li>
                     <span style={{ color: "#fff" }}>
-                      <i className="fas fa-map"></i> Address
+                      <i className="fas fa-map"></i>
                     </span>
-                    <br />
-                    18, Afolabi Aina Street, Allen Avenue, Ikeja, Lagos{" "}
+                    &nbsp; 18, Afolabi Aina Street, Allen Avenue, Ikeja, Lagos{" "}
                   </li>
                   <li>
                     <span style={{ color: "#fff" }}>
-                      <i className="fas fa-envelope-open"></i> Email
+                      <i className="fas fa-envelope-open"></i>
                     </span>
-                    <br />
-                    info@neovacityafrica.com{" "}
+                    &nbsp; info@neovacityafrica.com{" "}
                   </li>
                   <li>
                     <span style={{ color: "#fff" }}>
-                      <i className="fas fa-phone"></i> Contact
+                      <i className="fas fa-phone"></i>
                     </span>
-                    <br />
-                    +234 8033027439,
-                    <br /> +234 8099441722{" "}
+                    &nbsp; +234 8033027439,
                   </li>
                   <li>
-                    <span
-                      className="topheader_whatsapp"
-                      style={{ color: "#fff" }}
-                    >
-                      Whatsapp
+                    <span style={{ color: "#fff" }}>
+                      <i className="fab fa-whatsapp"></i>
                     </span>
-                    <br />
+                    &nbsp;
                     <a
                       href="https://wa.me/+2348033027439/?text=Hello,%20I%20like%20to%20enquire%20about%20GIIT%20courses%20and%20training?"
                       target="_blank"

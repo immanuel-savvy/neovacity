@@ -17,7 +17,7 @@ class Contact_us_today extends React.Component {
               <div className="call_action_wrap">
                 <div className="call_action_wrap-head">
                   <h3>Do You Have Questions ?</h3>
-                  <span>We'll help you to grow your career and growth.</span>
+                  <span>We'll help you to grow your career and knowledge.</span>
                 </div>
                 <Link to="/contact_us" className="btn btn-call_action_wrap">
                   Contact Us Today

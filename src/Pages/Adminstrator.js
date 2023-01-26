@@ -28,6 +28,7 @@ import Add_course from "../Sections/dashboard/add_course";
 import Add_admin from "../Sections/dashboard/add_admin";
 import { organisation_name } from "../Constants/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Manage_exam_questions from "../Sections/dashboard/manage_exam_questions";
 
 const scroll_to_top = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -95,6 +96,7 @@ class Adminstrator extends React.Component {
       FAQs: <Manage_faqs />,
       onboarding: <Manage_onboarding />,
       trusted_by: <Manage_trusted_by />,
+      manage_exam_questions: <Manage_exam_questions />,
       best_instructors: <Manage_best_instructors_section />,
       create_newsletter: <Create_newsletter />,
       manage_newsletters: <Manage_newsletters />,

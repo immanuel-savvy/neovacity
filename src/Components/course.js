@@ -352,7 +352,7 @@ class Featured_course extends React.Component {
                       >
                         {adminstrator || in_enroll || is_school
                           ? "View Course"
-                          : "Enroll Now"}
+                          : "Apply Now"}
                       </span>
                     </Link>
                   </div>

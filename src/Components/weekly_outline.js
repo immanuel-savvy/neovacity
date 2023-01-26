@@ -12,14 +12,16 @@ class Weekly_outline extends React.Component {
 
   calculate_daily_date = (date, dow, index) => {
     if (!index) return date;
-    else if (!dow[index]) return;
+    else if (dow && !dow[index]) return;
 
-    return new Date(
-      `${date.getMonth() + 1}-${
-        date.getDate() +
-        (dow_index_inverse[dow[index]] - dow_index_inverse[dow[0]])
-      }-${date.getFullYear()}`
-    );
+    return !dow
+      ? new Date()
+      : new Date(
+          `${date.getMonth() + 1}-${
+            date.getDate() +
+            (dow_index_inverse[dow[index]] - dow_index_inverse[dow[0]])
+          }-${date.getFullYear()}`
+        );
   };
 
   render() {
@@ -50,7 +52,7 @@ class Weekly_outline extends React.Component {
                   course={course}
                   week={week._id}
                   enrolled={enrolled}
-                  dow={dow[index]}
+                  dow={dow && dow[index]}
                   weekindex={index}
                   index={index}
                 />

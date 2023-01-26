@@ -25,7 +25,9 @@ class Course_outline extends React.Component {
     if (!curriculum || curriculum === "fetching") return;
 
     let { curr_entry } = next_quarter();
-    let { dow, weeks } = curriculum;
+    let { dow } = curriculum;
+    if (!dow) return;
+
     dow = dow.sort((d1, d2) => sorted_dow.indexOf(d1) - sorted_dow.indexOf(d2));
 
     let dt = 1;
