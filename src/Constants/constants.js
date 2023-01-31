@@ -1,4 +1,4 @@
-const DEV = true;
+const DEV = false;
 
 const hostname = DEV
   ? "http://192.168.1.19"

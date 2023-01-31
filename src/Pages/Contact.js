@@ -107,6 +107,7 @@ class Contact extends React.Component {
                       <label>Phone</label>
                       <input
                         value={phone}
+                        placeholder="e.g +234 801 234 5566"
                         onChange={({ target }) =>
                           this.setState({ phone: target.value })
                         }
@@ -120,6 +121,7 @@ class Contact extends React.Component {
                       <label>Message</label>
                       <textarea
                         value={text}
+                        style={{ minHeight: 100 }}
                         onChange={({ target }) =>
                           this.setState({ text: target.value })
                         }

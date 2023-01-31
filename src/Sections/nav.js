@@ -87,7 +87,7 @@ class Custom_nav extends React.Component {
                           src={require(`../Assets/img/neovacity_africa_logo.png`)}
                           className="logo"
                           id="logo_white"
-                          style={{ height: 80 }}
+                          // style={{ height: 80 }}
                           alt=""
                         />
                       </NavbarBrand>

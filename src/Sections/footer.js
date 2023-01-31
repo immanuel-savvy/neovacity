@@ -106,7 +106,7 @@ class Footer extends React.Component {
                             {
                               <div className="col-lg-8 col-md-8">
                                 <div className="footer_widget">
-                                  <h4 className="widget_title">Company</h4>
+                                  <h4 className="widget_title">Schools</h4>
                                   <ul className="footer-menu">
                                     {schools ? (
                                       schools.map((school) => {

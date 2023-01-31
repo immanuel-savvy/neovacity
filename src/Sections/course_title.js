@@ -130,7 +130,7 @@ class Course_title extends React.Component {
                   )}
                   <div class="ed_view_link">
                     <a href="#" class="btn theme-border enroll-btn">
-                      Share<i class="fas fa-share"></i>
+                      Share and win Coupon<i class="fas fa-share"></i>
                     </a>
                   </div>
                 </div>

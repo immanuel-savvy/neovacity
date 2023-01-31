@@ -38,7 +38,7 @@ class Score extends React.Component {
           </div>
           <span>
             {qualified
-              ? "You are above average, thereby qualified to start the course"
+              ? "Congrats!, you have exceeded the pass-mark"
               : "You didn't meet with the test requirement, please try again in a week time."}
           </span>
 
@@ -52,13 +52,14 @@ class Score extends React.Component {
                 Proceed with enrollment
               </span>
             ) : (
-              <span
-                type="span"
-                onClick={this.find_other_courses}
-                className={`btn full-width text-light theme-bg short_description-white`}
-              >
-                Find other courses
-              </span>
+              <Link to="/">
+                <span
+                  type="span"
+                  className={`btn full-width text-light theme-bg short_description-white`}
+                >
+                  Find other courses
+                </span>
+              </Link>
             )}
           </div>
         </div>

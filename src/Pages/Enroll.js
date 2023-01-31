@@ -169,7 +169,7 @@ class Enroll extends React.Component {
                                 className="form-control"
                                 type="text"
                                 autoFocus
-                                placeholder="XYZABC"
+                                placeholder="e.g XYZ456"
                                 disabled={disable_admission_field}
                                 onChange={({ target }) =>
                                   this.setState({
@@ -186,7 +186,10 @@ class Enroll extends React.Component {
                           <div className="col-lg-12 col-md-12 col-sm-12">
                             <Link
                               to="/admission"
-                              className={`mt-5 btn full-width text-light theme-bg short_description-white`}
+                              className={`mt-5 btn full-width text-light short_description-white`}
+                              style={{
+                                backgroundColor: "red",
+                              }}
                             >
                               Take Admission Examination
                             </Link>
@@ -201,7 +204,7 @@ class Enroll extends React.Component {
                           <br />
                           <div className="col-lg-6 col-md-6 col-sm-12">
                             <div className="form-group">
-                              <label>Firstname</label>
+                              <label>Firstname*</label>
                               <input
                                 className="form-control"
                                 type="text"
@@ -239,6 +242,7 @@ class Enroll extends React.Component {
                                 type="email"
                                 className="form-control"
                                 disabled={!admission_exam_id}
+                                placeholder="you@mail.com"
                                 onChange={({ target }) =>
                                   this.setState({
                                     email: target.value,
@@ -254,6 +258,7 @@ class Enroll extends React.Component {
                               <label>Phone Number*</label>
                               <input
                                 type="number"
+                                placeholder="e.g +234 801 234 5555"
                                 className="form-control"
                                 disabled={!admission_exam_id}
                                 onChange={({ target }) =>
