@@ -1,7 +1,7 @@
 const DEV = true;
 
 const hostname = DEV
-  ? "http://localhost"
+  ? "http://192.168.1.19"
   : "https://neovacity.udaralinksapp.com";
 
 const client_domain = DEV

@@ -58,6 +58,10 @@ class Neovacity extends React.Component {
           submenu: new Array(),
         },
         {
+          title: "testimonials",
+          path: "/testimonials",
+        },
+        {
           title: "about",
           path: "/about",
           submenu: new Array(
@@ -78,10 +82,6 @@ class Neovacity extends React.Component {
               path: "/faqs",
             }
           ),
-        },
-        {
-          title: "testimonials",
-          path: "/testimonials",
         },
         {
           title: "blog",
