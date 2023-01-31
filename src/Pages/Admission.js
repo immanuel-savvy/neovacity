@@ -8,7 +8,6 @@ import { post_request } from "../Assets/js/utils/services";
 import Breadcrumb from "../Components/breadcrumb";
 import Featured_course from "../Components/course";
 import Loadindicator from "../Components/loadindicator";
-import { emitter } from "../Neovacity";
 import Contact_us_today from "../Sections/contact_us_today";
 import Footer from "../Sections/footer";
 import Header from "../Sections/header";
@@ -71,18 +70,21 @@ class Admission extends React.Component {
   };
 
   proceed_with_enrollment = async (details) => {
-    let { course, email, _id } = this.state;
-    let admission_id = generate_random_string(6);
+    let { course, email, _id, firstname, lastname } = this.state;
+    let admission_id = generate_random_string(6, "alnum");
 
     await post_request("admission_exam", {
       ...details,
       student: _id || email,
+      email,
+      firstname,
+      lastname,
       admission_id,
       course: course._id,
     });
 
-    emitter.emit("admission_id", { admission_id, course: course._id });
-    window.location.go(-1);
+    window.sessionStorage.setItem("ad_id", admission_id);
+    window.history.go(-1);
   };
 
   exchange_rate = 700;
@@ -134,7 +136,7 @@ class Admission extends React.Component {
           <div className="container">
             <div className="row justify-content-between">
               <div className="col-xl-6 col-lg-6 col-md-7 col-sm-12">
-                {!exam_payment_successful ? (
+                {exam_payment_successful ? (
                   <Admission_exam
                     course={course}
                     proceed_with_enrollment={this.proceed_with_enrollment}

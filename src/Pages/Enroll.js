@@ -11,7 +11,6 @@ import Loadindicator from "../Components/loadindicator";
 import { post_request } from "../Assets/js/utils/services";
 import { Logged_user } from "../Contexts";
 import { Link } from "react-router-dom";
-import { emitter } from "../Neovacity";
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -36,24 +35,17 @@ class Enroll extends React.Component {
 
     this.set_user_details();
 
-    this.admission_id = ({ admission_id, course: course_id }) => {
-      if (course._id !== course_id) return;
-
+    let admission_id = window.sessionStorage.getItem("ad_id");
+    admission_id &&
       this.setState({
         admission_exam_id: admission_id,
         disable_admission_field: true,
       });
-    };
-
-    emitter.listen("admission_id", this.admission_id);
-  };
-
-  componentWillUnmount = () => {
-    emitter.remove_listener("admission_id", this.admission_id);
   };
 
   can_enroll = async () => {
-    let { email, _id, course, admission_exam_id } = this.state;
+    let { email, disable_admission_field, _id, course, admission_exam_id } =
+      this.state;
 
     let payload = {
       email,
@@ -69,9 +61,12 @@ class Enroll extends React.Component {
       let check_admission_id = await post_request("find_admission_exam", {
         admission_id: admission_exam_id,
         school: course.schools[0],
+        checking: true,
       });
-      if (!check_admission_id.exam)
-        return { invalid_admission_id: "Invalid Exam ID" };
+      if (!check_admission_id.exam || check_admission_id.used)
+        return {
+          invalid_admission_id: check_admission_id.used || "Invalid Exam ID",
+        };
     }
 
     return response;
@@ -105,8 +100,12 @@ class Enroll extends React.Component {
     };
 
     post_request("register_course", payload).then((res) => {
-      !this.user && this.set_loggeduser(res.user);
+      if (!this.user) {
+        window.sessionStorage.setItem("loggeduser", JSON.stringify(res.user));
+        this.set_loggeduser(res.user);
+      }
 
+      window.sessionStorage.removeItem("ad_id");
       window.history.go(-1);
     });
   };

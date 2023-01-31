@@ -29,7 +29,6 @@ import Course from "./Pages/Course";
 import { client_domain } from "./Constants/constants";
 import Article from "./Pages/Article";
 import Enroll from "./Pages/Enroll";
-import { route_prefix } from "./Sections/nav";
 import Verify_email from "./Pages/Verify_email";
 import Profile from "./Pages/Profile";
 import Admission from "./Pages/Admission";

@@ -8,9 +8,9 @@ class Score extends React.Component {
   }
 
   proceed_with_enrollment = () => {
-    let { proceed_with_enrollment, details } = this.props;
+    let { proceed_to_admission, details } = this.props;
 
-    proceed_with_enrollment(details);
+    proceed_to_admission(details);
   };
 
   render() {

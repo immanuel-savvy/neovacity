@@ -29,7 +29,7 @@ class Admission_exam extends React.Component {
   };
 
   render() {
-    let { course, user_details } = this.props;
+    let { course, user_details, proceed_with_enrollment } = this.props;
     let { start, questions } = this.state;
 
     return (
@@ -42,7 +42,11 @@ class Admission_exam extends React.Component {
         />
 
         {start ? (
-          <Examination school={course.schools[0]} questions={questions} />
+          <Examination
+            proceed_to_admission={proceed_with_enrollment}
+            school={course.schools[0]}
+            questions={questions}
+          />
         ) : null}
       </div>
     );
