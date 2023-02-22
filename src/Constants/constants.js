@@ -22,7 +22,7 @@ const month_index = new Object({
   10: "nov",
   11: "dec",
 });
-09014611941;
+
 const dow_index = new Object({
   1: "monday",
   2: "tuesday",
