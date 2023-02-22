@@ -40,6 +40,7 @@ class Admission extends React.Component {
   _is_set = () => {
     let { email, firstname, lastname } = this.state;
 
+    console.log(email, firstname, lastname);
     return email_regex.test(email) && firstname && lastname;
   };
 
@@ -51,7 +52,9 @@ class Admission extends React.Component {
     this.setState({ firstname, lastname, email, _id });
   };
 
-  payment_successful = () => {
+  payment_successful = (e) => {
+    e && e.preventDefault();
+    console.log("in here");
     this.setState({ exam_payment_successful: true });
   };
 
@@ -204,35 +207,38 @@ class Admission extends React.Component {
                           <strong>Cannot Proceed</strong>&nbsp; You are already
                           enrolled to this course.
                         </div>
-                      ) : this._is_set() ? (
-                        <PaystackConsumer {...payment_props}>
-                          {({ initializePayment }) => (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                this.can_enroll()
-                                  .then((res) =>
-                                    res && res.enrolled
-                                      ? this.setState({ cant_enroll: true })
-                                      : initializePayment(
-                                          this.payment_successful,
-                                          this.cancel
-                                        )
-                                  )
-                                  .catch((e) => console.log(e));
-                              }}
-                              className={`btn full-width text-light theme-bg short_description-white`}
-                            >
-                              Pay and Proceed to exam
-                            </button>
-                          )}
-                        </PaystackConsumer>
-                      ) : (
+                      ) : null ? null : (
+                        // <PaystackConsumer {...payment_props}>
+                        //   {({ initializePayment }) => (
+                        //     <button
+                        //       type="button"
+                        //       onClick={() => {
+                        //         this.can_enroll()
+                        //           .then(
+                        //             (res) =>
+                        //               res && res.enrolled
+                        //                 ? this.setState({ cant_enroll: true })
+                        //                 : this.payment_successful()
+                        //             // : initializePayment(
+                        //             //     this.payment_successful,
+                        //             //     this.cancel
+                        //             //   )
+                        //           )
+                        //           .catch((e) => console.log(e));
+                        //       }}
+                        //       className={`btn full-width text-light theme-bg short_description-white`}
+                        //     >
+                        //       Pay and Proceed to exam
+                        //     </button>
+                        //   )}
+                        // </PaystackConsumer>
                         <button
                           type="button"
-                          className={`btn full-width text-light grey short_description-white`}
+                          className={`btn full-width theme-bg text-light`}
+                          disabled={!this._is_set()}
+                          onClick={this.payment_successful}
                         >
-                          Pay and Proceed to exam
+                          Proceed to exam
                         </button>
                       )}
                     </div>

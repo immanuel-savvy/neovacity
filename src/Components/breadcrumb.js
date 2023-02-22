@@ -17,10 +17,13 @@ class Breadcrumb extends React.Component {
           ...(page_title === "courses"
             ? new Object({ paddingTop: 30, paddingBottom: 20 })
             : null),
-          backgroundImage: `url(${require("../Assets/img/breadcrumb_bg.jpg")})`,
+          backgroundImage: `url(${require("../Assets/img/bg_light.jpg")})`,
           backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          color: "#fff",
         }}
         className={`page-title ${no_gray ? "" : "gray"}`}
+        data-overlay="1"
       >
         <div className="container">
           <div className="row">

@@ -32,12 +32,15 @@ class School extends React.Component {
           {play ? (
             <Video url={video} />
           ) : (
-            <Link className="crs_detail_link" to={`school`}>
+            <Link
+              className="crs_detail_link"
+              to={`school`}
+              onclick={this.handle_school}
+            >
               <Preview_image
                 image={image}
                 image_hash={image_hash}
                 title={title}
-                onclick={this.handle_school}
               />
             </Link>
           )}
@@ -61,7 +64,13 @@ class School extends React.Component {
         </div>
         <div class="pricing_wrap">
           <div class="prt_head">
-            <h4>{to_title(title.replace(/_/g, " "))}</h4>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/school`}
+              onClick={this.handle_school}
+            >
+              <h4>{to_title(title.replace(/_/g, " "))}</h4>
+            </Link>
           </div>
 
           <div style={{ flexWrap: "wrap", display: "flex" }}>
@@ -81,10 +90,8 @@ class School extends React.Component {
             </ul>
           </div>
           <div class="prt_footer">
-            <Link to={`school`}>
-              <span class="btn choose_package" onClick={this.handle_school}>
-                Register
-              </span>
+            <Link to={`/school`} onClick={this.handle_school}>
+              <span class="btn choose_package">Register</span>
             </Link>
           </div>
         </div>

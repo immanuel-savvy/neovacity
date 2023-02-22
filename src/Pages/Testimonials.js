@@ -31,8 +31,6 @@ class Testimonials extends React.Component {
       limit: page_size,
     });
 
-    console.log(reviews);
-
     this.setState({ reviews });
   };
 
