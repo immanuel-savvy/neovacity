@@ -107,7 +107,7 @@ class School extends React.Component {
               style={{ textDecoration: "none" }}
               onClick={this.handle_school}
             >
-              <span class="btn text-accent choose_package">Register</span>
+              <span class="btn theme-cl choose_package">Register</span>
             </Link>
           </div>
         </div>
