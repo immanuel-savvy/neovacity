@@ -59,6 +59,7 @@ class Subscribe extends React.Component {
               className="form-control"
               placeholder="Email Address"
               onChange={this.set_email_subscription}
+              style={{ border: "#333 1px solid", borderRight: "none" }}
             />
             <div className="input-group-append">
               {subscribing ? (
@@ -67,7 +68,7 @@ class Subscribe extends React.Component {
                 <button
                   type="button"
                   onClick={this.subscribe_newsletter}
-                  className="input-group-text theme-bg b-0 text-light"
+                  className="input-group-text btn-bg b-0 text-light"
                 >
                   Subscribe
                 </button>
@@ -80,6 +81,7 @@ class Subscribe extends React.Component {
             </div>
           ) : null}
         </div>
+        <div style={{ height: 24 }} />
       </div>
     );
   }

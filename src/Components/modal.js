@@ -21,6 +21,7 @@ class Modal extends React.Component {
       size,
       title,
       centered,
+      header_color,
     } = this.props;
     let { show } = this.state;
 
@@ -40,7 +41,7 @@ class Modal extends React.Component {
         }}
       >
         {title ? (
-          <Modal_.Header style={{ ...style }} closeButton>
+          <Modal_.Header style={{ color: header_color, ...style }} closeButton>
             {title ? (
               <Modal_.Title
                 style={style ? { color: "#fff" } : null}
