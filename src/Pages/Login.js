@@ -128,7 +128,7 @@ class Login extends React.Component {
                                 ) : (
                                   <button
                                     type="button"
-                                    className="btn full-width btn-md theme-bg text-white"
+                                    className="btn full-width btn-md btn-bg text-white"
                                     onClick={this.proceed}
                                   >
                                     Login
@@ -142,7 +142,7 @@ class Login extends React.Component {
                               <div className="fhg_45">
                                 <p className="musrt">
                                   Don't have account?{" "}
-                                  <Link to="/signup" className="theme-cl">
+                                  <Link to="/signup" className="text-accent">
                                     SignUp
                                   </Link>
                                 </p>

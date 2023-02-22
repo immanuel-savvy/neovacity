@@ -190,7 +190,7 @@ class Add_alumni_review extends Handle_image_upload {
                           email &&
                           this.on_post_review
                         }
-                        class="btn theme-bg btn-md"
+                        class="btn btn-bg btn-md"
                       >
                         Submit Review
                       </a>

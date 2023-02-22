@@ -107,7 +107,7 @@ class Examination extends React.Component {
           <span
             type="span"
             onClick={this.submit}
-            className={`btn full-width text-light theme-bg short_description-white`}
+            className={`btn full-width text-light btn-bg short_description-white`}
           >
             Submit
           </span>

@@ -62,7 +62,7 @@ class Admission_exam_details extends React.Component {
           <span
             type="span"
             onClick={begin_exam}
-            className={`btn full-width text-light theme-bg short_description-white`}
+            className={`btn full-width text-light btn-bg short_description-white`}
           >
             Begin Exam
           </span>

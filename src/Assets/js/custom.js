@@ -28,7 +28,7 @@ $(function () {
           visibleSubmenusOnMobile: !1,
           fixed: !1,
           overlay: !0,
-          overlayColor: "rgba(0, 0, 0, 0.5)",
+          overlayColor: "rgba(4, 120, 189, 0.5)",
           hidden: !1,
           offCanvasSide: "left",
           onInit: function () {},

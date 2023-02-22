@@ -164,7 +164,7 @@ class Manage_courses extends React.Component {
     courses = courses.filter((course) => course._id !== course_id);
     total_courses--;
     this.setState({ courses, total_courses });
-    await post_request(`remove_course/${course_id}`);
+    console.log(await post_request(`remove_course/${course_id}`));
   };
 
   render() {

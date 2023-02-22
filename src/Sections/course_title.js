@@ -122,7 +122,7 @@ class Course_title extends React.Component {
                     <Link to="/enroll" style={{ textDecorationLine: "none" }}>
                       <span
                         onClick={this.handle_enroll}
-                        className="btn theme-bg text-light enroll-btn"
+                        className="btn btn-bg text-light enroll-btn"
                       >
                         Enroll Now<i className="ti-angle-right"></i>
                       </span>

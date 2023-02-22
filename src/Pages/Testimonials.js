@@ -84,7 +84,7 @@ class Testimonials extends React.Component {
                 <span className="elkios" onClick={this.toggle_form}>
                   <a
                     href="#"
-                    className="add_new_btn"
+                    className="add_new_btn text-accent"
                     data-toggle="modal"
                     data-target="#catModal"
                   >

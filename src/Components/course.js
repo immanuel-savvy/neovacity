@@ -348,7 +348,7 @@ class Featured_course extends React.Component {
                         onClick={
                           adminstrator ? this.handle_course : this.handle_enroll
                         }
-                        className="btn btn_view_detail theme-bg text-light"
+                        className="btn btn_view_detail btn-bg text-light"
                       >
                         {adminstrator || in_enroll || is_school
                           ? "View Course"

@@ -82,16 +82,32 @@ class School extends React.Component {
 
           <div class="prt_body">
             <ul>
-              {courses.map((school) => (
-                <li key={school._id}>
-                  {to_title(school.title.replace(/_/g, " "))}
+              {courses.map((course) => (
+                <li key={course._id}>
+                  <Link
+                    to="/course"
+                    className="theme-cl"
+                    style={{ textDecoration: "none" }}
+                    onClick={() =>
+                      window.sessionStorage.setItem(
+                        "course",
+                        JSON.stringify(course)
+                      )
+                    }
+                  >
+                    {to_title(course.title.replace(/_/g, " "))}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div class="prt_footer">
-            <Link to={`/school`} onClick={this.handle_school}>
-              <span class="btn choose_package">Register</span>
+            <Link
+              to={`/school`}
+              style={{ textDecoration: "none" }}
+              onClick={this.handle_school}
+            >
+              <span class="btn text-accent choose_package">Register</span>
             </Link>
           </div>
         </div>

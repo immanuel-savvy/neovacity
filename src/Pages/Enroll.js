@@ -298,7 +298,7 @@ class Enroll extends React.Component {
                                     })
                                     .catch((e) => console.log(e));
                                 }}
-                                className={`btn full-width text-light theme-bg short_description-white`}
+                                className={`btn full-width text-light btn-bg short_description-white`}
                               >
                                 Proceed to payment
                               </button>

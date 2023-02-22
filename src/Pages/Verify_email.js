@@ -132,7 +132,7 @@ class Verify_email extends React.Component {
                                 <button
                                   onClick={this.verify}
                                   type="button"
-                                  className="btn full-width btn-md theme-bg text-white"
+                                  className="btn full-width btn-md btn-bg text-white"
                                 >
                                   Verify
                                 </button>

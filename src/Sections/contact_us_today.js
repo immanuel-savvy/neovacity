@@ -10,7 +10,7 @@ class Contact_us_today extends React.Component {
 
   render() {
     return (
-      <section className="theme-bg call_action_wrap-wrap">
+      <section className="btn-bg call_action_wrap-wrap">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

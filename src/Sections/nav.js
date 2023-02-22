@@ -159,9 +159,7 @@ class Custom_nav extends React.Component {
                                         >
                                           {subnav.view_all
                                             ? "View all courses..."
-                                            : to_title(
-                                                subnav.title.replace(/_/g, " ")
-                                              )}
+                                            : subnav.title.replace(/_/g, " ")}
                                         </Link>
                                         {nav.title !==
                                         "schools" ? null : subnav.submenu &&

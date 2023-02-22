@@ -62,7 +62,7 @@ class Footer extends React.Component {
                                 alt=""
                               />
                             </Link>
-                            <h4 className="extream mb-3">
+                            <h4 className="extream mb-3 text-accent">
                               Do you need help with
                               <br />
                               anything?
@@ -88,7 +88,7 @@ class Footer extends React.Component {
                                     <button
                                       type="button"
                                       onClick={this.subscribe_newsletter}
-                                      className="input-group-text theme-bg b-0 text-light"
+                                      className="input-group-text btn-bg b-0 text-light"
                                     >
                                       Subscribe
                                     </button>
@@ -106,7 +106,9 @@ class Footer extends React.Component {
                             {
                               <div className="col-lg-8 col-md-8">
                                 <div className="footer_widget">
-                                  <h4 className="widget_title">Schools</h4>
+                                  <h4 className="widget_title text-accent">
+                                    Schools
+                                  </h4>
                                   <ul className="footer-menu">
                                     {schools ? (
                                       schools.map((school) => {
@@ -116,10 +118,11 @@ class Footer extends React.Component {
                                               this.handle_school(school)
                                             }
                                           >
-                                            <Link to={`/school`}>
-                                              {to_title(
-                                                school.title.replace(/_/g, " ")
-                                              )}
+                                            <Link
+                                              to={`/school`}
+                                              style={{ textDecoration: "none" }}
+                                            >
+                                              {school.title.replace(/_/g, " ")}
                                             </Link>
                                           </li>
                                         );
@@ -133,28 +136,61 @@ class Footer extends React.Component {
                             }
 
                             <div className="col-lg-4 col-md-4">
-                              <div className="footer_widget">
-                                <h4 className="widget_title">Company</h4>
+                              <div
+                                style={{ textDecoration: "none" }}
+                                className="footer_widget"
+                              >
+                                <h4 className="widget_title text-accent">
+                                  Company
+                                </h4>
                                 <ul className="footer-menu">
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}`}>Home</Link>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}`}
+                                    >
+                                      Home
+                                    </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}about`}>About</Link>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}about`}
+                                    >
+                                      About
+                                    </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}blog`}>Blog</Link>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}blog`}
+                                    >
+                                      Blog
+                                    </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}testimonials`}>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}testimonials`}
+                                    >
                                       Testimonials
                                     </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}contact_us`}>Contact</Link>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}contact_us`}
+                                    >
+                                      Contact
+                                    </Link>
                                   </li>
                                   <li onClick={scroll_to_top}>
-                                    <Link to={`/${""}login`}>Login</Link>
+                                    <Link
+                                      style={{ textDecoration: "none" }}
+                                      to={`/${""}login`}
+                                    >
+                                      Login
+                                    </Link>
                                   </li>
                                 </ul>
                               </div>
@@ -167,7 +203,7 @@ class Footer extends React.Component {
                 )}
                 <div
                   className="footer-bottom"
-                  style={{ backgroundColor: "#12133a" }}
+                  style={{ backgroundColor: "#19338b", color: "#fff" }}
                 >
                   <div className="container">
                     <div className="row align-items-center">
@@ -177,16 +213,15 @@ class Footer extends React.Component {
                         }
                         className="col-lg-12 col-md-12 text-center"
                       >
-                        <Link to="/adminstrator">
-                          <p className="mb-0">
-                            {`© ${new Date().getFullYear()} Neovacity Africa. All rights reserved.`}
-                          </p>
-                        </Link>
+                        <p className="mb-0">
+                          {`© ${new Date().getFullYear()} Neovacity Africa. All rights reserved.`}
+                        </p>
                         <p className="mb-0">
                           Site managed by{" "}
                           <a
                             href="https://digitaladplanet.com/ng/"
                             target="_blank"
+                            style={{ color: "#fff" }}
                           >
                             Digital Ad Planet
                           </a>

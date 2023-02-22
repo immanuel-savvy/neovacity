@@ -46,7 +46,7 @@ class Course_banner extends React.Component {
                     ))
                   : null}
                 <div className="ed_header_caption">
-                  <h2 className="ed_title">
+                  <h2 className="ed_title text-accent">
                     {to_title(title.replace(/_/g, " "))}
                   </h2>
                 </div>
@@ -73,7 +73,7 @@ class Course_banner extends React.Component {
                     ></i>
                   </div>
                   <div className="review_counter">
-                    <strong className="high">{stars || 0}</strong>
+                    <strong className="high">{stars || ""}</strong>
                     &nbsp;&nbsp;
                     {reviews ? ` ${reviews} Reviews` : null}
                   </div>

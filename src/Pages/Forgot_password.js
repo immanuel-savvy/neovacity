@@ -50,7 +50,7 @@ class Forgot_password extends React.Component {
                         <div className="form-group">
                           <button
                             type="button"
-                            className="btn full-width btn-md theme-bg text-white"
+                            className="btn full-width btn-md btn-bg text-white"
                           >
                             Forgot password
                           </button>

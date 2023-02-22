@@ -77,6 +77,14 @@
   box-shadow: 4px 6px 5px #f3f3f3;
 }
 
+.text-accent {
+  color: #fc8f20 !important;
+}
+
+.btn-bg {
+  background-color: #fc8f20 !important;
+}
+
 .review-course-clp {
   height: 220px !important;
 }

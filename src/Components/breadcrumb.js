@@ -44,7 +44,7 @@ class Breadcrumb extends React.Component {
                       </Link>
                     </li>
                     <li
-                      className="breadcrumb-item active theme-cl"
+                      className="breadcrumb-item text-accent active theme-cl"
                       aria-current="page"
                     >
                       {page_text}

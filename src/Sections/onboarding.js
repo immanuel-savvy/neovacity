@@ -67,7 +67,7 @@ class Onboarding extends React.Component {
                         </div>
                       </div>
                       <div class="ml-3 ml-md-4">
-                        <h4>Join Membership</h4>
+                        <h4>Make Payment and Get assigned a Course Advisor</h4>
                         <p>
                           Error sit voluptatem actium doloremque laudantium,
                           totam rem aperiam, eaque ipsa.

@@ -331,7 +331,7 @@ class Create_school extends Handle_image_upload {
                       title && short_description ? "theme-bg" : "grey"
                     } short_description-white`}
                   >
-                    {_id ? "Update Master Course" : "Add Master Course"}
+                    {_id ? "Update School" : "Add School"}
                   </button>
                 </div>
               </form>

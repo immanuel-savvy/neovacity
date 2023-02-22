@@ -226,7 +226,7 @@ class Course_sidebar extends React.Component {
               <Link to="/enroll" style={{ textDecorationLine: "none" }}>
                 <span
                   onClick={this.handle_enroll}
-                  className="btn theme-bg enroll-btn"
+                  className="btn btn-bg enroll-btn"
                 >
                   Enroll Now<i className="ti-angle-right"></i>
                 </span>

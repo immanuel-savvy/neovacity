@@ -63,7 +63,7 @@ class Contact extends React.Component {
                 <div className="row">
                   <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label>Name</label>
+                      <label>Name *</label>
                       <input
                         type="text"
                         className="form-control"
@@ -77,7 +77,7 @@ class Contact extends React.Component {
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label>Email</label>
+                      <label>Email *</label>
                       <input
                         type="text"
                         className="form-control"
@@ -104,7 +104,7 @@ class Contact extends React.Component {
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label>Phone</label>
+                      <label>Phone *</label>
                       <input
                         value={phone}
                         placeholder="e.g +234 801 234 5566"
@@ -118,7 +118,7 @@ class Contact extends React.Component {
                   </div>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label>Message</label>
+                      <label>Message *</label>
                       <textarea
                         value={text}
                         style={{ minHeight: 100 }}
@@ -135,7 +135,7 @@ class Contact extends React.Component {
                         <Loadindicator />
                       ) : (
                         <button
-                          className="btn theme-bg text-white btn-md"
+                          className="btn btn-bg text-white btn-md"
                           type="button"
                           onClick={this.send_message}
                         >
@@ -164,16 +164,14 @@ class Contact extends React.Component {
                           Allen Avenue, Ikeja, Lagos.
                           <br />
                         </p>
-                        <div className="mt-1 position-absolute theme-cl h5 mb-0">
+                        {/* <div className="mt-1 position-absolute theme-cl h5 mb-0">
                           <i className="fas fa-at"></i>
-                        </div>
-                        <div className="ml-3 ml-md-4">
-                          <p>
-                            info@neovacityafrica.com
-                            <br />
-                            enquire@neovacityafrica.com
-                          </p>
-                        </div>
+                        </div> */}
+                        {/* <div className="ml-3 ml-md-4"> */}
+                        <a href={`mailto://${"enquire@neovacityafrica.com"}`}>
+                          enquire@neovacityafrica.com
+                        </a>
+                        {/* </div> */}
                       </div>
                     </li>
                     <li className="d-flex align-items-start my-3 my-md-4">
@@ -187,9 +185,9 @@ class Contact extends React.Component {
                         <p>
                           info@neovacityafrica.com
                           <br />
-                          admin@neovacityafrica.com
+                          support@neovacityafrica.com
                           <br />
-                          customercare@neovacityafrica.com
+                          admissions@neovacityafrica.com
                         </p>
                       </div>
                     </li>

@@ -18,16 +18,20 @@ class Best_instructors extends React.Component {
 
     let { heading, text, bullets, image } = best_instructors_stuffs || {
       bullets: new Array(
-        "Full lifetime access",
-        "Best Instructors in the City",
-        "Guaranteed Job Placement",
-        "Certificate of completion"
+        "Relevant Updated Curriculum",
+        "Guaranteed Instant Job Placement",
+        "Best Instructors in The City- Industry Leaders",
+        "Project-Based Exams- with Real world Application",
+        "4 Semesters Only with Short break inbetween",
+        "Innovative Professional Diploma (Pro-Diploma)",
+        "Globally recognized Certificate of Completion",
+        "No delaying Strikes/Industrial Actions"
       ),
       image: "best_teacher.jpg",
     };
 
     return (
-      <div className={"gray"}>
+      <div className={"gray"} style={{ backgroundColor: "lightblue" }}>
         {/* {best_instructors_stuffs ? (
           <div className="row justify-content-center mt-5">
             <div className="col-lg-7 col-md-8">

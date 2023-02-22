@@ -126,7 +126,7 @@ class Blog extends React.Component {
               <div class="col-lg-7 col-md-8">
                 <div class="sec-heading center">
                   <h2>
-                    Latest News & <span class="theme-cl">Articles</span>
+                    Latest News & <span class="text-accent">Articles</span>
                   </h2>
                   <p>
                     Get lastest updates on whats happening in the world of tech.

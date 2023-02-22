@@ -27,7 +27,7 @@ class Page_not_found extends React.Component {
                     working towards fulfilling the information technology needs
                     of our clients."
                   </p>
-                  <Link class="btn theme-bg text-white btn-md" to="/">
+                  <Link class="btn btn-bg text-white btn-md" to="/">
                     Back To Home
                   </Link>
                 </div>

@@ -234,7 +234,7 @@ class Admission extends React.Component {
                         // </PaystackConsumer>
                         <button
                           type="button"
-                          className={`btn full-width theme-bg text-light`}
+                          className={`btn full-width btn-bg text-light`}
                           disabled={!this._is_set()}
                           onClick={this.payment_successful}
                         >

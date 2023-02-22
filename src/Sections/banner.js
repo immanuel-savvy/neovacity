@@ -19,7 +19,7 @@ class Banner extends React.Component {
       <div
         className="hero_banner d-flex justify-content-center image-cover for_top_info"
         style={{
-          backgroundColor: "#000132",
+          backgroundColor: "#0478bd",
           backgroundImage: `url(${domain}/Images/${
             image || "neovacity_africa_banner_background_image.jpg"
           })`,
@@ -69,7 +69,7 @@ class Banner extends React.Component {
                           class="hl-line"
                         />
                       </svg>
-                      <a className="btn theme-bg btn-md text-white">
+                      <a className="btn btn-bg btn-md text-white">
                         Get Started
                       </a>
                     </button>
