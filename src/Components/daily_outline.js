@@ -15,7 +15,6 @@ class Daily_outline extends React.Component {
 
   componentDidMount = async () => {
     let { enrolled, outline, week, date, course, set } = this.props;
-    console.log(enrolled);
 
     enrolled &&
       date &&

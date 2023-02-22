@@ -11,6 +11,7 @@ import Loadindicator from "../Components/loadindicator";
 import { post_request } from "../Assets/js/utils/services";
 import { Logged_user } from "../Contexts";
 import { Link } from "react-router-dom";
+import { client_domain } from "../Constants/constants";
 
 class Enroll extends React.Component {
   constructor(props) {
@@ -100,13 +101,13 @@ class Enroll extends React.Component {
     };
 
     post_request("register_course", payload).then((res) => {
-      if (!this.user) {
+      if (!this.user || typeof this.user === "string") {
         window.sessionStorage.setItem("loggeduser", JSON.stringify(res.user));
         this.set_loggeduser(res.user);
       }
 
       window.sessionStorage.removeItem("ad_id");
-      window.history.go(-1);
+      window.location.assign(`${client_domain}/profile`);
     });
   };
 

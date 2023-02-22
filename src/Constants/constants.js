@@ -1,12 +1,8 @@
 const DEV = false;
 
-const hostname = DEV
-  ? "http://192.168.1.19"
-  : "https://neovacity.udaralinksapp.com";
+const hostname = DEV ? "http://localhost" : "https://neovacityafrica.com";
 
-const client_domain = DEV
-  ? `${hostname}:3000`
-  : `https://magenta-sprinkles-e1e108.netlify.app`;
+const client_domain = DEV ? `${hostname}:3000` : `https://neovacityafrica.com`;
 
 const domain = DEV ? `${hostname}:1178` : `https://neovacity.udaralinksapp.com`;
 
@@ -26,7 +22,7 @@ const month_index = new Object({
   10: "nov",
   11: "dec",
 });
-
+09014611941;
 const dow_index = new Object({
   1: "monday",
   2: "tuesday",

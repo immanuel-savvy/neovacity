@@ -13,11 +13,13 @@ class Breadcrumb extends React.Component {
 
     return (
       <section
-        style={
-          page_title === "courses"
+        style={{
+          ...(page_title === "courses"
             ? new Object({ paddingTop: 30, paddingBottom: 20 })
-            : null
-        }
+            : null),
+          backgroundImage: `url(${require("../Assets/img/breadcrumb_bg.jpg")})`,
+          backgroundRepeat: "no-repeat",
+        }}
         className={`page-title ${no_gray ? "" : "gray"}`}
       >
         <div className="container">

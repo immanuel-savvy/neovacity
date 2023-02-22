@@ -69,14 +69,6 @@ class Neovacity extends React.Component {
               title: "who we are",
               path: "/about",
             },
-            // {
-            //   title: "our instructors",
-            //   path: "/instructors",
-            // },
-            // {
-            //   title: "career",
-            //   path: "/career",
-            // },
             {
               title: "FAQs",
               path: "/faqs",
