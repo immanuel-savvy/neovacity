@@ -39,6 +39,16 @@ class Custom_nav extends React.Component {
   }
 
   componentDidMount = async () => {
+    window.onscroll = (e) => {
+      if (window.scrollY > 200) {
+        document.querySelector(".header").classList.add("header-fixed");
+        document.getElementById("top_info").style.display = "none";
+      } else {
+        document.querySelector(".header").classList.remove("header-fixed");
+        document.getElementById("top_info").style.display = "block";
+      }
+    };
+
     if (!this.loggeduser) {
       let loggeduser = window.sessionStorage.getItem("loggeduser");
       loggeduser && this.set_loggeduser(JSON.parse(loggeduser));
@@ -64,7 +74,7 @@ class Custom_nav extends React.Component {
     let { current_subnav, current_nav, show_search, search_param } = this.state;
 
     return (
-      <Logged_user>
+      <Logged_user.Consumer>
         {({ loggeduser, logout, set_loggeduser }) => {
           this.set_loggeduser = set_loggeduser;
           this.loggeduser = loggeduser;
@@ -79,15 +89,14 @@ class Custom_nav extends React.Component {
                 return (
                   <div
                     id="navigation"
-                    className="navigation navigation-landscape"
+                    className="my_header my_header-fixed navigation navigation-landscape"
                   >
-                    <Navbar light expand="lg">
+                    <Navbar sticky="top" light expand="lg">
                       <NavbarBrand href={`/`} className="nav-brand">
                         <img
                           src={require(`../Assets/img/neovacity_africa_logo.png`)}
                           className="logo"
                           id="logo_white"
-                          // style={{ height: 80 }}
                           alt=""
                         />
                       </NavbarBrand>
@@ -284,7 +293,7 @@ class Custom_nav extends React.Component {
                             ) : nav.path === "/signup" ? (
                               this.loggeduser ? (
                                 <ul className="nav-menu nav-menu-social align-to-right mb-3">
-                                  <li className="add-listing theme-bg">
+                                  <li className="add-listing btn-bg">
                                     <Link
                                       to={`/profile`}
                                       className="text-white"
@@ -296,7 +305,7 @@ class Custom_nav extends React.Component {
                                 </ul>
                               ) : (
                                 <ul className="nav-menu nav-menu-social align-to-right mb-3">
-                                  <li className="add-listing theme-bg">
+                                  <li className="add-listing btn-bg">
                                     <Link to={`/signup`} className="text-white">
                                       Get Started
                                     </Link>
@@ -350,13 +359,39 @@ class Custom_nav extends React.Component {
                         </div>
                       </div>
                     ) : null}
+
+                    {/* <Helmet>
+                      {new Array(
+                        "../Assets/js/jquery.min.js",
+                        "../Assets/js/popper.min.js",
+                        "../Assets/js/bootstrap.min.js",
+                        "../Assets/js/select2.min.js",
+                        "../Assets/js/slick.js",
+                        "../Assets/js/moment.min.js",
+                        "../Assets/js/daterangepicker.js",
+                        "../Assets/js/summernote.min.js",
+                        "../Assets/js/metisMenu.min.js",
+                        "../Assets/js/custom.js",
+                        "../Assets/js/my_custom.js"
+                      ).map((scr, index) => {
+                        return (
+                          <script
+                            key={index}
+                            src={scr}
+                            async={true}
+                            // type="text/javascript"
+                            type="text/babel"
+                          />
+                        );
+                      })}
+                    </Helmet> */}
                   </div>
                 );
               }}
             </Nav_context.Consumer>
           );
         }}
-      </Logged_user>
+      </Logged_user.Consumer>
     );
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { to_title } from "../Assets/js/utils/functions";
 import { emitter } from "../Neovacity";
 import Preview_image from "./preview_image";
 import Video from "./video";
@@ -18,10 +17,12 @@ class School extends React.Component {
     emitter.emit("push_school", school);
   };
 
+  toggle_desc = () => this.setState({ show_more: !this.state.show_more });
+
   padd_length = 70;
 
   render() {
-    let { full_desc } = this.state;
+    let { show_more } = this.state;
     let { school, delete_course, edit_course, play } = this.props;
     let { title, video, image, short_description, image_hash, courses } =
       school;
@@ -69,15 +70,21 @@ class School extends React.Component {
               to={`/school`}
               onClick={this.handle_school}
             >
-              <h4>{to_title(title.replace(/_/g, " "))}</h4>
+              <h4>{title.replace(/_/g, " ")}</h4>
             </Link>
           </div>
 
           <div style={{ flexWrap: "wrap", display: "flex" }}>
             {short_description.slice(
               0,
-              full_desc ? short_description.length : this.padd_length
+              show_more ? short_description.length : this.padd_length
             )}
+            <a
+              onClick={this.toggle_desc}
+              className="btn text-accent btn-action ml-3"
+            >
+              {show_more ? "Show less" : "Read more"}
+            </a>
           </div>
 
           <div class="prt_body">
@@ -95,7 +102,7 @@ class School extends React.Component {
                       )
                     }
                   >
-                    {to_title(course.title.replace(/_/g, " "))}
+                    {course.title.replace(/_/g, " ")}
                   </Link>
                 </li>
               ))}

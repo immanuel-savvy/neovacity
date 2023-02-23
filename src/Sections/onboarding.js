@@ -55,8 +55,16 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Create account</h4>
                         <p>
-                          Oluptatem accusantium doloremque laudantium, totam rem
-                          aperiam, eaque ipsa.
+                          <span style={{ textDecoration: "line-through" }}>
+                            Sign up with $25 only
+                          </span>{" "}
+                          (free for first 100 applicants), Take your{" "}
+                          <b>
+                            <em>Pre-Admission Test</em>
+                          </b>
+                          , and with a 70% pass mark, you are good to go!
+                          Otherwise, attempt test again in a week's time. Test
+                          is 20 objectives (Use of english and basic I.Q)
                         </p>
                       </div>
                     </li>
@@ -69,8 +77,9 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Make Payment and Get assigned a Course Advisor</h4>
                         <p>
-                          Error sit voluptatem actium doloremque laudantium,
-                          totam rem aperiam, eaque ipsa.
+                          Pay a <em>$500</em> dollar course fee (One-off or
+                          installment) and get registration details instantly to
+                          your email.
                         </p>
                       </div>
                     </li>
@@ -83,8 +92,8 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Start Learning</h4>
                         <p>
-                          Error sit voluptatem actium doloremque laudantium,
-                          totam rem aperiam, eaque ipsa.
+                          Recieve lectures, tests and other activities through
+                          virtual / physical means from your instructors.
                         </p>
                       </div>
                     </li>
@@ -97,8 +106,8 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Get Certificate</h4>
                         <p>
-                          Unde omnis iste natus error sit voluptatem accusantium
-                          doloremque laudantium, totam rem aperiam, eaque ipsa.
+                          Earn a Globally Pro-Diploma certificate on completion
+                          of real-world project based exams.
                         </p>
                       </div>
                     </li>

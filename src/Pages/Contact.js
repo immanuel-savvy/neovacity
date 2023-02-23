@@ -164,14 +164,6 @@ class Contact extends React.Component {
                           Allen Avenue, Ikeja, Lagos.
                           <br />
                         </p>
-                        {/* <div className="mt-1 position-absolute theme-cl h5 mb-0">
-                          <i className="fas fa-at"></i>
-                        </div> */}
-                        {/* <div className="ml-3 ml-md-4"> */}
-                        <a href={`mailto://${"enquire@neovacityafrica.com"}`}>
-                          enquire@neovacityafrica.com
-                        </a>
-                        {/* </div> */}
                       </div>
                     </li>
                     <li className="d-flex align-items-start my-3 my-md-4">
@@ -183,11 +175,17 @@ class Contact extends React.Component {
                       <div className="ml-3 ml-md-4">
                         <h4>Drop A Mail</h4>
                         <p>
-                          info@neovacityafrica.com
+                          <a href="mailto://info@neovacityafrica.com">
+                            info@neovacityafrica.com
+                          </a>
                           <br />
-                          support@neovacityafrica.com
+                          <a href="mailto://support@neovacityafrica.com">
+                            support@neovacityafrica.com
+                          </a>
                           <br />
-                          admissions@neovacityafrica.com
+                          <a href="mailto://admissions@neovacityafrica.com">
+                            admissions@neovacityafrica.com
+                          </a>
                         </p>
                       </div>
                     </li>

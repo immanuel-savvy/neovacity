@@ -98,100 +98,124 @@ class Footer extends React.Component {
                             </div>
                           </div>
                         </div>
-                        <div className="col-lg-6 col-md-7 ml-auto">
-                          <div className="row">
-                            {
-                              <div className="col-lg-8 col-md-8">
-                                <div className="footer_widget">
-                                  <h4 className="widget_title text-accent">
-                                    Schools
-                                  </h4>
-                                  <ul className="footer-menu">
-                                    {schools ? (
-                                      schools.map((school) => {
-                                        return (
-                                          <li
-                                            onClick={() =>
-                                              this.handle_school(school)
-                                            }
-                                          >
-                                            <Link
-                                              to={`/school`}
-                                              style={{ textDecoration: "none" }}
-                                            >
-                                              {school.title.replace(/_/g, " ")}
-                                            </Link>
-                                          </li>
-                                        );
-                                      })
-                                    ) : (
-                                      <Loadindicator />
-                                    )}
-                                  </ul>
-                                </div>
-                              </div>
-                            }
+                        <div className="col-lg-3 col-md-4">
+                          <div className="footer_widget">
+                            <h4 className="widget_title text-accent">
+                              Schools
+                            </h4>
+                            <ul className="footer-menu">
+                              {schools ? (
+                                schools.map((school) => {
+                                  return (
+                                    <li
+                                      onClick={() => this.handle_school(school)}
+                                    >
+                                      <Link
+                                        to={`/school`}
+                                        style={{ textDecoration: "none" }}
+                                      >
+                                        {school.title.replace(/_/g, " ")}
+                                      </Link>
+                                    </li>
+                                  );
+                                })
+                              ) : (
+                                <Loadindicator />
+                              )}
+                            </ul>
+                          </div>
+                        </div>
 
-                            <div className="col-lg-4 col-md-4">
-                              <div
-                                style={{ textDecoration: "none" }}
-                                className="footer_widget"
-                              >
-                                <h4 className="widget_title text-accent">
-                                  Company
-                                </h4>
-                                <ul className="footer-menu">
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}`}
-                                    >
-                                      Home
-                                    </Link>
-                                  </li>
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}about`}
-                                    >
-                                      About
-                                    </Link>
-                                  </li>
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}blog`}
-                                    >
-                                      Blog
-                                    </Link>
-                                  </li>
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}testimonials`}
-                                    >
-                                      Testimonials
-                                    </Link>
-                                  </li>
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}contact_us`}
-                                    >
-                                      Contact
-                                    </Link>
-                                  </li>
-                                  <li onClick={scroll_to_top}>
-                                    <Link
-                                      style={{ textDecoration: "none" }}
-                                      to={`/${""}login`}
-                                    >
-                                      Login
-                                    </Link>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                        <div className="col-lg-2 col-md-3">
+                          <div className="footer_widget">
+                            <h4 className="widget_title text-accent">
+                              company
+                            </h4>
+                            <ul className="footer-menu">
+                              <li>
+                                <Link
+                                  to={`/`}
+                                  style={{ textDecoration: "none" }}
+                                >
+                                  Corporate Training
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to={`/`}
+                                  style={{ textDecoration: "none" }}
+                                >
+                                  Recruitment / Hire
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to={`/`}
+                                  style={{ textDecoration: "none" }}
+                                >
+                                  Partnership
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="col-lg-2 col-md-3">
+                          <div
+                            style={{ textDecoration: "none" }}
+                            className="footer_widget"
+                          >
+                            <h4 className="widget_title text-accent">menu</h4>
+                            <ul className="footer-menu">
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}`}
+                                >
+                                  Home
+                                </Link>
+                              </li>
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}about`}
+                                >
+                                  About
+                                </Link>
+                              </li>
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}blog`}
+                                >
+                                  Blog
+                                </Link>
+                              </li>
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}testimonials`}
+                                >
+                                  Testimonials
+                                </Link>
+                              </li>
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}contact_us`}
+                                >
+                                  Contact
+                                </Link>
+                              </li>
+                              <li onClick={scroll_to_top}>
+                                <Link
+                                  style={{ textDecoration: "none" }}
+                                  to={`/${""}login`}
+                                >
+                                  Login
+                                </Link>
+                              </li>
+                            </ul>
                           </div>
                         </div>
                       </div>

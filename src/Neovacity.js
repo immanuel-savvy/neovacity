@@ -66,7 +66,7 @@ class Neovacity extends React.Component {
           path: "/about",
           submenu: new Array(
             {
-              title: "who we are",
+              title: "Who we are",
               path: "/about",
             },
             {
@@ -95,25 +95,13 @@ class Neovacity extends React.Component {
     };
   }
 
-  script_paths = new Array(
-    "../Assets/js/jquery.min.js",
-    "../Assets/js/popper.min.js",
-    "../Assets/js/bootstrap.min.js",
-    "../Assets/js/select2.min.js",
-    "../Assets/js/slick.js",
-    "../Assets/js/moment.min.js",
-    "../Assets/js/daterangepicker.js",
-    "../Assets/js/summernote.min.js",
-    "../Assets/js/metisMenu.min.js",
-    "../Assets/js/custom.js",
-    "../Assets/js/my_custom.js"
-  );
+  script_paths = new Array();
 
   append_script = (path) => {
     const script = document.createElement("script");
     script.src = path;
-    script.async = false;
-    script.type = "text/babel";
+    script.async = true;
+    script.type = "text/javascript";
     document.body.appendChild(script);
   };
 
@@ -124,8 +112,7 @@ class Neovacity extends React.Component {
   };
 
   componentDidMount = async () => {
-    !document.getElementsByName("script").length &&
-      this.script_paths.map((script_path) => this.append_script(script_path));
+    this.script_paths.map((script_path) => this.append_script(script_path));
 
     let { banner_stuffs, best_instructors_stuffs, onboarding_stuffs } =
       (await get_request("entry")) || new Object();
@@ -133,18 +120,19 @@ class Neovacity extends React.Component {
     let schools = await get_request("schools/all");
 
     let { navs, submenus } = this.state;
-    navs.map((nav) => {
-      if (nav.title === "schools")
-        nav.submenu = schools.map((school) => {
-          submenus[school._id] = school.courses;
-          return {
-            title: school.title,
-            path: "/school",
-            _id: school._id,
-            on_click: () => this.handle_school(school),
-          };
-        });
-    });
+    navs &&
+      navs.map((nav) => {
+        if (nav.title === "schools")
+          nav.submenu = schools.map((school) => {
+            submenus[school._id] = school.courses;
+            return {
+              title: school.title,
+              path: "/school",
+              _id: school._id,
+              on_click: () => this.handle_school(school),
+            };
+          });
+      });
 
     this.restore_logged_admin = (admin) => {
       this.setState({ admin_logged: admin });

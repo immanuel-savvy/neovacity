@@ -60,7 +60,7 @@ class Alumni_reviews extends React.Component {
                   Our <span className="theme-cl">Testimonials</span>
                 </h2>
                 <p className="h5">
-                  Here is what some of our happy alumni has to say
+                  Here is what some of our happy alumni have to say
                 </p>
                 <br />
                 <br />

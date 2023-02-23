@@ -51,7 +51,9 @@ class About extends React.Component {
                     <span className="theme-cl">About Us</span>
                     <h2 className="mb-3">What We Do & Our Aim</h2>
                     {about_statement.text.split("\n").map((text, index) => (
-                      <p key={index}>{text}</p>
+                      <p style={{ textAlign: "justify" }} key={index}>
+                        {text}
+                      </p>
                     ))}
                     <br />
 
@@ -60,7 +62,7 @@ class About extends React.Component {
                         to="/courses"
                         className="btn btn-md text-light theme-bg"
                       >
-                        Enrolled Today
+                        Enroll Now
                       </Link>
                     </div>
                   </div>

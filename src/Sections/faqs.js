@@ -71,13 +71,14 @@ class Faqs extends React.Component {
     let { admin, edit_faq } = this.props;
 
     return (
-      <Accordion.Item eventKey={`${index}`}>
+      <Accordion.Item eventKey={`${index}`} key={_id}>
         <Accordion.Header style={{}}>
           <h6 class="mb-0 accordion_title">
             <a
               href="#"
               data-toggle="collapse"
               class="d-block position-relative text-dark collapsible-link py-2"
+              style={{ textTransform: "none" }}
             >
               {question}
 

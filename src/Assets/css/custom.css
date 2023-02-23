@@ -95,6 +95,10 @@
   padding: 0 !important;
 }
 
+.nav-link {
+  font-size: 18px !important;
+}
+
 #banner_video {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;

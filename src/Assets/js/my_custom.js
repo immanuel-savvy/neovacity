@@ -23,3 +23,5 @@ if (combo_hover) {
       e.target.classList.remove("combo_hover");
   });
 }
+
+console.log("WHAT IS HAPPENING HERE...");

@@ -40,17 +40,17 @@ class Banner extends React.Component {
                 }}
               >
                 <div className="hero_search-2">
-                  <div className="elsio_tag">RAISING GLOBAL LEADERS</div>
+                  <div className="elsio_tag">POWERING YOUR DREAMS</div>
                   <h1 className="banner_title mb-2">
-                    Become a graduate in 1 year
+                    Become a graduate in One year
                   </h1>
                   <p className="font-lg mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore.
+                    Access our Innovative School System to get Trained,
+                    Certifidd and Assisted with job placement
                   </p>
-                  <div class="inline_btn mt-5">
+                  <div className="inline_btn mt-5">
                     <button
-                      class="btn_svg slide-in"
+                      className="btn_svg slide-in"
                       id="slider_stuff"
                       onClick={() => window.location.assign("#schools")}
                     >
@@ -58,15 +58,15 @@ class Banner extends React.Component {
                         width="155px"
                         height="60px"
                         viewBox="0 0 155 60"
-                        class="svg border"
+                        className="svg border"
                       >
                         <polyline
                           points="179,1 179,59 1,59 1,1 179,1"
-                          class="bg-line"
+                          className="bg-line"
                         />
                         <polyline
                           points="179,1 179,59 1,59 1,1 179,1"
-                          class="hl-line"
+                          className="hl-line"
                         />
                       </svg>
                       <a className="btn btn-bg btn-md text-white">
@@ -76,10 +76,10 @@ class Banner extends React.Component {
 
                     <a
                       href="#how_it_works"
-                      class="mt-2 btn text-light pl-sm-0 ml-3"
+                      className="mt-2 btn text-light pl-sm-0 ml-3"
                     >
-                      <span class="esli_vd">
-                        <i class="fa fa-play"></i>
+                      <span className="esli_vd">
+                        <i className="fa fa-play"></i>
                       </span>
                       How It Works?
                     </a>
@@ -100,7 +100,7 @@ class Banner extends React.Component {
               md={6}
               sm={12}
             >
-              <div class="side_block">
+              <div className="side_block">
                 <Preview_image image={thumbnail} image_hash={thumbnail_hash} />
               </div>
             </Col>

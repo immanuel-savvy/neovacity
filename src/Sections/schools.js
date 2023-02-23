@@ -32,9 +32,9 @@ class Schools extends React.Component {
                   Our <span class="theme-cl">Schools</span>
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam.
+                  Learn the in-demand Digital Skills required to take you from
+                  beginner to Expert Level in 12 months. NO Degree or prior Tech
+                  experience required.
                 </p>
               </div>
             </div>

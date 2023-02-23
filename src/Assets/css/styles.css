@@ -2999,7 +2999,8 @@ li.login-attri .account-drop a {
   justify-content: center;
   margin: 15px auto;
   padding: 5px 20px;
-  background: linear-gradient(95.84deg, #ff9800 0%, rgb(3 185 124) 100%);
+  /* background: linear-gradient(95.84deg, #ff9800 0%, rgb(3 185 124) 100%); */
+  background-color: #50bbcb;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
@@ -8515,6 +8516,9 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 @media (max-width: 600px) {
+  #top_info{
+    display: none;
+  }
 }
 @media (max-width: 375px) {
   .nav-brand img {
@@ -8552,8 +8556,6 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 .my_header_style {
-  background-color: #000 !important;
-  color: #fff !important;
 }
 
 .my_header_style span {

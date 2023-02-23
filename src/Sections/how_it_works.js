@@ -15,16 +15,22 @@ class How_it_works extends React.Component {
         title: "Find Courses and Enroll",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
+        icon: "fa-search-location",
+        link: "#schools",
       },
       {
         title: "Get certified",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
+        icon: "fa-certificate",
+        link: "/about",
       },
       {
         title: "Land your dream job",
         explanation:
           "We have helped over 3,400 new students to get into the most popular tech teams.",
+        icon: "fa-trophy",
+        link: "/about",
       }
     );
 
@@ -45,9 +51,8 @@ class How_it_works extends React.Component {
                     How It <span class="theme-cl">Works?</span>
                   </h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam.
+                    Get your Globally recognised Degree in one year through the
+                    most simplified process.
                   </p>
                 </div>
               </div>
