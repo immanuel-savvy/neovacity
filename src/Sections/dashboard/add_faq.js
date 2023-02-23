@@ -1,5 +1,6 @@
 import React from "react";
 import { post_request } from "../../Assets/js/utils/services";
+import Loadindicator from "../../Components/loadindicator";
 import { emitter } from "../../Neovacity";
 
 class Add_faq extends React.Component {
@@ -12,7 +13,11 @@ class Add_faq extends React.Component {
   }
 
   submit = async () => {
-    let { question, answer, _id } = this.state;
+    let { question, answer, _id, loading } = this.state;
+
+    if (loading) return;
+
+    this.setState({ loading: true });
 
     let faq = { question, answer, _id };
 
@@ -26,7 +31,7 @@ class Add_faq extends React.Component {
 
   render() {
     let { toggle } = this.props;
-    let { answer, question, _id } = this.state;
+    let { answer, question, _id, loading } = this.state;
 
     return (
       <div>
@@ -72,15 +77,19 @@ class Add_faq extends React.Component {
                 </div>
                 <br />
                 <div className="form-group smalls">
-                  <button
-                    onClick={question && answer && this.submit}
-                    type="button"
-                    className={`btn full-width ${
-                      question && answer ? "theme-bg" : "grey"
-                    } text-white`}
-                  >
-                    {_id ? "Update Faq" : "Submit Faq"}
-                  </button>
+                  {loading ? (
+                    <Loadindicator />
+                  ) : (
+                    <button
+                      onClick={question && answer && this.submit}
+                      type="button"
+                      className={`btn full-width ${
+                        question && answer ? "theme-bg" : "grey"
+                      } text-white`}
+                    >
+                      {_id ? "Update Faq" : "Submit Faq"}
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

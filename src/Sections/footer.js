@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { email_regex, to_title } from "../Assets/js/utils/functions";
+import { email_regex } from "../Assets/js/utils/functions";
 import { post_request } from "../Assets/js/utils/services";
 import Loadindicator from "../Components/loadindicator";
-import Socials from "../Components/socials";
-import { client_domain } from "../Constants/constants";
 import { Footer_context } from "../Contexts";
 import { emitter } from "../Neovacity";
 import { scroll_to_top } from "../Pages/Home";
-import { route_prefix } from "./nav";
 
 class Footer extends React.Component {
   constructor(props) {
@@ -214,7 +211,9 @@ class Footer extends React.Component {
                         className="col-lg-12 col-md-12 text-center"
                       >
                         <p className="mb-0">
-                          {`© ${new Date().getFullYear()} Neovacity Africa. All rights reserved.`}
+                          {`© ${
+                            "2022" || new Date().getFullYear()
+                          } Neovacity Africa. All rights reserved.`}
                         </p>
                         <p className="mb-0">
                           Site managed by{" "}

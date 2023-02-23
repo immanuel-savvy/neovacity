@@ -29,7 +29,7 @@ class Manage_faqs extends React.Component {
       let { faqs } = this.state;
 
       faqs = new Array(faq, ...faqs);
-      this.setState({ faqs });
+      this.setState({ faqs, faq_in_edit: null });
     };
 
     this.faq_updated = (faq) => {
@@ -40,7 +40,7 @@ class Manage_faqs extends React.Component {
         return faq_;
       });
 
-      this.setState({ faqs });
+      this.setState({ faqs, faq_in_edit: null });
     };
 
     emitter.listen("new_faq", this.new_faq);
@@ -68,7 +68,8 @@ class Manage_faqs extends React.Component {
       </div>
     );
 
-  toggle_form = () => this.setState({ show_form: !this.state.show_form });
+  toggle_form = () =>
+    this.setState({ show_form: !this.state.show_form, faq_in_edit: null });
 
   edit_faq = (faq) => this.setState({ faq_in_edit: faq, show_form: true });
 

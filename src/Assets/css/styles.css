@@ -6445,7 +6445,6 @@ ul.social_info li a {
 }
 /*------------- Accordion ---------------*/
 .collapsible-link::before {
-  content: "";
   width: 14px;
   height: 2px;
   background: #333;
@@ -6458,7 +6457,6 @@ ul.social_info li a {
 
 /* Vertical line */
 .collapsible-link::after {
-  content: "";
   width: 2px;
   height: 14px;
   background: #333;

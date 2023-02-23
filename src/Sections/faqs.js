@@ -3,6 +3,7 @@ import { post_request } from "../Assets/js/utils/services";
 import Listempty from "../Components/list_empty";
 import Loadindicator from "../Components/loadindicator";
 import { emitter } from "../Neovacity";
+import Accordion from "react-bootstrap/Accordion";
 
 class Faqs extends React.Component {
   constructor(props) {
@@ -67,22 +68,15 @@ class Faqs extends React.Component {
 
   faq = (faq, index) => {
     let { question, answer, _id } = faq;
-    let { open } = this.state;
     let { admin, edit_faq } = this.props;
 
     return (
-      <div class="card" key={_id}>
-        <div
-          id={`heading${index}`}
-          class="card-header bg-white shadow-sm border-0"
-        >
+      <Accordion.Item eventKey={`${index}`}>
+        <Accordion.Header style={{}}>
           <h6 class="mb-0 accordion_title">
             <a
               href="#"
               data-toggle="collapse"
-              data-target={`#collapse${index}`}
-              aria-expanded={index === open ? "true" : "false"}
-              aria-controls={`collapse${index}`}
               class="d-block position-relative text-dark collapsible-link py-2"
             >
               {question}
@@ -106,18 +100,15 @@ class Faqs extends React.Component {
               ) : null}
             </a>
           </h6>
-        </div>
-        <div
-          id={`collapse${index}`}
-          aria-labelledby={`heading${index}`}
-          data-parent="#accordionExample"
-          class={index === open ? "collapse show" : "collapse"}
-        >
-          <div class="card-body pl-3 pr-3 pt-0">
-            <p>{answer}</p>
+        </Accordion.Header>
+        <Accordion.Body>
+          <div data-parent="#accordionExample">
+            <div class="card-body pl-3 pr-3 pt-0">
+              <p>{answer}</p>
+            </div>
           </div>
-        </div>
-      </div>
+        </Accordion.Body>
+      </Accordion.Item>
     );
   };
 
@@ -146,7 +137,7 @@ class Faqs extends React.Component {
           )}
           <div class="row justify-content-center">
             <div class="col-lg-12 col-md-12 col-sm-12">
-              <div id="accordionExample" class="accordion">
+              <Accordion defaultActiveKey="0">
                 {faqs ? (
                   faqs.length ? (
                     faqs.map((faq, index) => this.faq(faq, index))
@@ -156,7 +147,7 @@ class Faqs extends React.Component {
                 ) : (
                   <Loadindicator contained />
                 )}
-              </div>
+              </Accordion>
             </div>
           </div>
         </div>

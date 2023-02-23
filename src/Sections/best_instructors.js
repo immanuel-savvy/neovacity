@@ -1,8 +1,5 @@
 import React from "react";
-import { get_request } from "../Assets/js/utils/services";
-import Loadindicator from "../Components/loadindicator";
 import { domain } from "../Constants/constants";
-import Explore_more_btn from "../Components/explore_more_btn";
 
 class Best_instructors extends React.Component {
   constructor(props) {
@@ -11,15 +8,13 @@ class Best_instructors extends React.Component {
     this.state = {};
   }
 
-  componentDidMount = async () => {};
-
   render() {
-    let { best_instructors_stuffs, about } = this.props;
+    let { best_instructors_stuffs } = this.props;
 
     let { heading, text, bullets, image } = best_instructors_stuffs || {
       bullets: new Array(
         "Relevant Updated Curriculum",
-        "Guaranteed Instant Job Placement",
+        "Guaranteed Assistance with Job Search",
         "Best Instructors in The City- Industry Leaders",
         "Project-Based Exams- with Real world Application",
         "4 Semesters Only with Short break inbetween",
