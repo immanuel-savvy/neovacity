@@ -77,10 +77,12 @@ class Onboarding extends React.Component {
                         </div>
                       </div>
                       <div class="ml-3 ml-md-4">
-                        <h4>Make Payment and Get assigned a Course Advisor</h4>
+                        <h4 style={{ textTransform: "none" }}>
+                          Make Payment and Get assigned a Course Advisor
+                        </h4>
                         <p>
-                          Pay a <em>$500</em> dollar course fee (One-off or
-                          installment) and get registration details instantly to
+                          Pay a <em>$500</em> Dollar Course Fee (One-off or
+                          instalment) and get registration details instantly to
                           your email.
                         </p>
                       </div>
@@ -94,7 +96,7 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Start Learning</h4>
                         <p>
-                          Recieve lectures, tests and other activities through
+                          Receive lectures, tests and other activities through
                           virtual / physical means from your instructors.
                         </p>
                       </div>
