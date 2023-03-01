@@ -97,7 +97,8 @@ class Onboarding extends React.Component {
                         <h4>Start Learning</h4>
                         <p>
                           Receive lectures, tests and other activities through
-                          virtual / physical means from your instructors.
+                          blended (virtual / physical) channels from your
+                          instructors.
                         </p>
                       </div>
                     </li>
@@ -110,8 +111,8 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Get Certificate</h4>
                         <p>
-                          Earn a Globally Pro-Diploma certificate on completion
-                          of real-world project based exams.
+                          Earn Globally recognised innovative Pro-Diploma
+                          Certificate upon completion.
                         </p>
                       </div>
                     </li>
