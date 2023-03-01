@@ -14,21 +14,20 @@ class How_it_works extends React.Component {
       {
         title: "Find Courses and Enroll",
         explanation:
-          "We have helped over 3,400 new students to get into the most popular tech teams.",
+          "Obtain a globally recignised certificate that help you set an undeniable pace.",
         icon: "fa-search-location",
         link: "#schools",
       },
       {
         title: "Get certified",
         explanation:
-          "We have helped over 3,400 new students to get into the most popular tech teams.",
+          "We have helped over 3,000 new students acquire skill that make them globally relevant.",
         icon: "fa-certificate",
         link: "/about",
       },
       {
         title: "Land your dream job",
-        explanation:
-          "We have helped over 3,400 new students to get into the most popular tech teams.",
+        explanation: "Get th job of your dreams with our 100% assistance.",
         icon: "fa-trophy",
         link: "/about",
       }

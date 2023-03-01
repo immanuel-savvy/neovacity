@@ -42,11 +42,11 @@ class Banner extends React.Component {
                 <div className="hero_search-2">
                   <div className="elsio_tag">POWERING YOUR DREAMS</div>
                   <h1 className="banner_title mb-2">
-                    Become a graduate in One year
+                    Become a graduate in ONE YEAR
                   </h1>
                   <p className="font-lg mb-4">
                     Access our Innovative School System to get Trained,
-                    Certifidd and Assisted with job placement
+                    Certified and Assisted with job placement
                   </p>
                   <div className="inline_btn mt-5">
                     <button
@@ -87,19 +87,7 @@ class Banner extends React.Component {
                 </div>
               </div>
             </Col>
-            <Col
-              style={
-                {
-                  // display: thumbnail ? "inline" : "none",
-                  // overflow: "hidden",
-                  // height: "2%",
-                }
-              }
-              xl={6}
-              lg={6}
-              md={6}
-              sm={12}
-            >
+            <Col xl={6} lg={6} md={6} sm={12}>
               <div className="side_block">
                 <Preview_image image={thumbnail} image_hash={thumbnail_hash} />
               </div>

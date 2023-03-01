@@ -19,7 +19,7 @@ class School extends React.Component {
 
   toggle_desc = () => this.setState({ show_more: !this.state.show_more });
 
-  padd_length = 70;
+  padd_length = 140;
 
   render() {
     let { show_more } = this.state;
@@ -70,7 +70,9 @@ class School extends React.Component {
               to={`/school`}
               onClick={this.handle_school}
             >
-              <h4>{title.replace(/_/g, " ")}</h4>
+              <h4 style={{ textTransform: "none" }}>
+                {title.replace(/_/g, " ")}
+              </h4>
             </Link>
           </div>
 

@@ -33,14 +33,14 @@ class Schools extends React.Component {
                 </h2>
                 <p>
                   Learn the in-demand Digital Skills required to take you from
-                  beginner to Expert Level in 12 months. NO Degree or prior Tech
+                  beginner to Expert Level in ONE YEAR. NO Degree or prior Tech
                   experience required.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="row align-items-center">
+          <div class="row justify-content-center">
             {schools && schools.length ? (
               schools.map((school) => (
                 <School school={school} key={school._id} />

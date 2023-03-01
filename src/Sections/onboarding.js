@@ -55,16 +55,18 @@ class Onboarding extends React.Component {
                       <div class="ml-3 ml-md-4">
                         <h4>Create account</h4>
                         <p>
+                          Sign up with{" "}
                           <span style={{ textDecoration: "line-through" }}>
-                            Sign up with $25 only
+                            $25 only
                           </span>{" "}
-                          (free for first 100 applicants), Take your{" "}
+                          (<b>FREE</b> for first 100 applicants). <br />
+                          Take your{" "}
                           <b>
                             <em>Pre-Admission Test</em>
                           </b>
                           , and with a 70% pass mark, you are good to go!
                           Otherwise, attempt test again in a week's time. Test
-                          is 20 objectives (Use of english and basic I.Q)
+                          is 20 objectives.
                         </p>
                       </div>
                     </li>
