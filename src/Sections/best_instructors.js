@@ -26,7 +26,14 @@ class Best_instructors extends React.Component {
     };
 
     return (
-      <div className={"gray"} style={{ backgroundColor: "lightblue" }}>
+      <div
+        className={"gray"}
+        style={{
+          color: "#fff",
+          background:
+            "linear-gradient(to right, #19338b, rgba(25, 51, 139, 1))",
+        }}
+      >
         {/* {best_instructors_stuffs ? (
           <div className="row justify-content-center mt-5">
             <div className="col-lg-7 col-md-8">
@@ -49,7 +56,7 @@ class Best_instructors extends React.Component {
               <div class="row align-items-center justify-content-between">
                 <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12">
                   <div class="lmp_caption">
-                    <h2 class="mb-3">{heading || "Features"}</h2>
+                    <h2 class="mb-3 text-light">{heading || "Features"}</h2>
                     <p>{text}</p>
 
                     {bullets
@@ -59,7 +66,12 @@ class Best_instructors extends React.Component {
                               <div class="rounded-circle bg-light-success theme-cl p-2 small d-flex align-items-center justify-content-center">
                                 <i class="fas fa-check"></i>
                               </div>
-                              <h6 class="mb-0 ml-3">{step}</h6>
+                              <h6
+                                style={{ textTransform: "none" }}
+                                class="mb-0 ml-3 text-light"
+                              >
+                                {step}
+                              </h6>
                             </div>
                           </div>
                         ))
