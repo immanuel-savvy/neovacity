@@ -2,7 +2,7 @@ const DEV = false;
 
 const hostname = DEV ? "http://localhost" : "https://neovacityafrica.com";
 
-const client_domain = DEV ? `${hostname}:3000` : `https://neovacityafrica.com`;
+const client_domain = DEV ? `${hostname}:3001` : `https://neovacityafrica.com`;
 
 const domain = DEV ? `${hostname}:1178` : `https://neovacity.udaralinksapp.com`;
 

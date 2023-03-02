@@ -14,20 +14,21 @@ class How_it_works extends React.Component {
       {
         title: "Find Courses and Enroll",
         explanation:
-          "Obtain a globally recignised certificate that help you set an undeniable pace.",
+          "Our courses are designed to equip you with relevant knowledge and in-demand skills.",
         icon: "fa-search-location",
         link: "#schools",
       },
       {
         title: "Get certified",
         explanation:
-          "We have helped over 3,000 new students acquire skill that make them globally relevant.",
-        icon: "fa-certificate",
+          "We have helped over 3,000 new students acquire skills that make them globally relevant, through our innovative Pro-Diploma Certificate.",
+        icon: require("../Assets/img/IMG-20230301-WA0004.jpg"),
         link: "/about",
       },
       {
         title: "Land your dream job",
-        explanation: "Get th job of your dreams with our 100% assistance.",
+        explanation:
+          "Get the job of your dreams with our 100% assistance and mentorship.",
         icon: "fa-trophy",
         link: "/about",
       }
@@ -46,12 +47,12 @@ class How_it_works extends React.Component {
             <div class="row justify-content-center">
               <div class="col-lg-7 col-md-8">
                 <div class="sec-heading center">
-                  <h2>
-                    How It <span class="theme-cl">Works?</span>
+                  <h2 style={{ textTransform: "none" }}>
+                    How it <span class="theme-cl">Works?</span>
                   </h2>
                   <p>
-                    Get your Globally recognised Degree in one year through the
-                    most simplified process.
+                    Get your Globally recognised Degree in <b>ONE YEAR</b>&nbsp;
+                    through the most simplified process.
                   </p>
                 </div>
               </div>

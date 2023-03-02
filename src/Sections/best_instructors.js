@@ -15,7 +15,7 @@ class Best_instructors extends React.Component {
       bullets: new Array(
         "Relevant Updated Curriculum",
         "Guaranteed Assistance with Job Search",
-        "Best Instructors in The City- Industry Leaders",
+        "Best Instructors in the City- Industry Leaders",
         "Project-Based Exams- with Real world Application",
         "4 Semesters Only with Short break inbetween",
         "Innovative Professional Diploma (Pro-Diploma)",

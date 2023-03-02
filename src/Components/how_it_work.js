@@ -21,7 +21,11 @@ class How_it_work extends React.Component {
         <Link to={link} style={{ textDecoration: "none", color: "#000" }}>
           <div class={"wrk_grid" + (active ? " active" : "")}>
             <div class="wrk_grid_ico">
-              <i class={`fa ${icon}`}></i>
+              {typeof icon === "string" && !icon.startsWith("/") ? (
+                <i class={`fa ${icon}`}></i>
+              ) : (
+                <img style={{ height: 50 }} className="img circle" src={icon} />
+              )}
             </div>
             <div class="wrk_caption">
               <h4>{title}</h4>

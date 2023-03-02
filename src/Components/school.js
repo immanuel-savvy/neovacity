@@ -91,7 +91,7 @@ class School extends React.Component {
 
           <div class="prt_body">
             <ul>
-              {courses.map((course) => (
+              {courses.slice(0, 2).map((course) => (
                 <li key={course._id}>
                   <Link
                     to="/course"
@@ -116,7 +116,7 @@ class School extends React.Component {
               style={{ textDecoration: "none" }}
               onClick={this.handle_school}
             >
-              <span class="btn theme-cl choose_package">Register</span>
+              <span class="btn theme-cl choose_package">Explore courses</span>
             </Link>
           </div>
         </div>
