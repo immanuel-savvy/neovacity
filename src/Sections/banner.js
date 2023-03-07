@@ -23,14 +23,14 @@ class Banner extends React.Component {
       <div
         className="hero_banner d-flex justify-content-center image-cover for_top_info"
         style={{
-          backgroundColor: "#0478bd",
+          backgroundColor: "#000",
           // backgroundImage: `url(${domain}/Images/${
           //   image || "neovacity_africa_banner_background_image.jpg"
           // })`,
           // backgroundRepeat: "no-repeat",
           marginTop: "80px",
         }}
-        data-overlay="8"
+        data-overlay="9"
       >
         <video autoplay muted loop id="my_video">
           <source

@@ -29,6 +29,7 @@ import Add_admin from "../Sections/dashboard/add_admin";
 import { organisation_name } from "../Constants/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Manage_exam_questions from "../Sections/dashboard/manage_exam_questions";
+import Graduate_requests from "../Sections/dashboard/graduate_requests";
 
 const scroll_to_top = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -108,6 +109,7 @@ class Adminstrator extends React.Component {
       pending_reviews: <Pending_reviews />,
       new_article: <New_article article={this.state.article} />,
       manage_articles: <Manage_articles />,
+      graduate_requests: <Graduate_requests />,
     });
 
   render() {

@@ -13,7 +13,7 @@ class Course_title extends React.Component {
   }
 
   componentDidMount = () => {
-    let { course, enrolled } = this.props;
+    let { enrolled } = this.props;
     if (enrolled) {
       let next_lecture = window.sessionStorage.getItem("next_lecture");
       if (next_lecture) {
@@ -88,7 +88,10 @@ class Course_title extends React.Component {
                   </div>
 
                   <div class="ed_header_short">
-                    <p>{short_description.slice(0)}</p>
+                    <p>
+                      {short_description.slice(0, 150)}...&nbsp;
+                      <a href="#course_description">Read More</a>
+                    </p>
                   </div>
                 </div>
                 <div class="dlkio_last">

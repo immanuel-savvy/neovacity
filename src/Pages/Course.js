@@ -47,8 +47,6 @@ class Course extends React.Component {
     let { course, enrolled } = this.state;
     if (!course) return <Loadindicator contained />;
 
-    console.log(enrolled);
-
     return (
       <div id="main-wrapper">
         <Header page="course" />

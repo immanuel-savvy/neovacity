@@ -88,12 +88,32 @@ class Course_outline extends React.Component {
 
   render() {
     let { enrolled, course } = this.props;
+    let { what_you_will_learn, short_description } = course;
     let { curriculum } = this.state;
     let date = this.start_date(curriculum);
 
     return (
       <div className="col-lg-8 col-md-12 order-lg-first">
-        {!curriculum ? (
+        <div class="edu_wraper" id="course_description">
+          {short_description.split("\n").map((d, i) => (
+            <p key={i}>{d}</p>
+          ))}
+        </div>
+
+        {what_you_will_learn && what_you_will_learn.length ? (
+          <div class="edu_wraper">
+            <h3 class="edu_title">What you'll learn</h3>
+            <ul class="lists-3 row">
+              {what_you_will_learn.map((learn, i) => (
+                <li key={i} class="col-xl-4 col-lg-6 col-md-6 m-0">
+                  {learn}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {/* {!curriculum ? (
           <Listempty text="No outline yet" />
         ) : curriculum === "fetching" ? (
           <Loadindicator contained />
@@ -109,7 +129,7 @@ class Course_outline extends React.Component {
               key={week && week._id}
             />
           ))
-        )}
+        )} */}
       </div>
     );
   }

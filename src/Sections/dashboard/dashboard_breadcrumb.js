@@ -29,12 +29,12 @@ class Dashboard_breadcrumb extends React.Component {
   };
 
   render() {
-    let { crumb, on_click, hide, title } = this.props;
+    let { crumb, right_btn, on_click, hide, title } = this.props;
 
     return (
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
-          {on_click ? (
+          {on_click || right_btn ? (
             <div class="dashboard_wrap d-flex align-items-center justify-content-between">
               <div class="arion">
                 <nav class="transparent">
@@ -55,7 +55,7 @@ class Dashboard_breadcrumb extends React.Component {
                   </ol>
                 </nav>
               </div>
-              {this.right_btn(on_click, title, hide)}
+              {right_btn || this.right_btn(on_click, title, hide)}
             </div>
           ) : (
             <nav aria-label="breadcrumb">

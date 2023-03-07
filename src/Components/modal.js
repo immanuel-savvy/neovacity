@@ -52,7 +52,9 @@ class Modal extends React.Component {
             ) : null}
           </Modal_.Header>
         ) : null}
-        <Modal_.Body style={{ ...style }}>{children}</Modal_.Body>
+        <Modal_.Body style={{ margin: 0, padding: 0, ...style }}>
+          {children}
+        </Modal_.Body>
       </Modal_>
     );
   }

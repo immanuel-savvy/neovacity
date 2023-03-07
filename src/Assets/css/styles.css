@@ -1482,7 +1482,7 @@ span.select2-selection.select2-selection--single {
   content: "Browse";
 }
 .close {
-  color: #2bbb8a;
+  color: #19338b;
   opacity: 1;
 }
 .modal-title {
@@ -8516,7 +8516,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 }
 
 @media (max-width: 600px) {
-  #top_info{
+  #top_info {
     display: none;
   }
 }

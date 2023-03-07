@@ -58,7 +58,6 @@ class Add_alumni_review extends Handle_image_upload {
     };
 
     let result = await post_request("new_review", review);
-    console.log(result);
     if (!result || (result && !result._id)) return;
 
     review._id = result._id;

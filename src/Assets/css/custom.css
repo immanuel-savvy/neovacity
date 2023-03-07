@@ -223,3 +223,12 @@
   min-width: 100%;
   min-height: 100%;
 }
+
+.no_scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.no_scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
