@@ -114,6 +114,7 @@ class Hire_graduate extends React.Component {
         result && result._id
           ? null
           : (result && result.message) || "Cannot place request at the moment",
+      loading: false,
     });
   };
 
