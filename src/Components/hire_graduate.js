@@ -217,16 +217,22 @@ class Hire_graduate extends React.Component {
 
                   <div className="form-group">
                     <label>Email Address</label>
-                    <span
-                      style={
-                        resolve ? { cursor: "pointer", paddingLeft: 25 } : null
-                      }
-                      onClick={
-                        resolve ? () => window.open(`mailto://${email}`) : null
-                      }
-                    >
-                      <i className="fas fa-link"></i>
-                    </span>
+                    {!!resolve ? (
+                      <span
+                        style={
+                          resolve
+                            ? { cursor: "pointer", paddingLeft: 25 }
+                            : null
+                        }
+                        onClick={
+                          resolve
+                            ? () => window.open(`mailto://${email}`)
+                            : null
+                        }
+                      >
+                        <i className="fas fa-link"></i>
+                      </span>
+                    ) : null}
                     <div className="input-with-icon">
                       <input
                         type="email"
