@@ -32,6 +32,9 @@ import Enroll from "./Pages/Enroll";
 import Verify_email from "./Pages/Verify_email";
 import Profile from "./Pages/Profile";
 import Admission from "./Pages/Admission";
+import Corporate_training from "./Pages/Corporate_training";
+import Recruitment from "./Pages/Recruitment";
+import Partnership from "./Pages/Partnership";
 
 let emitter = new Emitter();
 
@@ -68,6 +71,18 @@ class Neovacity extends React.Component {
             {
               title: "Who we are",
               path: "/about",
+            },
+            {
+              title: "Corporate Training",
+              path: "/corporate_training",
+            },
+            {
+              title: "Recruitment / Hire",
+              path: "/recruitment",
+            },
+            {
+              title: "Partnership",
+              path: "/partnership",
             },
             {
               title: "FAQs",
@@ -108,7 +123,9 @@ class Neovacity extends React.Component {
   handle_school = (school) => {
     window.sessionStorage.setItem("school", JSON.stringify(school));
     emitter.emit("push_school", school);
-    window.location.assign(`${client_domain}/school`);
+    window.location.assign(
+      `${client_domain}/school/${school.title.replace(/ /g, "_")}`
+    );
   };
 
   componentDidMount = async () => {
@@ -219,9 +236,15 @@ class Neovacity extends React.Component {
                   <Route path={`profile`} element={<Profile />} />
                   <Route path={`verify_email`} element={<Verify_email />} />
                   <Route path={`article`} element={<Article />} />
-                  <Route path={`school`} element={<School />} />
+                  <Route path={`school/:school_name`} element={<School />} />
                   <Route path={`course`} element={<Course />} />
                   <Route path={`enroll`} element={<Enroll />} />
+                  <Route path={`partnership`} element={<Partnership />} />
+                  <Route path={`recruitment`} element={<Recruitment />} />
+                  <Route
+                    path={`corporate_training`}
+                    element={<Corporate_training />}
+                  />
                   <Route
                     path={`forgot_password`}
                     element={<Forgot_password />}

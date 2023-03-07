@@ -33,8 +33,8 @@ class Schools extends React.Component {
                 </h2>
                 <p>
                   Learn the in-demand Digital Skills required to take you from
-                  beginner to Expert Level in ONE YEAR. NO Degree or prior Tech
-                  experience required.
+                  beginner to Expert Level in <b>ONE YEAR</b>. NO Degree or
+                  prior Tech experience required.
                 </p>
               </div>
             </div>

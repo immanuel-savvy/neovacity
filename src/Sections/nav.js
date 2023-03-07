@@ -94,7 +94,7 @@ class Custom_nav extends React.Component {
                     <Navbar sticky="top" light expand="lg">
                       <NavbarBrand href={`/`} className="nav-brand">
                         <img
-                          src={require(`../Assets/img/neovacity_africa_logo.png`)}
+                          src={require(`../Assets/img/neovacity_blue_logo.png`)}
                           className="logo"
                           id="logo_white"
                           alt=""
@@ -159,7 +159,9 @@ class Custom_nav extends React.Component {
                                         }
                                       >
                                         <Link
-                                          onClick={subnav.on_click}
+                                          onClick={
+                                            subnav.on_click || scroll_to_top
+                                          }
                                           to={`${
                                             subnav.view_all
                                               ? "/courses"
@@ -184,6 +186,7 @@ class Custom_nav extends React.Component {
                                               !target.classList.contains(
                                                 "sub_sub_nav"
                                               ) && subnav.on_click();
+                                              scroll_to_top();
                                             }}
                                           >
                                             <DropdownToggle
@@ -223,6 +226,7 @@ class Custom_nav extends React.Component {
                                                           onClick={({
                                                             target,
                                                           }) => {
+                                                            scroll_to_top();
                                                             this.handle_course(
                                                               sub_nav
                                                             );

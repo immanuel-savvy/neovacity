@@ -17,7 +17,7 @@ class Breadcrumb extends React.Component {
           ...(page_title === "courses"
             ? new Object({ paddingTop: 30, paddingBottom: 20 })
             : null),
-          backgroundImage: `url(${require("../Assets/img/bg_light.jpg")})`,
+          backgroundImage: `url(${require("../Assets/img/breadcrumb_bg.png")})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           color: "#fff",
@@ -29,15 +29,14 @@ class Breadcrumb extends React.Component {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="breadcrumbs-wrap">
-                <h1 className="breadcrumb-title">{page_title}</h1>
+                <h1 className="breadcrumb-title text-light">{page_title}</h1>
                 <nav className="transparent">
                   <ol className="breadcrumb p-0">
-                    <li className="breadcrumb-item">
+                    <li className="breadcrumb-item text-light">
                       <Link
                         to="/"
                         style={{
-                          color: "#333",
-                          backgroundColor: no_gray ? "" : "#f7f8f9",
+                          color: "#fff",
                         }}
                       >
                         Home

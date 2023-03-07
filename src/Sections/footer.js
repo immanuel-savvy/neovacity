@@ -54,7 +54,7 @@ class Footer extends React.Component {
                             <Link to={`/`}>
                               <img
                                 onClick={scroll_to_top}
-                                src={require(`../Assets/img/neovacity_africa_logo.png`)}
+                                src={require(`../Assets/img/neovacity_white_logo.png`)}
                                 className="img-footer small mb-2"
                                 alt=""
                               />
@@ -111,7 +111,10 @@ class Footer extends React.Component {
                                       onClick={() => this.handle_school(school)}
                                     >
                                       <Link
-                                        to={`/school`}
+                                        to={`/school/${school.title.replace(
+                                          / /g,
+                                          "_"
+                                        )}`}
                                         style={{ textDecoration: "none" }}
                                       >
                                         {school.title.replace(/_/g, " ")}
@@ -134,7 +137,8 @@ class Footer extends React.Component {
                             <ul className="footer-menu">
                               <li>
                                 <Link
-                                  to={`/`}
+                                  onClick={scroll_to_top}
+                                  to={`/corporate_training`}
                                   style={{ textDecoration: "none" }}
                                 >
                                   Corporate Training
@@ -142,7 +146,8 @@ class Footer extends React.Component {
                               </li>
                               <li>
                                 <Link
-                                  to={`/`}
+                                  onClick={scroll_to_top}
+                                  to={`/recruitment`}
                                   style={{ textDecoration: "none" }}
                                 >
                                   Recruitment / Hire
@@ -150,7 +155,8 @@ class Footer extends React.Component {
                               </li>
                               <li>
                                 <Link
-                                  to={`/`}
+                                  onClick={scroll_to_top}
+                                  to={`/partnership`}
                                   style={{ textDecoration: "none" }}
                                 >
                                   Partnership
@@ -242,7 +248,7 @@ class Footer extends React.Component {
                         <p className="mb-0">
                           Site managed by{" "}
                           <a
-                            href="https://digitaladplanet.com/ng/"
+                            href="https://digitaladplanet.com"
                             target="_blank"
                             style={{ color: "#fff" }}
                           >

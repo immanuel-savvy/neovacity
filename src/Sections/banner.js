@@ -11,6 +11,10 @@ class Banner extends React.Component {
     this.state = {};
   }
 
+  componentDidMount = () => {
+    document.getElementById("my_video").play();
+  };
+
   render() {
     let { banner_stuffs } = this.props;
     let { image, thumbnail, thumbnail_hash } = banner_stuffs || new Object();
@@ -20,14 +24,21 @@ class Banner extends React.Component {
         className="hero_banner d-flex justify-content-center image-cover for_top_info"
         style={{
           backgroundColor: "#0478bd",
-          backgroundImage: `url(${domain}/Images/${
-            image || "neovacity_africa_banner_background_image.jpg"
-          })`,
-          backgroundRepeat: "no-repeat",
+          // backgroundImage: `url(${domain}/Images/${
+          //   image || "neovacity_africa_banner_background_image.jpg"
+          // })`,
+          // backgroundRepeat: "no-repeat",
           marginTop: "80px",
         }}
         data-overlay="8"
       >
+        <video autoplay muted loop id="my_video">
+          <source
+            src={require("../Assets/video/neovacity_background_loop.mp4")}
+            type="video/mp4"
+          />
+        </video>
+
         <Container>
           <Row className="align-items-center mb-2">
             <Col xl={6} lg={6} md={6} sm={12}>
@@ -41,8 +52,11 @@ class Banner extends React.Component {
               >
                 <div className="hero_search-2">
                   <div className="elsio_tag">POWERING YOUR DREAMS</div>
-                  <h1 className="banner_title mb-2">
-                    Become a graduate in ONE YEAR
+                  <h1
+                    className="banner_title mb-2"
+                    style={{ textTransform: "none" }}
+                  >
+                    Become a Graduate in ONE YEAR
                   </h1>
                   <p className="font-lg mb-4">
                     Access our Innovative School System to get Trained,

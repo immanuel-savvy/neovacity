@@ -1,6 +1,7 @@
 import React from "react";
 import { post_request } from "../Assets/js/utils/services";
 import Breadcrumb from "../Components/breadcrumb";
+import Contact_sidebar from "../Components/contact_sidebar";
 import Loadindicator from "../Components/loadindicator";
 import Alumni_reviews from "../Sections/alumni_reviews";
 import Footer from "../Sections/footer";
@@ -47,7 +48,7 @@ class Contact extends React.Component {
 
     return (
       <div id="main-wrapper">
-        <Header navs={navs} page="contact" />
+        <Header page="contact" />
         <div className="clearfix"></div>
         <Breadcrumb page_text="Contact Us" page_title="Get In Touch" />
         <section>
@@ -146,67 +147,8 @@ class Contact extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12">
-                <div className="lmp_caption pl-lg-5">
-                  <ol className="list-unstyled p-0">
-                    <li className="d-flex align-items-start my-3 my-md-4">
-                      <div className="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center theme-bg-light">
-                        <div className="position-absolute theme-cl h5 mb-0">
-                          <i className="fas fa-home"></i>
-                        </div>
-                      </div>
-                      <div className="ml-3 ml-md-4">
-                        <h4>Reach Us</h4>
-                        <h6>Ikeja - Head Office</h6>
-                        <p>
-                          18, Afolabi Aina Street,
-                          <br />
-                          Allen Avenue, Ikeja, Lagos.
-                          <br />
-                        </p>
-                      </div>
-                    </li>
-                    <li className="d-flex align-items-start my-3 my-md-4">
-                      <div className="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center theme-bg-light">
-                        <div className="position-absolute theme-cl h5 mb-0">
-                          <i className="fas fa-at"></i>
-                        </div>
-                      </div>
-                      <div className="ml-3 ml-md-4">
-                        <h4>Drop A Mail</h4>
-                        <p>
-                          <a href="mailto://info@neovacityafrica.com">
-                            info@neovacityafrica.com
-                          </a>
-                          <br />
-                          <a href="mailto://support@neovacityafrica.com">
-                            support@neovacityafrica.com
-                          </a>
-                          <br />
-                          <a href="mailto://admissions@neovacityafrica.com">
-                            admissions@neovacityafrica.com
-                          </a>
-                        </p>
-                      </div>
-                    </li>
-                    <li className="d-flex align-items-start my-3 my-md-4">
-                      <div className="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center theme-bg-light">
-                        <div className="position-absolute theme-cl h5 mb-0">
-                          <i className="fas fa-phone-alt"></i>
-                        </div>
-                      </div>
-                      <div className="ml-3 ml-md-4">
-                        <h4>Make a Call</h4>
-                        <p>
-                          +(234) 803 302 7439
-                          <br />
-                          +(234) 809 944 1722
-                        </p>
-                      </div>
-                    </li>
-                  </ol>
-                </div>
-              </div>
+
+              <Contact_sidebar />
             </div>
           </div>
         </section>

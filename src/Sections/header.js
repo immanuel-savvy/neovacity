@@ -15,6 +15,7 @@ class Header extends React.Component {
 
     return (
       <div
+        style={{ zIndex: 999 }}
         className={
           page === "home" || !page
             ? "header header-transparent dark-text my_header_style_init"
@@ -53,22 +54,12 @@ class Header extends React.Component {
                     <span style={{ color: "#fff" }}>
                       <i className="fas fa-phone"></i>
                     </span>
-                    &nbsp; +234 8033027439,
-                  </li>
-                  <li>
+                    ,&nbsp;
                     <span style={{ color: "#fff" }}>
                       <i className="fab fa-whatsapp"></i>
                     </span>
-                    &nbsp;
-                    <a
-                      href="https://wa.me/+2348033027439/?text=Hello,%20I%20like%20to%20enquire%20about%20GIIT%20courses%20and%20training?"
-                      target="_blank"
-                      style={{ color: "#fff" }}
-                    >
-                      +234 8033027439
-                    </a>
+                    &nbsp; +234 911 597 6423, +234 809 944 1722
                   </li>
-                  <li></li>
                 </ul>
               </div>
             </div>

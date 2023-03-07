@@ -33,7 +33,7 @@ class About extends React.Component {
 
     if (!about_statement || (about_statement && !about_statement.text))
       about_statement = {
-        text: `Irure ad consequat proident officia eiusmod nostrud. Nostrud cillum voluptate veniam voluptate ad proident cillum nulla aute exercitation duis enim est. Lorem nisi id reprehenderit eiusmod amet nulla labore eiusmod enim sint sunt. Non ad Lorem exercitation minim occaecat in irure ut ullamco mollit sint officia deserunt.`,
+        text: ``,
       };
 
     return (

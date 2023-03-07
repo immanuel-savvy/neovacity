@@ -35,7 +35,7 @@ class School extends React.Component {
           ) : (
             <Link
               className="crs_detail_link"
-              to={`school`}
+              to={`school/${title.replace(/ /g, "_")}`}
               onclick={this.handle_school}
             >
               <Preview_image
@@ -67,7 +67,7 @@ class School extends React.Component {
           <div class="prt_head">
             <Link
               style={{ textDecoration: "none" }}
-              to={`/school`}
+              to={`/school/${title.replace(/ /g, "_")}`}
               onClick={this.handle_school}
             >
               <h4 style={{ textTransform: "none" }}>
@@ -112,7 +112,7 @@ class School extends React.Component {
           </div>
           <div class="prt_footer">
             <Link
-              to={`/school`}
+              to={`/school/${title.replace(/ /g, "_")}`}
               style={{ textDecoration: "none" }}
               onClick={this.handle_school}
             >
