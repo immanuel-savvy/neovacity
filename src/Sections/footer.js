@@ -106,7 +106,7 @@ class Footer extends React.Component {
                             <ul className="footer-menu">
                               {schools ? (
                                 schools.map((school) => {
-                                  return (
+                                  return school.view_all ? null : (
                                     <li
                                       onClick={() => this.handle_school(school)}
                                     >
