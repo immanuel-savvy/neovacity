@@ -56,10 +56,11 @@ class Onboarding extends React.Component {
                         <h4>Create account</h4>
                         <p>
                           Sign up with{" "}
-                          <span style={{ textDecoration: "line-through" }}>
-                            $25 only
+                          <span style={{ textDecoration: "none" }}>
+                            $25 only, from <b>10th to 18th of March</b>
                           </span>{" "}
-                          (<b>FREE</b> for first 100 applicants). <br />
+                          and stand a chance to win a <b>Free Scholarship</b>.
+                          {/* (<b>FREE</b> for first 100 applicants). <br /> */}{" "}
                           Take your{" "}
                           <b>
                             <em>Pre-Admission Test</em>

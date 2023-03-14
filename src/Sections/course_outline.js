@@ -101,7 +101,13 @@ class Course_outline extends React.Component {
         </div>
 
         {what_you_will_learn && what_you_will_learn.length ? (
-          <div class="edu_wraper">
+          <div
+            class="edu_wraper"
+            style={{
+              backgroundColor: "skyblue",
+              // color: "#fff",
+            }}
+          >
             <h3 class="edu_title">What you'll learn</h3>
             <ul class="lists-3 row">
               {what_you_will_learn.map((learn, i) => (

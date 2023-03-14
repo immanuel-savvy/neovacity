@@ -42,12 +42,8 @@ class Contact_sidebar extends React.Component {
                     info@neovacityafrica.com
                   </a>
                   <br />
-                  <a href="mailto://support@neovacityafrica.com">
-                    support@neovacityafrica.com
-                  </a>
-                  <br />
                   <a href="mailto://admissions@neovacityafrica.com">
-                    admissions@neovacityafrica.com
+                    admin@neovacityafrica.com
                   </a>
                 </p>
               </div>

@@ -70,6 +70,8 @@ class New_article extends Handle_image_upload {
       _id,
     } = this.state;
 
+    this.setState({ loading: true });
+
     let article = {
       title,
       image,
@@ -94,6 +96,7 @@ class New_article extends Handle_image_upload {
     this.setState({
       title: "",
       image: null,
+      loading: false,
       categories: new Array(),
       sections: new Array(),
       image_name: "",
@@ -109,6 +112,7 @@ class New_article extends Handle_image_upload {
       image_loading,
       _id,
       article_categories,
+      loading,
     } = this.state;
     let is_set = title && image && sections.find((section) => section.text);
 
@@ -266,15 +270,19 @@ class New_article extends Handle_image_upload {
             </div>
 
             <div className="form-group smalls mt-5">
-              <button
-                onClick={is_set ? this.sumbit : () => {}}
-                type="button"
-                className={`btn full-width ${
-                  is_set ? "theme-bg" : "grey"
-                } short_description-white`}
-              >
-                {_id ? "Update Article" : "Create Article"}
-              </button>
+              {loading ? (
+                <Loadindicator />
+              ) : (
+                <button
+                  onClick={is_set ? this.sumbit : () => {}}
+                  type="button"
+                  className={`btn full-width ${
+                    is_set ? "theme-bg text-light" : "grey"
+                  } short_description-white`}
+                >
+                  {_id ? "Update Article" : "Create Article"}
+                </button>
+              )}
             </div>
           </form>
         </div>

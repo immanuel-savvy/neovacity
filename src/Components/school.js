@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { emitter } from "../Neovacity";
+import { scroll_to_top } from "../Pages/Home";
 import Preview_image from "./preview_image";
 import Video from "./video";
 
@@ -15,6 +16,7 @@ class School extends React.Component {
     let { school } = this.props;
     window.sessionStorage.setItem("school", JSON.stringify(school));
     emitter.emit("push_school", school);
+    scroll_to_top();
   };
 
   toggle_desc = () => this.setState({ show_more: !this.state.show_more });
@@ -97,11 +99,13 @@ class School extends React.Component {
                     to="/course"
                     className="theme-cl"
                     style={{ textDecoration: "none" }}
-                    onClick={() =>
-                      window.sessionStorage.setItem(
-                        "course",
-                        JSON.stringify(course)
-                      )
+                    onClick={
+                      (() =>
+                        window.sessionStorage.setItem(
+                          "course",
+                          JSON.stringify(course)
+                        ),
+                      scroll_to_top())
                     }
                   >
                     {course.title.replace(/_/g, " ")}

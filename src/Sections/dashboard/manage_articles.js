@@ -1,5 +1,5 @@
 import React from "react";
-import { get_request, post_request } from "../../Assets/js/utils/services";
+import { post_request } from "../../Assets/js/utils/services";
 import Loadindicator from "../../Components/loadindicator";
 import { emitter } from "../../Neovacity";
 import Article from "../../Components/article";
@@ -9,11 +9,20 @@ class Manage_articles extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      page_size: 25,
+      page: 1,
+    };
   }
 
   componentDidMount = async () => {
-    let articles = await get_request("articles/all");
+    let { page_size, page } = this.state;
+
+    let { articles } = await post_request("articles", {
+      skip: page_size * (page - 1),
+      limit: page_size,
+      total_articles: true,
+    });
 
     this.setState({ articles });
   };

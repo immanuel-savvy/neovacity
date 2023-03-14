@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { scroll_to_top } from "../Pages/Home";
-import { route_prefix } from "../Sections/nav";
 
 class Explore_more_btn extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class Explore_more_btn extends React.Component {
         <div class="col-lg-7 col-md-8 mt-2">
           <div class="text-center">
             <Link
-              to={`/${route_prefix}${to.slice(1)}`}
+              to={`/${to.slice(1)}`}
               onClick={(e) => {
                 action && action(e);
                 scroll_to_top();

@@ -55,10 +55,10 @@ class Testimonials extends React.Component {
               {reviews ? (
                 reviews.length ? (
                   reviews.map((review) => (
-                    <Review testimonials review={review} />
+                    <Review testimonials review={review} key={review._id} />
                   ))
                 ) : (
-                  <Listempty />
+                  <Listempty text="We are reviewing, please check back." />
                 )
               ) : (
                 <Loadindicator contained />

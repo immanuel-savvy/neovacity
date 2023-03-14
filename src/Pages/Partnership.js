@@ -40,13 +40,8 @@ class Partnership extends React.Component {
                   <h4 className="text-center">For Sponsorship</h4>
                   <b>
                     <p className="text-center">
-                      Email:{" "}
-                      <a
-                        target="_blank"
-                        href="mailto://admin@neovacityafrica.com"
-                      >
-                        admin@neovacityafrica.com
-                      </a>
+                      Send us an{" "}
+                      <a href="mailto://admin@neovacity.com">Email</a> now!
                     </p>
                   </b>
                 </div>

@@ -23,7 +23,6 @@ class About extends React.Component {
     document.title = `About | ${organisation_name}`;
 
     let about_statement = await get_request("about_statement");
-    console.log(about_statement);
     this.setState({ about_statement });
   };
 

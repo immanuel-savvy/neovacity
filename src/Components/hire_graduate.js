@@ -19,23 +19,54 @@ class Hire_graduate extends React.Component {
     let { request } = this.props;
     if (!request) {
       let countries = new Array(
-        {
-          _id: "ng",
-          name: "nigeria",
-        },
-        {
-          _id: "us",
-          name: "USA",
-        },
-        {
-          _id: "cn",
-          name: "Canada",
-        },
-        {
-          _id: "sa",
-          name: "South Africa",
-        }
-      );
+        "nigeria",
+        "ghana",
+        "kenya",
+        "cameroon",
+        "zimbabwe",
+        "togo",
+        "ethipia",
+        "egypt",
+        "mozambique",
+        "mali",
+        "uganda",
+        "morocco",
+        "angola",
+        "madagascar",
+        "niger",
+        "benin",
+        "senegal",
+        "tanzania",
+        "DR congo",
+        "algeria",
+        "sudan",
+        "burkina faso",
+        "guinea",
+        "rwanda",
+        "gabon",
+        "botswana",
+        "lesotho",
+        "namibia",
+        "eritea",
+        "mauritania",
+        "congo",
+        "sierra leone",
+        "central african republic",
+        "liberia",
+        "djibouti",
+        "comoros",
+        "cabo verde",
+        "seychelles",
+        "cote d'lvoire",
+        "sao tome & principe",
+        "chad",
+        "guinea-bissau",
+        "USA",
+        "Canada",
+        "South Africa"
+      )
+        .sort((c1, c2) => c1 > c2)
+        .map((c) => new Object({ _id: c.toLowerCase(), name: to_title(c) }));
       this.setState({ countries });
     }
   };
@@ -52,6 +83,7 @@ class Hire_graduate extends React.Component {
       country,
       staff_strength,
       desired_role,
+      number_of_staff_needed,
     } = this.state;
 
     return (
@@ -64,7 +96,8 @@ class Hire_graduate extends React.Component {
       phone_number &&
       country &&
       staff_strength &&
-      desired_role
+      desired_role &&
+      number_of_staff_needed
     );
   };
 
@@ -89,6 +122,7 @@ class Hire_graduate extends React.Component {
       country,
       staff_strength,
       desired_role,
+      number_of_staff_needed,
       resolved,
     } = this.state;
 
@@ -100,6 +134,7 @@ class Hire_graduate extends React.Component {
       company_name,
       industry,
       salary_range,
+      number_of_staff_needed,
       phone_number,
       country,
       staff_strength,
@@ -134,6 +169,7 @@ class Hire_graduate extends React.Component {
       desired_role,
       request_submitted,
       staff_strength,
+      number_of_staff_needed,
       country,
     } = this.state;
 
@@ -352,7 +388,9 @@ class Hire_graduate extends React.Component {
                             onChange={this.set_country}
                             className="form-control"
                           >
-                            <option value="">-- Select your country --</option>
+                            <option disabled value="">
+                              -- Select your country --
+                            </option>
                             {countries.map((country) => (
                               <option key={country._id} value={country._id}>
                                 {to_title(country.name.replace(/_/g, " "))}
@@ -416,6 +454,25 @@ class Hire_graduate extends React.Component {
                     </div>
                   </div>
 
+                  <div className="form-group">
+                    <label>Number of Staff Needed</label>
+                    <div className="input-with-icon">
+                      <input
+                        disabled={!!resolve}
+                        type="number"
+                        className="form-control"
+                        value={number_of_staff_needed}
+                        onChange={({ target }) =>
+                          this.setState({
+                            number_of_staff_needed: target.value,
+                            message: "",
+                          })
+                        }
+                        placeholder="Number of staff needed"
+                      />
+                    </div>
+                  </div>
+
                   {message ? <p className="text-danger">{message}</p> : null}
 
                   <div className="form-group">
@@ -431,7 +488,7 @@ class Hire_graduate extends React.Component {
                           ? "Resolved!"
                           : resolve
                           ? "Mark as resolved"
-                          : "Sumbit"}
+                          : "Submit"}
                       </button>
                     )}
                   </div>

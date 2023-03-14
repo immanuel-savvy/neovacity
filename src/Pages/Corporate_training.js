@@ -13,8 +13,7 @@ class Corporate_training extends React.Component {
       text: `Equip your staff members for better performance…
     Unlock your Organization’s uniqueness and power with Skills that will make them more effective and relevant in the Work Place, to increase productivity, generate revenue and reduce cost, through our World-Class Training. 
     Neovacity builds capacity for Organizations by impacting them with knowledge, through Training that equip them for greatness. Our Training methodologies foster development of skills that can create Sustainable Performance. We help Organizations and Individuals take control of their Businesses and their Careers.
-    We have garnered a good number of Industry Experts as trainers who passionately offer Corporate and personal Online and In-Person Professional Development Training.
-    Our Corporate Training are offered at a 20% discount for 10 persons and above.`.split(
+    We have garnered a good number of Industry Experts as trainers who passionately offer Corporate and personal Online and In-Person Professional Development Training.`.split(
         "\n"
       ),
     };
@@ -45,6 +44,12 @@ class Corporate_training extends React.Component {
                       {txt.trim()}
                     </p>
                   ))}
+                  <p>
+                    <b>
+                      Our Corporate Training are offered at a 20% discount for
+                      10 persons and above.
+                    </b>
+                  </p>
                 </div>
               </div>
               <Contact_sidebar />

@@ -88,7 +88,7 @@ class Profile_header extends React.Component {
                         style={{ cursor: "pointer" }}
                         className="text-dark"
                       >
-                        Add Bio
+                        Add Your Bio
                       </a>
                     )}
                   </div>

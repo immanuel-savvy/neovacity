@@ -76,7 +76,7 @@ class Profile extends React.Component {
                             }}
                           >
                             <Link
-                              href="/#schools"
+                              to="/schools"
                               className="btn theme-bg btn-md text-white"
                             >
                               Find Courses

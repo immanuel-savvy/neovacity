@@ -35,6 +35,7 @@ import Admission from "./Pages/Admission";
 import Corporate_training from "./Pages/Corporate_training";
 import Recruitment from "./Pages/Recruitment";
 import Partnership from "./Pages/Partnership";
+import Schools from "./Pages/Schools";
 
 let emitter = new Emitter();
 
@@ -57,7 +58,7 @@ class Neovacity extends React.Component {
         },
         {
           title: "schools",
-          path: "/courses",
+          path: "/schools",
           submenu: new Array(),
         },
         {
@@ -139,7 +140,7 @@ class Neovacity extends React.Component {
     let { navs, submenus } = this.state;
     navs &&
       navs.map((nav) => {
-        if (nav.title === "schools")
+        if (nav.title === "schools") {
           nav.submenu = schools.map((school) => {
             submenus[school._id] = school.courses;
             return {
@@ -149,6 +150,12 @@ class Neovacity extends React.Component {
               on_click: () => this.handle_school(school),
             };
           });
+          nav.submenu.push({
+            title: "View all",
+            path: "",
+            view_all: true,
+          });
+        }
       });
 
     this.restore_logged_admin = (admin) => {
@@ -161,7 +168,11 @@ class Neovacity extends React.Component {
       best_instructors_stuffs,
       navs,
       submenus,
-      schools,
+      schools: new Array(...schools, {
+        title: "View all",
+        path: "",
+        view_all: true,
+      }),
     });
 
     emitter.listen("restore_loggeduser", this.restore_loggeduser);
@@ -241,6 +252,7 @@ class Neovacity extends React.Component {
                   <Route path={`enroll`} element={<Enroll />} />
                   <Route path={`partnership`} element={<Partnership />} />
                   <Route path={`recruitment`} element={<Recruitment />} />
+                  <Route path={`schools`} element={<Schools />} />
                   <Route
                     path={`corporate_training`}
                     element={<Corporate_training />}

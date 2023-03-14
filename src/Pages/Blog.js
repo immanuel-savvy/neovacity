@@ -15,7 +15,7 @@ class Blog extends React.Component {
 
     this.state = {
       page_size: 12,
-      page: 0,
+      page: 1,
     };
   }
 
@@ -23,7 +23,7 @@ class Blog extends React.Component {
     let { page_size } = this.state;
 
     let { articles, total_articles } = await post_request("articles", {
-      skip: page_size * page,
+      skip: page_size * (page - 1),
       limit: page_size,
       total_articles: true,
     });
@@ -62,6 +62,7 @@ class Blog extends React.Component {
 
     return mapper.map((pager, index) => (
       <li
+        key={index}
         className={`page-item ${index === page ? "active" : ""}`}
         onClick={() => this.page(index)}
       >

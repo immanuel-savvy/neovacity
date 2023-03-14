@@ -65,7 +65,7 @@ class Custom_nav extends React.Component {
   search = () => {
     let { search_param } = this.state;
     window.location.assign(
-      `${client_domain}/courses?search_param=${search_param}`
+      `${client_domain}/schools?search_param=${search_param}`
     );
     scroll_to_top();
   };
@@ -164,12 +164,12 @@ class Custom_nav extends React.Component {
                                           }
                                           to={`${
                                             subnav.view_all
-                                              ? "/courses"
+                                              ? "/schools"
                                               : subnav.path
                                           }`}
                                         >
                                           {subnav.view_all
-                                            ? "View all courses..."
+                                            ? "View all schools..."
                                             : subnav.title.replace(/_/g, " ")}
                                         </Link>
                                         {nav.title !==

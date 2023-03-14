@@ -1,5 +1,6 @@
 import React from "react";
 import { get_request } from "../Assets/js/utils/services";
+import Explore_more_btn from "../Components/explore_more_btn";
 import Loadindicator from "../Components/loadindicator";
 import School from "../Components/school";
 
@@ -52,6 +53,10 @@ class Schools extends React.Component {
             )}
           </div>
         </div>
+
+        {schools && schools.length ? (
+          <Explore_more_btn text="View all schools" to="/schools" />
+        ) : null}
       </section>
     );
   }

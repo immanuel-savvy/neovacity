@@ -32,7 +32,7 @@ class Subscribe extends React.Component {
     let { email, subscribed, subscribing } = this.state;
 
     return (
-      <div className="">
+      <div className="p-3">
         <Link to="/">
           <img
             onClick={scroll_to_top}
